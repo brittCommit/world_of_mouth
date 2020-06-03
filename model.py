@@ -1,4 +1,4 @@
-from flask_alchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 
 db = SQLAlchemy()
@@ -26,7 +26,7 @@ class Route(db.Model):
 
     route_id = db.Column(db.Integer,
                         primary_key = True,
-                        auto_increment = True)
+                        autoincrement = True)
     country_id = db.Column(db.String, 
                         db.ForeignKey('countries.country_id'))
     user_id = db.Column(db.Integer,
@@ -50,11 +50,12 @@ class Stop(db.Model):
 
     stop_id = db.Column(db.Integer,
                         primary_key = True,
-                        auto_increment =True)
+                        autoincrement =True)
     city_name = db.Column(db.String, 
                         nullable = False,)
     route_id = db.Column(db.Integer, db.ForeignKey('routes.route_id'))
-    created_at = db.Column(db.DateTime(default = datetime.datetime.utcnow))
+    created_at = db.Column(db.DateTime, 
+                        default = datetime.utcnow)
     is_start = db.Column(db.Boolean, 
                         default = False)
     is_end = db.Column(db.Boolean, 
@@ -74,7 +75,7 @@ class User(db.Model):
 
     user_id = db.Column(db.Integer,
                         primary_key = True,
-                        auto_increment =True)
+                        autoincrement =True)
     email = db.Column(db.String,
                         nullable = False)
     user_name = db.Column(db.String,
