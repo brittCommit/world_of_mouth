@@ -13,6 +13,7 @@ class Country(db.Model):
     country_name = db.Column(db.String, 
                         nullable = False)
 
+    #Relationships with other tables
     route = db.relationship('Route')
 
     def __repr__(self):
@@ -33,7 +34,9 @@ class Route(db.Model):
                         db.ForeignKey('users.user_id'))
     is_completed = db.Column(db.Boolean, 
                         default = False)
+    trip_type = db.Column(db.String)
 
+    #Relationships with other tables
     stop = db.relationship('Stop')
     country = db.relationship('Country')
     user = db.relationship('User')
@@ -50,7 +53,7 @@ class Stop(db.Model):
 
     stop_id = db.Column(db.Integer,
                         primary_key = True,
-                        autoincrement =True)
+                        autoincrement = True)
     city_name = db.Column(db.String, 
                         nullable = False,)
     route_id = db.Column(db.Integer, db.ForeignKey('routes.route_id'))
@@ -62,6 +65,8 @@ class Stop(db.Model):
                         default = False)
     stay_length = db.Column(db.Integer)
 
+
+    #Relationships with other tables
     route = db.relationship('Route')
 
     def __repr__(self):
@@ -73,29 +78,30 @@ class User(db.Model):
 
     __tablename__ = 'users'
 
-    user_id = db.Column(db.Integer,
-                        primary_key = True,
-                        autoincrement =True)
+    user_id = db.Column(db.Integer, 
+                        autoincrement=True, 
+                        primary_key=True)
     email = db.Column(db.String,
+                        unique = True,
                         nullable = False)
     user_name = db.Column(db.String,
+                        unique = True,
                         nullable = False)
     password = db.Column(db.String,
                         nullable = False)
-    traveler_type = db.Column(db.String)
-    language = db.Column(db.String)
     home_country = db.Column(db.String)
 
+
+    #Relationships with other tables
     route = db.relationship('Route')
 
     def __repr__(self):
-        return f"""<User id #{self.user_id} belongs to {self.email}, {self.user_name}
-                and is from {self.home_country}>"""
+        return f"<User id #{self.user_id} belongs to {self.user_name} @ {self.email}.>"
 
 
-def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///routes', echo=False):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
-    # flask_app.config['SQLALCHEMY_ECHO'] = echo
+    flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.app = flask_app

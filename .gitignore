@@ -1,4 +1,4 @@
 /env
 secrets.sh
-DS_Store
+.DS_Store
 *pycache*
