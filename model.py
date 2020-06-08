@@ -56,7 +56,7 @@ class Stop(db.Model):
                         primary_key = True,
                         autoincrement = True)
     city_name = db.Column(db.String, 
-                        nullable = False,)
+                        nullable = False)
     route_id = db.Column(db.Integer, db.ForeignKey('routes.route_id'))
     created_at = db.Column(db.DateTime, 
                         default = datetime.utcnow)

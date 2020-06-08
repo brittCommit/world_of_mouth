@@ -1,10 +1,11 @@
 """CRUD operations"""
 
-from model import db, User, Route, Stop, connect_to_db
+from model import db, User, Route, Stop, connect_to_db, db
 
 if __name__=='__main__':
     from server import app
     connect_to_db(app)
+    db.create_all()
 
 def create_user(email, first_name, user_name, password, home_country):
     """Create and return a new user."""
