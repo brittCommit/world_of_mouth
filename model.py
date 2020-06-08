@@ -1,23 +1,24 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 
+
 db = SQLAlchemy()
 
-class Country(db.Model):
-    """A country."""
+# class Country(db.Model):
+#     """A country."""
 
-    __tablename__ = 'countries'
+#     __tablename__ = 'countries'
 
-    country_id = db.Column(db.String,
-                        primary_key = True)
-    country_name = db.Column(db.String, 
-                        nullable = False)
+#     country_id = db.Column(db.String,
+#                         primary_key = True)
+#     country_name = db.Column(db.String, 
+#                         nullable = False)
 
-    #Relationships with other tables
-    route = db.relationship('Route')
+#     #Relationships with other tables
+#     route = db.relationship('Route')
 
-    def __repr__(self):
-        return f'<Country is {self.country_name} with id {self.country_id}>'
+#     def __repr__(self):
+#         return f'<Country is {self.country_name} with id {self.country_id}>'
 
 
 class Route(db.Model):
@@ -28,21 +29,21 @@ class Route(db.Model):
     route_id = db.Column(db.Integer,
                         primary_key = True,
                         autoincrement = True)
-    country_id = db.Column(db.String, 
-                        db.ForeignKey('countries.country_id'))
+    # country_id = db.Column(db.String, 
+    #                     db.ForeignKey('countries.country_id'))
     user_id = db.Column(db.Integer,
                         db.ForeignKey('users.user_id'))
     is_completed = db.Column(db.Boolean, 
                         default = False)
-    trip_type = db.Column(db.String)
+    
 
     #Relationships with other tables
     stop = db.relationship('Stop')
-    country = db.relationship('Country')
+    # country = db.relationship('Country')
     user = db.relationship('User')
  
     def __repr__(self):
-        return f"""<Route id is {self.route_id} in country id {self.country_id}
+        return f"""<Route id is {self.route_id} 
                 by user {self.user_id} and the trip is completed {self.is_completed}>"""
 
 
@@ -64,6 +65,10 @@ class Stop(db.Model):
     is_end = db.Column(db.Boolean, 
                         default = False)
     stay_length = db.Column(db.Integer)
+    lat = db.Column(db.Float, 
+                        nullable = False)
+    lng = db.Column(db.Float, 
+                        nullable = False)
 
 
     #Relationships with other tables
@@ -83,6 +88,8 @@ class User(db.Model):
                         primary_key=True)
     email = db.Column(db.String,
                         unique = True,
+                        nullable = False)
+    first_name = db.Column(db.String,
                         nullable = False)
     user_name = db.Column(db.String,
                         unique = True,
@@ -118,8 +125,6 @@ if __name__ == '__main__':
     # query it executes.
 
     connect_to_db(app)
-
-
 
 
 
