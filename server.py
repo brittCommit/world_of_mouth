@@ -40,25 +40,34 @@ def login():
         flash('Wrong password, try again!')
         return redirect('/')
 
+@app.route('/register')
+def register_new_user():
 
-# @app.route('/new_user')
-# def new_user():
+    return render_template('new_user.html')
+
+@app.route('/new_user', methods=['POST'])
+def new_user():
     
-#     first_name = request.form.get('first_name')
-#     email = request.form.get('email')
-#     password = request.form.get('password')
+    email = request.form.get('email')
+    first_name = request.form.get('first_name')
+    user_name = request.form.get('user_name')
+    password = request.form.get('password')
+    home_country = request.form.get('home_country')
 
+    crud.create_user(email, first_name, user_name, password, home_country)
 
-#     user = crud.get_user_by_email(email)
+    # user = crud.get_user_by_email(email)
 
-#     if user:
-#         flash('There is already an email with that account. Please try again')
+    # if user != None:
+    #     crud.create_new_user(email, first_name, user_name, password, home_country)
+    #     flash(f'Account created. Welcome {first_name}!')
+    #     return redirect('/my_travels')
 
-#     else:
-#         crud.create_user(email, password)
-#         flash('Account created! Please log in.')
-
-    return redirect('/')
+    # else:
+    #     flash('There is already an email with that account. Please try again')
+    #     return redirect('/login')   
+    print(email)
+    return redirect('/my_travels') 
 
 @app.route('/create_user')
 def create_user():
@@ -91,6 +100,13 @@ def route_details(route_id):
 
     stops = crud.get_stops_by_route_id(route_id)
     return render_template('view_stops.html', stops = stops)
+
+@app.route('/my_travels')
+def my_travels():
+    """View and create routes"""
+
+    return render_template('/my_travels.html')
+
 
 
 @app.route('/add_stop')
