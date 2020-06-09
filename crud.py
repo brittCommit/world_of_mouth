@@ -55,21 +55,28 @@ def get_routes():
     return Route.query.all()
 
 def get_user_by_id(user_id):
+    """Return a user associated with a user_id"""
 
     return User.query.get(user_id)
 
 def get_route_by_id(route_id):
+    """Return a route associated with a user_id"""
 
     return Route.query.get(route_id)
 
+def get_stops():
+    """Get all stops"""
+
+    return Stop.query.all()
+
 def get_stops_by_route_id(route_id):
 
-    return Stop.query.filter(Stop.route_id).all()
+    return Stop.query.filter(Stop.route_id == route_id).all()
 
-def get_password_by_email(email):  ###FINISH
+def get_user_by_email(email): 
 
-    User.query.filter(User.email == email).first()
-    return User.password
+    return User.query.filter(User.email == email).first()
+    
 
 # def get_routes_with_stop():
 #     """Return routes with requested cities"""
