@@ -1,6 +1,6 @@
 """CRUD operations"""
 
-from model import db, User, Route, Stop, connect_to_db, db
+from model import db, User, Route, Stop, connect_to_db
 
 if __name__=='__main__':
     from server import app
@@ -54,14 +54,22 @@ def get_routes():
 
     return Route.query.all()
 
-
 def get_user_by_id(user_id):
 
     return User.query.get(user_id)
 
 def get_route_by_id(route_id):
 
-    return User.query.get(route_id)
+    return Route.query.get(route_id)
+
+def get_stops_by_route_id(route_id):
+
+    return Stop.query.filter(Stop.route_id).all()
+
+def get_password_by_email(email):  ###FINISH
+
+    User.query.filter(User.email == email).first()
+    return User.password
 
 # def get_routes_with_stop():
 #     """Return routes with requested cities"""
