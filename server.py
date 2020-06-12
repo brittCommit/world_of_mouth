@@ -20,7 +20,6 @@ def homepage():
 def login():
     """User login page"""
 
-
     email = request.form['email']
     password = request.form['password']
 
@@ -56,16 +55,6 @@ def new_user():
 
     crud.create_user(email, first_name, user_name, password, home_country)
 
-    # user = crud.get_user_by_email(email)
-
-    # if user != None:
-    #     crud.create_new_user(email, first_name, user_name, password, home_country)
-    #     flash(f'Account created. Welcome {first_name}!')
-    #     return redirect('/my_travels')
-
-    # else:
-    #     flash('There is already an email with that account. Please try again')
-    #     return redirect('/login')   
     print(email)
     return redirect('/my_travels') 
 
@@ -76,14 +65,12 @@ def create_user():
     user = crud.create_user(city_name, route, created_at, 
                     is_start, is_end, stay_length, lat, lng)
 
-
 @app.route('/create_route')
 def create_route():
     """User creates a new trip"""
 
     route = crud.create_route(city_name, route, created_at, 
             is_start, is_end, stay_length, lat, lng)
-
 
 @app.route('/view_routes')
 def view_routes():
@@ -92,7 +79,6 @@ def view_routes():
     all_routes = crud.get_routes()
     return render_template ('view_routes.html',
                             all_routes = all_routes)
-
 
 @app.route('/api/view_stops/<int:route_id>')
 def route_details(route_id):
@@ -107,13 +93,15 @@ def my_travels():
 
     return render_template('/my_travels.html')
 
-
-
 @app.route('/add_stop')
 def add_stop():
     """Add city to trip"""
 
-
+@app.route('/view_map')
+def view_map():
+    """View map"""
+    
+    return render_template("homepage.html")
 
 
 if __name__ == '__main__':
