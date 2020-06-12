@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{%block title%}Routes: World of Mouth{%endblock%}
+
+{% block body%}
+
+    <h2>List of Routes</h2>
+    <ul id="get-route">
+        <label>
+        Select a route:
+        </label>
+        {%for route in all_routes%}
+        <li  for = "route-id">
+            <a href="/api/view_stops/{{route.route_id}}">
+                {{route.route_id}}
+            </a>
+        </li>
+        {%endfor%}
+    </ul>
+
+{%endblock%}
+

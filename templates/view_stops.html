@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Trip Details{% endblock %}
+
+{% block body %}
+<h1> Trip itinerary </h1>
+<section id="display-route">
+<ol>
+
+    {% for stop in stops %}
+        <li id="city_name" />
+        {{stop.city_name}}
+        <ul>
+        <li id="stay_length" />
+         Nights stayed: {{stop.stay_length}}
+        </ul>
+    {% endfor %}
+</ol>
+</section>
+
+<button id = "test">
+    <p> test</p>
+</button>
+
+<script src="/static/js/ajax.js"></script>
+{% endblock %}
+
+

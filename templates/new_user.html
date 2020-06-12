@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+
+{%block title%}World of Mouth{%endblock%}
+
+{% block body%}
+
+    <h2> World of Mouth</h2>
+
+    <h3>New Traveler Registration</h3>
+
+    <form action="/new_user" method="POST">
+        <p>
+          <label>first name:</label>
+          <input type="text" name="first_name" required>
+        </p>
+        <p>
+          <label>email:</label>
+          <input type="email" name="email" required>
+        </p>
+        <p>
+          <label>user name:</label>
+          <input type="text" name="user_name" required>
+        </p>
+          <label>password:</label>
+          <input type="password" name="password" required>
+        </p>
+        </p>
+          <label>home country:</label>
+          <input type="text" name="home_country" required>
+        </p>
+          <input type="submit">
+    </form>
+
+ 
+{%endblock%}

@@ -1,0 +1,19 @@
+[{
+"user_id": 1,
+"is_completed" : true
+},
+
+{
+"user_id": 2,
+"is_completed" : true
+},
+
+{
+"user_id": 3,
+"is_completed" : true
+},
+{
+"user_id": 4,
+"is_completed" : true
+}
+]

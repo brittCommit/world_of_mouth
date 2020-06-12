@@ -1,0 +1,51 @@
+[
+{
+    "email": "brittneyhuttner@gmail.com",
+    "user_name": "b-hutt",
+    "password": "gypsy",
+    "first_name": "Britt",
+    "home_country": "United States of America"
+},
+{
+    "email": "kellibudd@gmail.com",
+    "user_name": "kellibudd",
+    "password": "test",
+    "first_name": "Kelli",
+    "home_country": "United States of America"
+},
+{
+    "email": "chantel@hotmail.com",
+    "user_name": "chanteloupetravels",
+    "password": "test2",
+    "first_name": "Chantel",
+    "home_country": "United States of America"
+},
+{
+    "email": "samanthaduran@gmail.com",
+    "user_name": "daveta",
+    "password": "Gandalf",
+    "first_name": "Sam",
+    "home_country": "United States of America"
+},
+{
+    "email": "kudz@gmail.com",
+    "user_name": "KK",
+    "password": "food",
+    "first_name": "Kartik",
+    "home_country": "India"
+},
+{
+    "email": "zoeymiller@gmail.com",
+    "user_name": "az",
+    "password": "griff",
+    "first_name": "Zoey",
+    "home_country": "United States of America"
+},
+{
+    "email": "melissarauch@gmail.com",
+    "user_name": "thewiseWOman",
+    "password": "ihavechickens",
+    "first_name": "Melissa",
+    "home_country": "United States of America"
+}
+]
