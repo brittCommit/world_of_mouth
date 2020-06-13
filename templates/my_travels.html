@@ -4,7 +4,38 @@
 
 {% block body%}
 
-    <h3>My Travels</h3>
-    <div action="/my_travels">
+    
+    <button id="new-trip" type="button" class="btn btn-info">Start a new trip</button>
+    <div id="form-container">
     </div>
-{%endblock%}
+    <script>
+    $('#new-trip').on('click', (evt) => {
+    evt.preventDefault();
+
+    const selectedValue =$('#form-container');
+    selectedValue.html(`<form action = "/create_route" method='POST'>
+                        <input type= "text" name= "trip_description">
+                        <input type= "submit">
+                        </form>`)
+    });
+
+    </script>
+
+   <!--  <form>
+    <select name="nights-stayed">
+        <option value= 1> 1</option>
+    </form>
+    </div> -->
+
+    <h3>My Travels</h3>
+    <ul>
+        {%for route in view_routes%}
+        <li for = "user-id">
+            {{route.user_id}}
+            </a>
+        </li>
+        {%endfor%}
+    </ul>
+    </div>
+{%endblock%} 
+

@@ -1,19 +1,23 @@
 [{
 "user_id": 1,
-"is_completed" : true
+"is_completed": true,
+"trip_description": "Art centered tour of Italy"
 },
 
 {
 "user_id": 2,
-"is_completed" : true
+"is_completed" : true,
+"trip_description": "8 day, 3 city trip through Italy"
 },
 
 {
 "user_id": 3,
-"is_completed" : true
+"is_completed": true,
+"trip_description": "Machu picchu dream vacation"
 },
 {
 "user_id": 4,
-"is_completed" : true
+"is_completed": true,
+"trip_description": "Girl's trip to London and Paris!"
 }
 ]

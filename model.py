@@ -35,6 +35,8 @@ class Route(db.Model):
                         db.ForeignKey('users.user_id'))
     is_completed = db.Column(db.Boolean, 
                         default = False)
+    trip_description = db.Column(db.String(50), 
+                                nullable = False)
     
 
     #Relationships with other tables

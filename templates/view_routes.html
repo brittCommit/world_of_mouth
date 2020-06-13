@@ -12,7 +12,7 @@
         {%for route in all_routes%}
         <li  for = "route-id">
             <a href="/api/view_stops/{{route.route_id}}">
-                {{route.route_id}}
+                {{route.trip_description}}
             </a>
         </li>
         {%endfor%}

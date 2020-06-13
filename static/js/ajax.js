@@ -1,17 +1,18 @@
 "use strict";
 
-$('#test').on('click', (evt) => {
-  evt.preventDefault();
 
-  const selectedValue = $('#test').html();
-  console.log(selectedValue)
+    <script>
+    $('#new-trip').on('click', (evt) => {
+    evt.preventDefault();
 
-  alert(`Success ${selectedValue}`)
+    alert("it worked!")
+    
+    const selectedValue = $('#new-trip').text();
+    console.log(selectedValue)
 
-  // $.get(`/api/view_stops/${selectedId}`, (res) => {
-  //   $('#city_name').html(res.city_name);
-  //   $('#stay_length').html(res.stay_length);
-  // });
-});
-
-console.log("hello")
+    $.get(`/create_route`, {'email', }(res) => {
+    $('#new-trip').text(res.trip_description);
+    $('#').html(res.stay_length);
+    })
+    });
+    </script>

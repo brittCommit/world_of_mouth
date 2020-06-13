@@ -46,11 +46,12 @@ def seed_routes():
     route_data=json.loads(f.read())
 
   for route in route_data:
-      user_id, is_completed = (route['user_id'],
-                               route['is_completed'])
+      user_id, is_completed, trip_description = (route['user_id'],
+                               route['is_completed'],
+                               route['trip_description'])
 
       user = crud.get_user_by_id(user_id)
-      crud.create_route(user, is_completed)
+      crud.create_route(user, is_completed,trip_description)
 
 
 def seed_stops():
