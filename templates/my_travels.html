@@ -31,7 +31,8 @@
     <ul>
         {%for route in view_routes%}
         <li for = "user-id">
-            {{route.user_id}}
+            <a href="/api/view_stops/{{route.route_id}}">
+                {{route.trip_description}}
             </a>
         </li>
         {%endfor%}

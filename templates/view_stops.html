@@ -3,6 +3,7 @@
 {% block title %}Trip Details{% endblock %}
 
 {% block body %}
+<div>
 <h1> Trip itinerary </h1>
 <section id="display-route">
 <ol>
@@ -14,15 +15,60 @@
         <li id="stay_length" />
          Nights stayed: {{stop.stay_length}}
         </ul>
+
     {% endfor %}
 </ol>
 </section>
 
-<button id = "test">
-    <p> test</p>
-</button>
+<button id="new-trip" type="button" class="btn btn-info">Add a new stop</button>
+    <div id="form-container">
+    </div>
+<!--  <script>
+    $('#new-trip').on('click', (evt) => {
+    evt.preventDefault();
 
-<script src="/static/js/ajax.js"></script>
+    const selectedValue =$('#form-container');
+    selectedValue.html(``)
+</script>
+}); -->
+
+<form action = "/create_stop" method='POST'>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">Enter your stop details in order</h4>
+    </div>
+    <div class="panel-body">
+      <input id="autocomplete" placeholder="Search city here" onFocus="geolocate()" type="text" class="form-control">
+      
+    <div class="row">
+      <div class="col-md-6">
+        <label class="control-label"></label>
+        <input class="form-control field" id="city_name" placeholder = "City" disabled="true">
+      </div>
+          
+      <div class="col-md-6">
+        <label class="control-label"></label>
+        <input class="form-control" id="country" placeholder = "Country" disabled="true">
+      </div>
+
+      <div class="col-md-6">
+        <label class="control-label"></label>
+        <input type="number" class="form-control" id="stay_length" placeholder = "Enter number of nights stayed"required>
+      </div>
+
+    <div action="/add_stop">
+      <button type="button" class="btn btn-info">Add stop to trip</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div id="map"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB11EET8koZ6suc0RrFvHxpJj4lEmkt8do&libraries=places&callback=initAutocomplete" async defer></form>
+</script>
+
+<script src="http://0.0.0.0:5000//static/js/auto-complete.js"></script>
+<script src="http://0.0.0.0:5000//static/js/Map.js" defer></script>
 {% endblock %}
-
-
