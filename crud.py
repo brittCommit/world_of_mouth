@@ -76,12 +76,25 @@ def get_stops():
     return Stop.query.all()
 
 def get_stops_by_route_id(route_id):
+    """Get stops associated with a particular route id"""
 
     return Stop.query.filter(Stop.route_id == route_id).all()
 
-def get_route_by_id_jsonify(route_id):
+def create_stop_dict(stop):
+    """Make a dictionary to pass through a route using json"""
 
-    return
+    stop_dict = {"city_name": stop.city_name,
+                 "route_id": stop.route_id,
+                 "stay_length": stop.stay_length,
+                 "lat": stop.lat,
+                 "lng":stop.lng
+                }
+
+    return stop_dict
+    
+# def get_route_by_id_jsonify(route_id):
+
+#     return 
 
     
 

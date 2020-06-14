@@ -43,8 +43,6 @@ function initMap() {
     // infowindow.close();
     marker.setVisible(false);
     var place = autocomplete.getPlace();
-    console.log(place)
-   
     var address_components = place.address_components
     var city_name = place.address_components[0].short_name
     var country_code = place.address_components[address_components.length -1].short_name
@@ -53,7 +51,7 @@ function initMap() {
     var trip = {
       city_name, country_code, lat, lng
     }
-    console.log(trip)
+   
     if (!place.geometry) {
       // User entered the name of a Place that was not suggested and
       // pressed the Enter key, or the Place Details request failed.

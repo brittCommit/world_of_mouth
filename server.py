@@ -106,20 +106,14 @@ def create_stop():
     """User creates a new stop"""
 
     city_name = request.form.get('city-name') 
-    route_id= request.form.get('route-id')
+    route_id = request.form.get('route-id')
     stay_length = request.form.get('stay-length')
-    lat= request.form.get('lat')
-    lng= request.form.get('lng')
+    lat = request.form.get('lat')
+    lng = request.form.get('lng')
 
-    route= crud.get_route_by_id(route_id)
-    stop= crud.create_stop(city_name, route, stay_length, lat, lng)
-
-    stop_dict = {"city_name": stop.city_name,
-                 "route_id": stop.route_id,
-                 "stay_length": stop.stay_length,
-                 "lat": stop.lat,
-                 "lng":stop.lng
-                }
+    route = crud.get_route_by_id(route_id)
+    stop = crud.create_stop(city_name, route, stay_length, lat, lng)
+    stop_dict = crud.create_stop_dict(stop)
 
     return jsonify(stop_dict)
 
@@ -127,9 +121,21 @@ def create_stop():
 def route_details(route_id):
     """View route details"""
 
+    route = crud.get_route_by_id(route_id)
     stops = crud.get_stops_by_route_id(route_id)
+    # stop_dict = crud.create_stop_dict(stop)
+
+    # all_stops_by_route = []
+
+    # for stop in stop_dict:
+    #     all_stops_by_route.append(stop)
+                
+                
+
+    # print(f'(all_stops is {all_stops_dict}')
     return render_template('view_stops.html', stops = stops,
-                                              route_id= route_id)
+                                              route_id= route_id,
+                                              route = route)
 
 
 # ROUTES FOR HANDLING MAP #

@@ -4,14 +4,13 @@
 
 {% block body %}
 <div>
-<h1> Trip itinerary </h1>
+<h2> Itinerary for {{route.trip_description}} </h2>
 <section id="display-route">
 <ol id= "itinerary">
 
     {% for stop in stops %}
     <li id="city_name" />
         {{stop.city_name}}
-        
         <ul>
         <li id="stay_length" />
          Nights stayed: {{stop.stay_length}}
@@ -22,7 +21,7 @@
 </ol>
 </section>
 
-
+    <!--Form to search places and add new stop-->
 
 <button id="new-stop" type="button" class="btn btn-info">Add a new stop</button>
     <div id="form-container">
@@ -77,6 +76,13 @@
 </div>
 </form>
 
+    <!--Ajax request to get all stop details of a trip-->
+<script>
+
+</script>
+
+    <!-- Ajax request to hide form until add stop is clicked, user can add a 
+         stop to a route using google places autocomplete -->
  <script>
     $('#new-stop').on('click', (evt) => {
     evt.preventDefault();
@@ -102,7 +108,8 @@
     });
     });
 </script>
-   
+
+                            <!-- Load map-->   
 <div id="map-container">
 <div id="map"></div>
 </div>
