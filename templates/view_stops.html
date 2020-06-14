@@ -6,33 +6,30 @@
 <div>
 <h1> Trip itinerary </h1>
 <section id="display-route">
-<ol>
+<ol id= "itinerary">
 
     {% for stop in stops %}
-        <li id="city_name" />
+    <li id="city_name" />
         {{stop.city_name}}
+        
         <ul>
         <li id="stay_length" />
          Nights stayed: {{stop.stay_length}}
+        </li> 
         </ul>
-
+    </li>    
     {% endfor %}
 </ol>
 </section>
 
-<button id="new-trip" type="button" class="btn btn-info">Add a new stop</button>
+
+
+<button id="new-stop" type="button" class="btn btn-info">Add a new stop</button>
     <div id="form-container">
     </div>
-<!--  <script>
-    $('#new-trip').on('click', (evt) => {
-    evt.preventDefault();
 
-    const selectedValue =$('#form-container');
-    selectedValue.html(``)
-</script>
-}); -->
 
-<form action = "/create_stop" method='POST'>
+<form action = "/create_stop" id = "create-stop" method='POST' hidden = true>
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
@@ -44,9 +41,9 @@
     <div class="row">
       <div class="col-md-6">
         <label class="control-label"></label>
-        <input class="form-control field" id="city_name" placeholder = "City" disabled="true">
+        <input class="form-control field" id="locality" name="city-name" placeholder = "City" disabled="true">
       </div>
-          
+    
       <div class="col-md-6">
         <label class="control-label"></label>
         <input class="form-control" id="country" placeholder = "Country" disabled="true">
@@ -54,21 +51,66 @@
 
       <div class="col-md-6">
         <label class="control-label"></label>
-        <input type="number" class="form-control" id="stay_length" placeholder = "Enter number of nights stayed"required>
+        <input class="form-control" id="lat" name='lat' placeholder = "lat" disabled="true" >
       </div>
 
-    <div action="/add_stop">
-      <button type="button" class="btn btn-info">Add stop to trip</button>
+      <div class="col-md-6">
+        <label class="control-label"></label>
+        <input class="form-control" id="lng" name='lng' placeholder = "lng" disabled="true" >
+      </div>
+
+      <div class="col-md-6">
+        <label class="control-label"></label>
+        <input type="number" class="form-control" id="stay_length" name="stay-length" placeholder = "Enter number of nights stayed"required>
+      </div>
+
+      <div>
+        <input id="route-id" name="route-id" value={{route_id}} hidden>
+
+    <div>
+      <button type="submit" class="btn btn-info">Add stop to trip</button>
     </div>
     </div>
+  </div>   
   </div>
 </div>
+</div>
+</form>
 
+ <script>
+    $('#new-stop').on('click', (evt) => {
+    evt.preventDefault();
+    console.log($('#create-stop'))
+    const selectedValue =$('#create-stop');
+    selectedValue.attr('hidden', false);
+    });
+    $('#create-stop').on('submit', (evt) => {
+    evt.preventDefault();
+    const formValues = $('#create-stop').serialize();
+
+    $.post('/create_stop', formValues,(res) => {
+       console.log(res) 
+       $('#itinerary').append(`
+        <li id="city_name" /> ${res.city_name}
+        <ul>
+        <li id="stay_length" />
+         Nights stayed: ${res.stay_length}
+        </li>
+        </ul>
+        </li>`);
+    $('#create-stop').attr('hidden', true);
+    });
+    });
+</script>
+   
+<div id="map-container">
 <div id="map"></div>
+</div>
+
+<script src="http://0.0.0.0:5000//static/js/auto-complete.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB11EET8koZ6suc0RrFvHxpJj4lEmkt8do&libraries=places&callback=initAutocomplete" async defer></form>
 </script>
 
-<script src="http://0.0.0.0:5000//static/js/auto-complete.js"></script>
-<script src="http://0.0.0.0:5000//static/js/Map.js" defer></script>
+
 {% endblock %}

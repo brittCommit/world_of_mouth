@@ -33,13 +33,10 @@ def create_route(user, trip_description):
 
     return route
 
-def create_stop(city_name, route, created_at, is_start, is_end, stay_length, lat, lng):
+def create_stop(city_name, route, stay_length, lat, lng):
     
     stop = Stop(city_name = city_name,
                 route = route, 
-                created_at = created_at,
-                is_start = is_start,
-                is_end = is_end,
                 stay_length = stay_length,
                 lat = lat,
                 lng = lng)

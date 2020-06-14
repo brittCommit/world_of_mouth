@@ -1,6 +1,12 @@
+#map-container {
+  height: 1000px;
+}
+
 #map {
   height: 50%;
 }
+
+
 
  html, body {
         height: 100%;

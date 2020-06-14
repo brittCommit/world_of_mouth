@@ -74,8 +74,7 @@ def seed_stops():
       created_at = datetime.strptime(stop['created_at'], '%Y-%m-%d')
 
       route = crud.get_route_by_id(route_id)
-      crud.create_stop(city_name, route, created_at, is_start, 
-                      is_end, stay_length, lat, lng)
+      crud.create_stop(city_name, route, stay_length, lat, lng)
 
   print("Database successfully seeded!")
 

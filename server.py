@@ -99,27 +99,37 @@ def view_routes_by_user(user_id):
     return render_template('my_travels.html', view_routes=view_routes)
 
 
-@app.route('/create_stop')
+# ROUTES TO CREATE AND VIEW STOPS #
+
+@app.route('/create_stop', methods = ['POST'])
 def create_stop():
     """User creates a new stop"""
 
-    route = crud.create_stop(city_name, route, created_at, 
-            is_start, is_end, stay_length, lat, lng)
+    city_name = request.form.get('city-name') 
+    route_id= request.form.get('route-id')
+    stay_length = request.form.get('stay-length')
+    lat= request.form.get('lat')
+    lng= request.form.get('lng')
 
+    route= crud.get_route_by_id(route_id)
+    stop= crud.create_stop(city_name, route, stay_length, lat, lng)
 
+    stop_dict = {"city_name": stop.city_name,
+                 "route_id": stop.route_id,
+                 "stay_length": stop.stay_length,
+                 "lat": stop.lat,
+                 "lng":stop.lng
+                }
 
-# ROUTES TO CREATE AND VIEW STOPS #
+    return jsonify(stop_dict)
 
 @app.route('/api/view_stops/<int:route_id>')
 def route_details(route_id):
     """View route details"""
 
     stops = crud.get_stops_by_route_id(route_id)
-    return render_template('view_stops.html', stops = stops)
-
-# @app.route('/add_stop')
-# def add_stop_to_trip():
-#     """Add city to trip"""
+    return render_template('view_stops.html', stops = stops,
+                                              route_id= route_id)
 
 
 # ROUTES FOR HANDLING MAP #
