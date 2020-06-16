@@ -36,7 +36,7 @@
       <h4 class="panel-title">Enter your stop details in order</h4>
     </div>
     <div class="panel-body">
-      <input id="autocomplete" placeholder="Search city here" type="text" class="form-control">
+      <input id="autocomplete" placeholder="Search city here"type="text" class="form-control">
       
     <div class="row">
       <div class="col-md-6">
@@ -95,6 +95,7 @@
     evt.preventDefault();
     const formValues = $('#create-stop').serialize();
 
+
     $.post('/create_stop', formValues,(res) => {
        console.log(res) 
        $('#itinerary').append(`
@@ -106,6 +107,7 @@
         </ul>
         </li>`);
     $('#create-stop').attr('hidden', true);
+    $('#create-stop')[0].reset();
     });
     });
 </script>
