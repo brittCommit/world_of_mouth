@@ -85,7 +85,9 @@ function geolocate() {
       });
       autocomplete.setBounds(circle.getBounds());
     });
+
   }
+
 };
 }
 
@@ -121,5 +123,7 @@ $.get(`/api/map/${route_id}`, (stops) => {
     map: map,
   });
 }
+  map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
+  map.setZoom(3)
 });
 };
