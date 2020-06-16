@@ -7,7 +7,8 @@
     "is_end": false,
     "stay_length": 3,
     "lat": 41.902782,
-    "lng": 12.496365
+    "lng": 12.496365,
+    "country_code": "IT"
 },
 {
     "city_name": "Florence",
@@ -17,7 +18,8 @@
     "is_end": false,
     "stay_length": 2,
     "lat":43.769562,
-    "lng":11.255814
+    "lng":11.255814,
+    "country_code": "IT"
 },
 {
     "city_name": "Venice",
@@ -27,7 +29,8 @@
     "is_end": true,
     "stay_length": 3,
     "lat":45.440845,
-    "lng":12.315515
+    "lng":12.315515,
+    "country_code": "IT"
 },
 {
     "city_name": "Milan",
@@ -37,7 +40,8 @@
     "is_end": false,
     "stay_length": 2, 
     "lat":45.463619,
-    "lng":9.188120
+    "lng":9.188120,
+    "country_code": "IT"
 },
 
 {
@@ -48,7 +52,8 @@
     "is_end": false,
     "stay_length": 2,
     "lat":43.843010,
-    "lng":10.507990
+    "lng":10.507990,
+    "country_code": "IT"
 },
 
 {
@@ -59,7 +64,8 @@
     "is_end": true,
     "stay_length": 4,
      "lat": 41.902782,
-    "lng": 12.496365
+    "lng": 12.496365,
+    "country_code": "IT"
 },
 
 {
@@ -70,7 +76,8 @@
     "is_end": false,
     "stay_length": 2, 
     "lat":12.0464,
-    "lng":77.0428
+    "lng":77.0428,
+    "country_code": "PE"
 },
 
 {
@@ -81,7 +88,8 @@
     "is_end": false,
     "stay_length": 3,
     "lat":13.5320,
-    "lng":71.9675
+    "lng":71.9675,
+    "country_code": "PE"
 },
 
 {
@@ -92,7 +100,8 @@
     "is_end": false,
     "stay_length": 2,
     "lat":13.1547,
-    "lng":72.5254
+    "lng":72.5254,
+    "country_code": "PE"
 },
 
 {
@@ -103,7 +112,8 @@
     "is_end": true,
     "stay_length": 1,
     "lat":13.5320,
-    "lng":71.9675
+    "lng":71.9675,
+    "country_code": "PE"
 },
 
 
@@ -115,7 +125,8 @@
     "is_end": false,
     "stay_length": 4,
     "lat":51.5074,
-    "lng":0.1278
+    "lng":0.1278,
+    "country_code": "UK"
 },
 
 {
@@ -126,7 +137,8 @@
     "is_end": true,
     "stay_length": 5,
     "lat":48.8566,
-    "lng":2.3522
+    "lng":2.3522,
+    "country_code": "FR"
 }
 
 ]
