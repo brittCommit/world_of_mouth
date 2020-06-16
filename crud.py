@@ -33,13 +33,14 @@ def create_route(user, trip_description):
 
     return route
 
-def create_stop(city_name, route, stay_length, lat, lng):
+def create_stop(city_name, route, stay_length, lat, lng, is_start):
     
     stop = Stop(city_name = city_name,
                 route = route, 
                 stay_length = stay_length,
                 lat = lat,
-                lng = lng)
+                lng = lng,
+                is_start = is_start)
 
     db.session.add(stop)
     db.session.commit()
@@ -87,10 +88,16 @@ def create_stop_dict(stop):
                  "route_id": stop.route_id,
                  "stay_length": stop.stay_length,
                  "lat": stop.lat,
-                 "lng":stop.lng
+                 "lng":stop.lng,
+                 "is_start": stop.is_start,
                 }
 
     return stop_dict
+
+def update_is_start():
+    """Update is_start in stops table to true"""
+
+
 
 # def create_dict_of_all_stops(route_id, stop_dict):
 
