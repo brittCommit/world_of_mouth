@@ -110,7 +110,7 @@ def create_stop():
     stay_length = request.form.get('stay-length')
     lat = request.form.get('lat')
     lng = request.form.get('lng')
-
+    country_code = request.form.get('country-code')
     route_len = crud.get_stops_by_route_id(route_id)    
 
     if len(route_len) == 0:
@@ -120,7 +120,7 @@ def create_stop():
         is_start = False
 
     route = crud.get_route_by_id(route_id)
-    stop = crud.create_stop(city_name, route, stay_length, lat, lng, is_start)
+    stop = crud.create_stop(city_name, route, stay_length, lat, lng, country_code, is_start)
     stop_dict = crud.create_stop_dict(stop)
 
     return jsonify(stop_dict)
@@ -143,12 +143,6 @@ def view_map():
     """View map"""
     
     return render_template("homepage.html")
-
-# @app.route('/')
-    
-
-
-#     return redirect(route_id)
 
 @app.route('/api/map/<int:route_id>')
 def map_by_route_id(route_id):

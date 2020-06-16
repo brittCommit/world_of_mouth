@@ -33,13 +33,14 @@ def create_route(user, trip_description):
 
     return route
 
-def create_stop(city_name, route, stay_length, lat, lng, is_start):
+def create_stop(city_name, route, stay_length, lat, lng, country_code, is_start):
     
     stop = Stop(city_name = city_name,
                 route = route, 
                 stay_length = stay_length,
                 lat = lat,
                 lng = lng,
+                country_code = country_code,
                 is_start = is_start)
 
     db.session.add(stop)
@@ -85,11 +86,12 @@ def create_stop_dict(stop):
     """Make a dictionary to pass through a route using json"""
 
     stop_dict = {"city_name": stop.city_name,
-                 "route_id": stop.route_id,
-                 "stay_length": stop.stay_length,
-                 "lat": stop.lat,
-                 "lng":stop.lng,
-                 "is_start": stop.is_start,
+                "is_start": stop.is_start,
+                "route_id": stop.route_id,
+                "stay_length": stop.stay_length,
+                "lat": stop.lat,
+                "lng":stop.lng,
+                "country_code": stop.country_code
                 }
 
     return stop_dict

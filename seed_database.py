@@ -25,11 +25,12 @@ def seed_users():
       user_data=json.loads(f.read())
 
   for user in user_data:
-      email, first_name, user_name, password, home_country = (user['email'], 
-                                               user['first_name'], 
-                                               user['user_name'],
-                                               user['password'],
-                                               user['home_country'])   
+      email = user['email']
+      first_name = user['first_name']
+      user_name = user['user_name']
+      password = user['password']
+      home_country = user['home_country']                                         
+                                                                                    
       db_user = crud.create_user(email, 
                                  first_name,
                                  user_name,
@@ -46,9 +47,9 @@ def seed_routes():
     route_data=json.loads(f.read())
 
   for route in route_data:
-      user_id, is_completed, trip_description = (route['user_id'],
-                               route['is_completed'],
-                               route['trip_description'])
+      user_id = route['user_id']
+      is_completed = route['is_completed']
+      trip_description = route['trip_description']
 
       user = crud.get_user_by_id(user_id)
       crud.create_route(user,trip_description)
@@ -63,20 +64,21 @@ def seed_stops():
     stop_data=json.loads(f.read()) 
 
   for stop in stop_data:
-      city_name, route_id, is_start, is_end, stay_length, lat, lng = (stop['city_name'],
-                               stop['route_id'],
-                               stop['is_start'],
-                               stop['is_end'],
-                               stop['stay_length'],
-                               stop['lat'],
-                               stop['lng'])
+      city_name = stop['city_name']
+      route_id = stop['route_id']
+      is_start = stop['is_start']
+      is_end = stop['is_end']
+      stay_length = stop['stay_length']
+      lat = stop['lat']
+      lng = stop['lng']
+      country_code = stop['country_code']
 
       created_at = datetime.strptime(stop['created_at'], '%Y-%m-%d')
-
       route = crud.get_route_by_id(route_id)
-      crud.create_stop(city_name, route, stay_length, lat, lng)
+      crud.create_stop(city_name, route, stay_length, lat, lng, country_code, is_start)
 
-  print("Database successfully seeded!")
+seed_stops()
+print("Database successfully seeded!")
 
 
 

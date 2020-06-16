@@ -71,13 +71,13 @@ class Stop(db.Model):
                         nullable = False)
     lng = db.Column(db.Float, 
                         nullable = False)
-
+    country_code = db.Column(db.String(2))
 
     #Relationships with other tables
     route = db.relationship('Route')
 
     def __repr__(self):
-        return f"""<Stop #{self.stop_id} in {self.city_name} on route #{self.route_id}>"""
+        return f"""<Stop #{self.stop_id} in {self.city_name} on route #{self.route_id} and is_start {self.is_start}.>"""
 
 
 class User(db.Model):
