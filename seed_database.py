@@ -51,7 +51,7 @@ def seed_routes():
                                route['trip_description'])
 
       user = crud.get_user_by_id(user_id)
-      crud.create_route(user, is_completed,trip_description)
+      crud.create_route(user,trip_description)
 
 
 def seed_stops():

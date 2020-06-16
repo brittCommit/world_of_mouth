@@ -123,20 +123,10 @@ def route_details(route_id):
 
     route = crud.get_route_by_id(route_id)
     stops = crud.get_stops_by_route_id(route_id)
-    # stop_dict = crud.create_stop_dict(stop)
 
-    # all_stops_by_route = []
-
-    # for stop in stop_dict:
-    #     all_stops_by_route.append(stop)
-                
-                
-
-    # print(f'(all_stops is {all_stops_dict}')
     return render_template('view_stops.html', stops = stops,
                                               route_id= route_id,
                                               route = route)
-
 
 # ROUTES FOR HANDLING MAP #
 
@@ -146,12 +136,30 @@ def view_map():
     
     return render_template("homepage.html")
 
-@app.route('/map/<int:route_id>')
+# @app.route('/')
+    
+
+
+#     return redirect(route_id)
+
+@app.route('/api/map/<int:route_id>')
 def map_by_route_id(route_id):
     """View map by route id"""
 
-#structure to pass into jsonify from flask
+    stops = [
+            {"stop_id": stop.stop_id,
+            "city_name": stop.city_name,
+            "route_id": stop.route_id,
+            "stay_length": stop.stay_length,
+            "lat": stop.lat,
+            "lng":stop.lng
+            }
+            for stop in crud.get_stops_by_route_id(route_id)
+    ]
 
+    print(stops)
+
+    return jsonify(stops)
 
 
 if __name__ == '__main__':

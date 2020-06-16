@@ -5,6 +5,7 @@
 {% block body %}
 <div>
 <h2> Itinerary for {{route.trip_description}} </h2>
+<p id="route-id" hidden = true>{{route.route_id}}</p>
 <section id="display-route">
 <ol id= "itinerary">
 
@@ -35,7 +36,7 @@
       <h4 class="panel-title">Enter your stop details in order</h4>
     </div>
     <div class="panel-body">
-      <input id="autocomplete" placeholder="Search city here" onFocus="geolocate()" type="text" class="form-control">
+      <input id="autocomplete" placeholder="Search city here" type="text" class="form-control">
       
     <div class="row">
       <div class="col-md-6">

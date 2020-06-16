@@ -91,7 +91,11 @@ def create_stop_dict(stop):
                 }
 
     return stop_dict
-    
+
+# def create_dict_of_all_stops(route_id, stop_dict):
+
+#     all_stops_dict = {route_id: stop_dict}
+
 # def get_route_by_id_jsonify(route_id):
 
 #     return 
