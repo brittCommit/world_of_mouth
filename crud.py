@@ -54,33 +54,40 @@ def get_user_by_id(user_id):
 
     return User.query.get(user_id)
 
+
 def get_user_by_email(email): 
 
     return User.query.filter(User.email == email).first()
+
 
 def get_routes():
     """Get all routes"""
 
     return Route.query.all()
 
+
 def get_route_by_id(route_id):
     """Return a route associated with a user_id"""
 
     return Route.query.get(route_id)
 
+
 def get_routes_by_user(user_id):
 
     return Route.query.filter(Route.user_id == user_id).all()
+
 
 def get_stops():
     """Get all stops"""
 
     return Stop.query.all()
 
+
 def get_stops_by_route_id(route_id):
     """Get stops associated with a particular route id"""
 
     return Stop.query.filter(Stop.route_id == route_id).all()
+
 
 def create_stop_dict(stop):
     """Make a dictionary to pass through a route using json"""
@@ -96,20 +103,16 @@ def create_stop_dict(stop):
 
     return stop_dict
 
-def update_is_start():
-    """Update is_start in stops table to true"""
 
+def get_stops_by_country_code(country_code):
+    """Return all routes trip descriptions containing a stop with requested country code"""
+
+    return Stop.query.filter(Stop.country_code == country_code).all()
 
 
 # def create_dict_of_all_stops(route_id, stop_dict):
 
 #     all_stops_dict = {route_id: stop_dict}
-
-# def get_route_by_id_jsonify(route_id):
-
-#     return 
-
-    
 
 # def get_routes_with_stop():
 #     """Return routes with requested cities"""

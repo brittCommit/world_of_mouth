@@ -4,22 +4,6 @@ from datetime import datetime, timezone
 
 db = SQLAlchemy()
 
-# class Country(db.Model):
-#     """A country."""
-
-#     __tablename__ = 'countries'
-
-#     country_id = db.Column(db.String,
-#                         primary_key = True)
-#     country_name = db.Column(db.String, 
-#                         nullable = False)
-
-#     #Relationships with other tables
-#     route = db.relationship('Route')
-
-#     def __repr__(self):
-#         return f'<Country is {self.country_name} with id {self.country_id}>'
-
 
 class Route(db.Model):
     """A route"""
@@ -29,8 +13,6 @@ class Route(db.Model):
     route_id = db.Column(db.Integer,
                         primary_key = True,
                         autoincrement = True)
-    # country_id = db.Column(db.String, 
-    #                     db.ForeignKey('countries.country_id'))
     user_id = db.Column(db.Integer,
                         db.ForeignKey('users.user_id'))
     is_completed = db.Column(db.Boolean, 

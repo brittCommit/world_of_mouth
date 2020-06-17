@@ -2,7 +2,7 @@ function initMap() {
  
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -33.8688, lng: 151.2195},
-    zoom: 13,
+    zoom: 2,
     mapTypeControl: false,
     scaleControl: true
   });
@@ -18,6 +18,7 @@ function initMap() {
   var options = {
   types: ['(regions)']
   };
+
 
   // add option here after input if the var options work
   var autocomplete = new google.maps.places.Autocomplete(input, options);
@@ -104,4 +105,5 @@ function initMap() {
   //       console.log('Checkbox clicked! New state=' + this.checked);
   //       autocomplete.setOptions({strictBounds: this.checked});
   //     });
+
 }
