@@ -104,10 +104,11 @@ def view_routes():
 def view_routes_by_user(user_id):
     """View routes belonging to a user"""
 
+    user = crud.get_user_by_id(user_id)
     view_routes = crud.get_routes_by_user(user_id)
     print(view_routes)
 
-    return render_template('my_travels.html', view_routes = view_routes)
+    return render_template('my_travels.html', view_routes = view_routes, user= user)
 
 
 @app.route('/trip_description', methods = ['POST'])
