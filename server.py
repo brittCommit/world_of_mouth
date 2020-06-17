@@ -28,10 +28,9 @@ def login():
 
     user = crud.get_user_by_email(email)
     
-
     if user == None:
         flash(f'Account does not exist for that email')
-        return redirect('/new_user')
+        return redirect('/')
 
     elif password == user.password:
         session['current_user'] = email
