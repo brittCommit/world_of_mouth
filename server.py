@@ -16,7 +16,7 @@ def homepage():
     return render_template('homepage.html')
 
 
-# ROUTES TO HANDLE USER LOGIN AND REGISTRATION #
+# ROUTES TO HANDLE USER LOGIN/LOGOUT AND REGISTRATION #
 
 
 @app.route('/login', methods=['POST'])
@@ -66,6 +66,17 @@ def new_user():
 
     print(email)
     return redirect(f'/api/view_routes/{user.user_id}') 
+
+@app.route('/logout')
+def logout():
+    """Log out a user"""
+
+    error = None
+    if "user" in session:
+        user = session ['user']
+    session.pop('user', None)
+    flash('You have been logged out!', 'info')
+    return render_template ('homepage.html', error = error)
 
 
 @app.route('/create_user')

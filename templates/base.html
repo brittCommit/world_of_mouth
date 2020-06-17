@@ -26,6 +26,10 @@
   </script>
   
   <body>
+    <form action="/logout">
+    <button type="submit" class="submit" name="logout">Logout</button>
+    </form>
+    
     {% for msg in get_flashed_messages() %}
       <p class="flash-msg">
         {{ msg }}
