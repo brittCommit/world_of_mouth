@@ -1,6 +1,6 @@
 var placeSearch, autocomplete;
   var componentForm = {
-    locality: 'long_name',
+    locality: 'short_name',
     country: 'short_name',
     lat: 'lat',
     lng: 'lng',
@@ -27,7 +27,7 @@ function fillInAddress() {
 
   var address_components = place.address_components
   console.log(address_components)
-  var locality = place.address_components[0].long_name
+  var locality = place.address_components[0].short_name
   var country = place.address_components[address_components.length -1].short_name
   var lat = place.geometry.location.lat()
   var lng = place.geometry.location.lng()
@@ -57,13 +57,8 @@ function fillInAddress() {
 // }
   
   tripKeys=Object.keys(trip);
-  console.log(tripKeys, 'trip')
-  console.log(tripKeys.length,'test')
   for (var key of tripKeys) {
-    console.log(key)
     var addressType = key;
-    console.log(addressType)
-
     if (componentForm[addressType]) {
       var val = trip[key];
       document.getElementById(addressType).value = val;
@@ -92,11 +87,10 @@ function geolocate() {
 }
 
 function initMap() {
-  console.log('inside the map')
 
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 39.327962, lng: -120.1832533},
-    zoom:8,
+    zoom:17,
     mapTypeControl: false,
     scaleControl: true
   });
@@ -124,6 +118,6 @@ $.get(`/api/map/${route_id}`, (stops) => {
   });
 }
   map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
-  map.setZoom(3)
+  map.setZoom(8)
 });
 };
