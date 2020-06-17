@@ -15,7 +15,9 @@ def homepage():
 
     return render_template('homepage.html')
 
+
 # ROUTES TO HANDLE USER LOGIN AND REGISTRATION #
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -41,10 +43,12 @@ def login():
         flash('Wrong password, try again!')
         return redirect('/')
 
+
 @app.route('/register')
 def register_new_user():
 
     return render_template('new_user.html')
+
 
 @app.route('/new_user', methods=['POST'])
 def new_user():
@@ -57,8 +61,12 @@ def new_user():
 
     crud.create_user(email, first_name, user_name, password, home_country)
 
+    email = request.form['email']
+    user = crud.get_user_by_email(email)
+
     print(email)
-    return redirect('/view_routes') 
+    return redirect(f'/api/view_routes/{user.user_id}') 
+
 
 @app.route('/create_user')
 def create_user():
@@ -67,7 +75,9 @@ def create_user():
     user = crud.create_user(city_name, route, created_at, 
                     is_start, is_end, stay_length, lat, lng)
 
+
 # ROUTES TO CREATE AND VIEW ROUTES(TRIPS) #
+
 
 @app.route('/create_route', methods = ['POST'])
 def create_route():
@@ -79,6 +89,7 @@ def create_route():
 
 
     return redirect ('/view_routes')
+
 
 @app.route('/view_routes')
 def view_routes():
@@ -96,10 +107,39 @@ def view_routes_by_user(user_id):
     view_routes = crud.get_routes_by_user(user_id)
     print(view_routes)
 
-    return render_template('my_travels.html', view_routes=view_routes)
+    return render_template('my_travels.html', view_routes = view_routes)
 
+
+@app.route('/trip_description', methods = ['POST'])
+def view_routes_by_country_code():
+    """Return list of routes with stops that contain the queried country code"""
+
+    country_code = request.form.get('country_code')
+    get_stops = crud.get_stops_by_country_code(country_code)
+    
+    # trip_desc_list = []
+    # for stop in get_stops:
+    #     if stop.route.trip_description not in trip_desc_list:
+    #         trip_desc_list.append(stop.route.trip_description)
+
+    # print(trip_desc_list)
+
+    # return render_template('homepage.html', trip_desc_list = trip_desc_list,
+    #                                         route_id = route_id)
+
+
+    route_dict = {}
+
+    for stop in get_stops:
+        if stop.route_id not in route_dict:
+            route_dict[stop.route_id] = stop.route.trip_description
+
+    print(trip_desc_list)
+
+    return render_template('homepage.html', route_dict)
 
 # ROUTES TO CREATE AND VIEW STOPS #
+
 
 @app.route('/create_stop', methods = ['POST'])
 def create_stop():
@@ -133,10 +173,12 @@ def route_details(route_id):
     stops = crud.get_stops_by_route_id(route_id)
 
     return render_template('view_stops.html', stops = stops,
-                                              route_id= route_id,
+                                              route_id = route_id,
                                               route = route)
 
+
 # ROUTES FOR HANDLING MAP #
+
 
 @app.route('/view_map')
 def view_map():
