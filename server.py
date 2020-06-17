@@ -88,7 +88,7 @@ def create_route():
     route = crud.create_route(user, trip_description)
 
 
-    return redirect ('/view_routes')
+    return redirect (f'/api/view_stops/{route.route_id}')
 
 
 @app.route('/view_routes')
