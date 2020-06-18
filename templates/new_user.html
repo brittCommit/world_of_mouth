@@ -1,12 +1,13 @@
 {% extends 'base.html'%}
 
-{%block title%}World of Mouth{%endblock%}
+{%block title%}World of Mouth: New Traveler Registration{%endblock%}
 
 {% block body%}
 
-    <h2> World of Mouth</h2>
 
     <h3>New Traveler Registration</h3>
+
+    <div>
 
     <form action="/new_user" method="POST">
         <p>
@@ -31,5 +32,6 @@
           <input type="submit">
     </form>
 
+    <div>
  
 {%endblock%}

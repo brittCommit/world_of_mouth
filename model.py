@@ -89,6 +89,30 @@ class User(db.Model):
     def __repr__(self):
         return f"<User id #{self.user_id} belongs to {self.user_name} @ {self.email}.>"
 
+# class TripType(db.Model):
+#     """Trip Types"""
+
+#     __tablename__ = 'trip_types'
+
+#     solo = db.Column(db.Boolean,
+#               default=False)
+#     group = db.Column(db.Boolean,
+#               default=False)
+#     couples = db.Column(db.Boolean,
+#               default=False)
+#     food = db.Column(db.Boolean,
+#               default=False)
+#     adventure = db.Column(db.Boolean,
+#               default=False)
+#     health = db.Column(db.Boolean,
+#               default=False)
+#     culture = db.Column(db.Boolean,
+#               default=False)
+#     backpacking = db.Column(db.Boolean,
+#               default=False)
+#     digital_nomad = db.Column(db.Boolean,
+#               default=False)
+   
 
 def connect_to_db(flask_app, db_uri='postgresql:///routes', echo=False):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri

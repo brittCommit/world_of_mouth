@@ -7,6 +7,7 @@ if __name__=='__main__':
     connect_to_db(app)
     db.create_all()
 
+
 def create_user(email, first_name, user_name, password, home_country):
     """Create and return a new user."""
 
