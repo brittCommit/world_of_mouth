@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+
+{%block title%}World of Mouth: New Traveler Registration{%endblock%}
+
+{% block body%}
+
+<!--Login and new user functionality-->   
+  <h3>Login</h3>
+    <form action="/login" method="POST">
+    <div class="form-group">
+          <label>Email address:</label>
+          <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+    </div>
+    <div class="form-group">
+          <label>Password:</label>
+          <input type="password" class="form-control" placeholder = "Enter password" name="password" required>
+    </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+{%endblock%}
