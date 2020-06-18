@@ -3,6 +3,9 @@
 {% block title %}Trip Details{% endblock %}
 
 {% block body %}
+
+  <!--View all stops on a trip/route-->
+
 <div>
 <h2> Itinerary for {{route.trip_description}} </h2>
 <p id="route-id" hidden = true>{{route.route_id}}</p>
@@ -25,65 +28,63 @@
     <!--Form to search places and add new stop-->
 
 <button id="new-stop" type="button" class="btn btn-info">Add a new stop</button>
-    <div id="form-container">
-    </div>
+<div id="form-container"></div>
 
 
-<form action = "/create_stop" id = "create-stop" method='POST' hidden = true>
+<form action= "/create_stop" id= "create-stop" method='POST' hidden= true>
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h4 class="panel-title">Enter your stop details in order</h4>
     </div>
-    <div class="panel-body">
-      <input id="autocomplete" placeholder="Search city here"type="text" class="form-control">
+  <div class="panel-body">
+    <input id="autocomplete" placeholder="Search city here"type="text" class="form-control">
       
-    <div class="row">
-      <div class="col-md-6">
-        <label class="control-label"></label>
-        <input class="form-control field" id="locality" name="city-name" placeholder = "City" disabled="true">
-      </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="control-label"></label>
+      <input class="form-control field" id="locality" name="city-name" placeholder = "City" disabled="true">
+    </div>
     
-      <div class="col-md-6">
-        <label class="control-label"></label>
-        <input class="form-control" id="country" name="country-code" placeholder = "Country" disabled="true">
-      </div>
+    <div class="col-md-6">
+      <label class="control-label"></label>
+      <input class="form-control" id="country" name="country-code" placeholder = "Country" disabled="true">
+    </div>
 
-      <div class="col-md-6">
-        <label class="control-label"></label>
-        <input class="form-control" id="lat" name='lat' placeholder = "lat" disabled="true" >
-      </div>
+    <div class="col-md-6">
+      <label class="control-label"></label>
+      <input class="form-control" id="lat" name='lat' placeholder = "lat" disabled="true" >
+    </div>
 
-      <div class="col-md-6">
-        <label class="control-label"></label>
-        <input class="form-control" id="lng" name='lng' placeholder = "lng" disabled="true" >
-      </div>
+    <div class="col-md-6">
+      <label class="control-label"></label>
+      <input class="form-control" id="lng" name='lng' placeholder = "lng" disabled="true" >
+    </div>
 
-      <div class="col-md-6">
-        <label class="control-label"></label>
-        <input type="number" class="form-control" id="stay_length" name="stay-length" placeholder = "Enter number of nights stayed"required>
-      </div>
-
-      <div>
-        <input id="route-id" name="route-id" value={{route_id}} hidden>
+    <div class="col-md-6">
+      <label class="control-label"></label>
+      <input type="number" class="form-control" id="stay_length" name="stay-length" placeholder = "Enter number of nights stayed"required>
+    </div>
 
     <div>
-      <button type="submit" class="btn btn-info">Add stop to trip</button>
+      <input id="route-id" name="route-id" value={{route_id}} hidden>
+
+      <div>
+        <button type="submit" class="btn btn-info">Add stop to trip</button>
+      </div> 
     </div>
-    </div>
+
   </div>   
   </div>
-</div>
+  </div>
 </div>
 </form>
+<div id="map-container">
+<div id="map"></div>
+</div>
 
-    <!--Ajax request to get all stop details of a trip-->
-<script>
+    <!-- Ajax request to hide form until add stop is clicked, user can add a stop to a route using google places autocomplete -->
 
-</script>
-
-    <!-- Ajax request to hide form until add stop is clicked, user can add a 
-         stop to a route using google places autocomplete -->
  <script>
     $('#new-stop').on('click', (evt) => {
     evt.preventDefault();
@@ -112,10 +113,11 @@
     });
 </script>
 
+
                             <!-- Load map-->   
-<div id="map-container">
+<!-- <div id="map-container">
 <div id="map"></div>
-</div>
+</div> -->
 
 <script src="http://0.0.0.0:5000//static/js/auto-complete.js"></script>
 

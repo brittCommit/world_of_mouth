@@ -118,6 +118,6 @@ $.get(`/api/map/${route_id}`, (stops) => {
   });
 }
   map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
-  map.setZoom(8)
+  map.setZoom(3)
 });
 };

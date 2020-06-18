@@ -3,9 +3,16 @@
 {%block title%}World of Mouth{%endblock%}
 
 {% block head %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">World of Mouth</a>
-  
+
+<!-- Navbar-->
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+
+
+    <img src="/static/img/wom.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+    World of Mouth
+  </a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -19,11 +26,27 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
     </ul>
   </div>
-</nav>
+</nav> -->
 
-<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
+<!--Carousel content-->
+
+<!-- <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -60,18 +83,51 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</div> -->
 
 <link rel="stylesheet" href="/static/css/index.css"/>
 
-{% endblock %}
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="World of Mouth travel site">
+    <meta name="author" content="Brittney Huttner">
 
-{% block body%}
+<!--     Custom styles for this template -->
+  
+  </head>
+  <body class="text-center">
 
-    <h2> World of Mouth</h2>
-    
-
-    <h3>Login</h3>
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">World of Mouth</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="/">Home</a>
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Login
+        </a>
+             
+              <form class="dropdown-menu p-4">
+                  <div class="form-group">
+                    <label for="exampleDropdownFormEmail2">Email address</label>
+                    <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleDropdownFormPassword2">Password</label>
+                    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Sign in</button>
+                </form>
+ 
+            <a class="nav-link" href="/logout">Logout</a>
+            <a class="nav-link" href="/register">Create Account</a>
+          </nav>
+        </div>
+      </header>
+<!--Login and new user functionality-->   
+<!--   <h3>Login</h3>
     <form action="/login" method="POST">
     <div class="form-group">
           <label>Email address:</label>
@@ -82,36 +138,70 @@
           <input type="password" class="form-control" placeholder = "Enter password" name="password" required>
     </div>
           <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <p>
-    <a href="/register">New travelers, create account here</a>
-     <div id="map"></div>
-    </p>
+    </form> -->
 
-    <title>Place Autocomplete</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <div class="pac-card" id="pac-card">
-      <div>
-        <div id="title">
-          Where to next?
-          <br>
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Oh, the places you can go.</h1>
+        <p class="lead">Sometimes the path most taken is what we should choose, search your next destination see other travelers routes.</p>
+              
+
+                        <!--Form to search places-->
+          <div class="panel-body">
+          <input id="autocomplete" placeholder="Where to next?" onFocus="geolocate()" type="text" class="form-control">
         </div>
-      <div id="pac-container">
-        <input id="pac-input" type="text"
-            placeholder="Enter a city or country">
-      </div>
+        <p class="lead">
+          <a id = "get-trips" href="/view_routes" class="btn btn-lg btn-secondary">Get trips</a>
+        </p>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Something good that came out of 2020. Made with love by Brittney Huttner</p>
+        </div>
+      </footer>
     </div>
-   
-    <div id="infowindow-content">
-      <img src="" width="16" height="16" id="place-icon">
-      <span id="place-name"  class="title"></span><br>
-      <span id="place-address"></span>
+</body></html>
+
+{% endblock %}
+
+{% block body%}
+
+
+          
+
+   <script>
+    $('#get-trips').on('click', (evt) => {
+    evt.preventDefault();
+    
+    $('#trip-description').on('submit', (evt) => {
+    evt.preventDefault();
+    const formValues = $('#create-stop').serialize();
+
+
+    $.post('/trip-description', formValues,(res) => {
+       console.log(res) 
+       $('#itinerary').append(`
+        <li id="city_name" /> ${res.country-code}
+        <ul>
+        <li id="stay_length" />
+         Nights stayed: ${res.stay_length}
+        </li>
+        </ul>
+        </li>`);
+
+    $('#get-trips')[0].reset();
+    });
+    });
+</script>
+<!--     </div> -->
+  </div>   
+  </div>
+</div>
+</div>
+</form>
     </div>
-    <script src="./static/js/Map.js" defer></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB11EET8koZ6suc0RrFvHxpJj4lEmkt8do&libraries=places&callback=initMap"async defer></script>
+    <script src="./static/js/auto-complete-home.js" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB11EET8koZ6suc0RrFvHxpJj4lEmkt8do&libraries=places&callback=initAutocomplete"async defer></script>
   
 
   
@@ -119,4 +209,10 @@
 </html>
 
 {%endblock%}
-
+ <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
