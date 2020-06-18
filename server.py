@@ -102,17 +102,24 @@ def create_route():
     user = crud.get_user_by_email(session['current_user'])
     route = crud.create_route(user, trip_description)
 
-
     return redirect (f'/api/view_stops/{route.route_id}')
 
 
-@app.route('/view_routes')
-def view_routes():
+@app.route('/view_routes/<country>')
+def view_routes(country):
     """View all routes"""
 
-    all_routes = crud.get_routes()
-    return render_template ('view_routes.html',
-                            all_routes = all_routes)
+#     all_routes = crud.get_routes()
+#     return render_template ('view_routes.html',
+#                             all_routes = all_routes)
+    # country_code = request.form.get('country')
+
+    all_routes = crud.get_all_routes_with_stop_with_country_code(country)
+    print(f' all routes are {all_routes}')
+
+    return render_template('view_routes.html', all_routes = all_routes)
+
+
 
 
 @app.route('/api/view_routes/<int:user_id>')
@@ -126,24 +133,16 @@ def view_routes_by_user(user_id):
     return render_template('my_travels.html', view_routes = view_routes, user= user)
 
 
-@app.route('/trip_description', methods = ['POST', 'GET'])
-def view_routes_by_country_code():
-    """Return list of routes with stops that contain the queried country code"""
-
+# @app.route('/trip_description', methods = ['POST', 'GET'])
+# def view_routes_by_country_code():
+#     """Return list of routes with stops that contain the queried country code"""
    
-    country_code = request.form.get('country')
-    print(f'country code is {country_code}')
-    get_stops = crud.get_stops_by_country_code(country_code)
-    print(f'get stops is {get_stops}')
-    route_dict = {}
+#     country_code = request.form.get('country')
 
-    for stop in get_stops:
-        if stop.route_id not in route_dict:
-            route_dict[stop.route_id] = stop.route.trip_description
+#     all_routes = crud.get_all_routes_with_stop_with_country_code(country_code)
+#     print(f' all routes are {all_routes}')
 
-    print(f'route_dict is {route_dict}')
-
-    return render_template('view_routes.html', route_dict = route_dict)
+#     return render_template('view_routes.html', all_routes = all_routes)
     
 
 # ROUTES TO CREATE AND VIEW STOPS #

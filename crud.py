@@ -111,6 +111,12 @@ def get_stops_by_country_code(country_code):
     return Stop.query.filter(Stop.country_code == country_code).all()
 
 
+def get_all_routes_with_stop_with_country_code(country_code):
+    """ Return all routes that contain a stop in a given country"""
+
+    return db.session.query(Route).join(Stop).filter(Stop.country_code == country_code).all()
+
+
 # def create_dict_of_all_stops(route_id, stop_dict):
 
 #     all_stops_dict = {route_id: stop_dict}

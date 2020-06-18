@@ -42,15 +42,15 @@ function fillInAddress() {
 
 
   $('#get-trips').on('submit', (evt) => {
-  evt.preventDefault();
-
+    evt.preventDefault();
+  
   const formInputs = {
     country: val
   };
+  // console.log(`/view_routes/${country}`)
+  window.location.href = `/view_routes/${country}`
 
-  $.post('/trip_description', formInputs, (res) => {
-    alert(res);
-  });
+  
 });
 
 };
