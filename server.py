@@ -29,7 +29,7 @@ def login():
     user = crud.get_user_by_email(email)
     
     if user == None:
-        flash(f'Account does not exist for that email')
+        flash(f'Account does not exist for that email, please try again or create a new account.')
         return redirect('/')
 
     elif password == user.password:
@@ -65,6 +65,7 @@ def new_user():
 
     print(email)
     return redirect(f'/api/view_routes/{user.user_id}') 
+
 
 @app.route('/logout')
 def logout():
@@ -128,17 +129,6 @@ def view_routes_by_country_code():
     country_code = request.form.get('country_code')
     get_stops = crud.get_stops_by_country_code(country_code)
     
-    # trip_desc_list = []
-    # for stop in get_stops:
-    #     if stop.route.trip_description not in trip_desc_list:
-    #         trip_desc_list.append(stop.route.trip_description)
-
-    # print(trip_desc_list)
-
-    # return render_template('homepage.html', trip_desc_list = trip_desc_list,
-    #                                         route_id = route_id)
-
-
     route_dict = {}
 
     for stop in get_stops:
@@ -147,7 +137,8 @@ def view_routes_by_country_code():
 
     print(trip_desc_list)
 
-    return render_template('homepage.html', route_dict)
+    return render_template('view_routes.html', route_dict)
+    
 
 # ROUTES TO CREATE AND VIEW STOPS #
 
@@ -216,6 +207,24 @@ def map_by_route_id(route_id):
 
     return jsonify(stops)
 
+# @app.route('/api/map/<str:country_code>')
+# def map_by_country_code(country_code):
+#     """View map by country_code"""
+
+#     routes = [
+#             {"stop_id": stop.stop_id,
+#             "city_name": stop.city_name,
+#             "route_id": stop.route_id,
+#             "stay_length": stop.stay_length,
+#             "lat": stop.lat,
+#             "lng":stop.lng
+#             }
+#             for route in crud.get_stops_by_route_id(route_id)
+#     ]
+
+#     print(routes)
+
+#     return jsonify(routes)
 
 if __name__ == '__main__':
     connect_to_db(app)
