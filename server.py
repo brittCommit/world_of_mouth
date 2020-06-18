@@ -18,6 +18,10 @@ def homepage():
 
 # ROUTES TO HANDLE USER LOGIN/LOGOUT AND REGISTRATION #
 
+@app.route('/user_login')
+def route_to_login():
+
+    return render_template('login.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -30,7 +34,7 @@ def login():
     
     if user == None:
         flash(f'Account does not exist for that email, please try again or create a new account.')
-        return redirect('/')
+        return redirect('/login')
 
     elif password == user.password:
         session['current_user'] = email
@@ -40,7 +44,7 @@ def login():
 
     else:
         flash('Wrong password, try again!')
-        return redirect('/')
+        return redirect('/login')
 
 
 @app.route('/register')
@@ -122,22 +126,24 @@ def view_routes_by_user(user_id):
     return render_template('my_travels.html', view_routes = view_routes, user= user)
 
 
-@app.route('/trip_description', methods = ['POST'])
+@app.route('/trip_description', methods = ['POST', 'GET'])
 def view_routes_by_country_code():
     """Return list of routes with stops that contain the queried country code"""
 
-    country_code = request.form.get('country_code')
+   
+    country_code = request.form.get('country')
+    print(f'country code is {country_code}')
     get_stops = crud.get_stops_by_country_code(country_code)
-    
+    print(f'get stops is {get_stops}')
     route_dict = {}
 
     for stop in get_stops:
         if stop.route_id not in route_dict:
             route_dict[stop.route_id] = stop.route.trip_description
 
-    print(trip_desc_list)
+    print(f'route_dict is {route_dict}')
 
-    return render_template('view_routes.html', route_dict)
+    return render_template('view_routes.html', route_dict = route_dict)
     
 
 # ROUTES TO CREATE AND VIEW STOPS #

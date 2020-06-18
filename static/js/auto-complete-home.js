@@ -1,9 +1,6 @@
 var placeSearch, autocomplete;
   var componentForm = {
-    locality: 'short_name',
     country: 'short_name',
-    lat: 'lat',
-    lng: 'lng',
   };
 
 function initAutocomplete() {
@@ -27,12 +24,38 @@ function fillInAddress() {
   var country = place.address_components[address_components.length -1].short_name
   var lat = place.geometry.location.lat()
   var lng = place.geometry.location.lng()
+  console.log(country)
   var trip = {
     locality, country, lat, lng
   };
   console.log(trip)
-}
 
+
+  tripKeys=Object.keys(trip);
+  for (var key of tripKeys) {
+    var addressType = key;
+    console.log(addressType)
+    if (componentForm[addressType]) {
+      if (componentForm[addressType])
+      var val = trip[key];
+      console.log(val)
+
+
+  $('#get-trips').on('submit', (evt) => {
+  evt.preventDefault();
+
+  const formInputs = {
+    country: val
+  };
+
+  $.post('/trip_description', formInputs, (res) => {
+    alert(res);
+  });
+});
+
+};
+}
+}
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
