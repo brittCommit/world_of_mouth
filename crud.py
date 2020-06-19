@@ -91,6 +91,18 @@ def get_stops_by_route_id(route_id):
     return Stop.query.filter(Stop.route_id == route_id).all()
 
 
+def get_is_end_by_route_id(route_id):
+    """Get the last stop assigned to a route_id"""
+
+    return Stop.query.filter((Stop.route_id == route_id) & (Stop.is_end == True)).all()
+
+
+def get_is_start_by_route_id(route_id):
+    """Get the last stop assigned to a route_id"""
+
+    return Stop.query.filter((Stop.route_id == route_id) & (Stop.is_start == True)).all()
+    
+
 def create_stop_dict(stop):
     """Make a dictionary to pass through a route using json"""
 
