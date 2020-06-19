@@ -158,7 +158,11 @@ def create_stop():
     lat = request.form.get('lat')
     lng = request.form.get('lng')
     country_code = request.form.get('country-code')
-    route_len = crud.get_stops_by_route_id(route_id)    
+    is_end = request.form.get('is-end')
+    is_end = bool(is_end)
+    route_len = crud.get_stops_by_route_id(route_id)
+
+    
 
     if len(route_len) == 0:
         is_start = True
@@ -167,7 +171,7 @@ def create_stop():
         is_start = False
 
     route = crud.get_route_by_id(route_id)
-    stop = crud.create_stop(city_name, route, stay_length, lat, lng, country_code, is_start)
+    stop = crud.create_stop(city_name, route, stay_length, lat, lng, country_code, is_start, is_end)
     stop_dict = crud.create_stop_dict(stop)
 
     return jsonify(stop_dict)

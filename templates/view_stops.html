@@ -63,7 +63,12 @@
 
     <div class="col-md-6">
       <label class="control-label"></label>
-      <input type="number" class="form-control" id="stay_length" name="stay-length" placeholder = "Enter number of nights stayed"required>
+      <input type="number" class="form-control" id="stay_length" name="stay-length" placeholder="Enter number of nights stayed"required>
+    </div>
+
+    <div class="col-md-6">
+      <label class="control-label">Check if this was the last stop of your trip:</label>
+      <input type="checkbox" class="form-control" value=True id="is_end" name="is-end">
     </div>
 
     <div>
@@ -114,12 +119,7 @@
 </script>
 
 
-                            <!-- Load map-->   
-<!-- <div id="map-container">
-<div id="map"></div>
-</div> -->
-
-<script src="http://0.0.0.0:5000//static/js/auto-complete.js"></script>
+<script src="http://0.0.0.0:5000/static/js/auto-complete.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB11EET8koZ6suc0RrFvHxpJj4lEmkt8do&libraries=places&callback=initAutocomplete" async defer></form>
 </script>

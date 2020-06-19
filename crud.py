@@ -34,7 +34,7 @@ def create_route(user, trip_description):
 
     return route
 
-def create_stop(city_name, route, stay_length, lat, lng, country_code, is_start):
+def create_stop(city_name, route, stay_length, lat, lng, country_code, is_start, is_end):
     
     stop = Stop(city_name = city_name,
                 route = route, 
@@ -42,7 +42,8 @@ def create_stop(city_name, route, stay_length, lat, lng, country_code, is_start)
                 lat = lat,
                 lng = lng,
                 country_code = country_code,
-                is_start = is_start)
+                is_start = is_start,
+                is_end = is_end)
 
     db.session.add(stop)
     db.session.commit()
@@ -95,6 +96,7 @@ def create_stop_dict(stop):
 
     stop_dict = {"city_name": stop.city_name,
                 "is_start": stop.is_start,
+                "is_end": stop.is_end,
                 "route_id": stop.route_id,
                 "stay_length": stop.stay_length,
                 "lat": stop.lat,
