@@ -3,11 +3,9 @@
 {%block title%}Routes: World of Mouth{%endblock%}
 
 {% block body%}
-
+<div>
     <ul id="get-trips">
-        <label>
-        Select a trip to see the full itinerary:
-        </label>
+        <h2>Select a trip to see the full itinerary:</h2>
         {%for route in all_routes%}
         <li  for = "route-id">
             <a href="/api/view_stops/{{route.route_id}}">
@@ -16,6 +14,16 @@
         </li>
         {%endfor%}
     </ul>
+
+<div id="map-container">
+<div id="map"></div>
+</div>
+</div>
+
+<script src="http://0.0.0.0:5000/static/js/Map.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB11EET8koZ6suc0RrFvHxpJj4lEmkt8do&libraries=places&callback=initMap" async defer></form>
+</script>
 
 {%endblock%}
 
