@@ -109,17 +109,23 @@ def create_route():
 def view_routes(country):
     """View all routes"""
 
-#     all_routes = crud.get_routes()
-#     return render_template ('view_routes.html',
-#                             all_routes = all_routes)
-    # country_code = request.form.get('country')
 
     all_routes = crud.get_all_routes_with_stop_with_country_code(country)
-    print(f' all routes are {all_routes}')
+    stop_dict = {}
 
-    return render_template('view_routes.html', all_routes = all_routes)
+    for route in all_routes:
+        is_start = crud.get_is_start_by_route_id(route.route_id)
+        print(f'a route is {route}')
+        is_end = crud.get_is_end_by_route_id(route.route_id)
+        
+        # if len(is_end) == 0:
+        #     stop_dict[route.route_id] = is_start
 
+        
+        stop_dict[route.route_id] = is_start, is_end
 
+    
+    return render_template('view_routes.html', all_routes = all_routes, stop_dict=stop_dict)
 
 
 @app.route('/api/view_routes/<int:user_id>')
@@ -131,18 +137,6 @@ def view_routes_by_user(user_id):
     print(view_routes)
 
     return render_template('my_travels.html', view_routes = view_routes, user= user)
-
-
-# @app.route('/trip_description', methods = ['POST', 'GET'])
-# def view_routes_by_country_code():
-#     """Return list of routes with stops that contain the queried country code"""
-   
-#     country_code = request.form.get('country')
-
-#     all_routes = crud.get_all_routes_with_stop_with_country_code(country_code)
-#     print(f' all routes are {all_routes}')
-
-#     return render_template('view_routes.html', all_routes = all_routes)
     
 
 # ROUTES TO CREATE AND VIEW STOPS #
@@ -161,8 +155,6 @@ def create_stop():
     is_end = request.form.get('is-end')
     is_end = bool(is_end)
     route_len = crud.get_stops_by_route_id(route_id)
-
-    
 
     if len(route_len) == 0:
         is_start = True

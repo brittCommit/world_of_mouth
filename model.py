@@ -28,7 +28,7 @@ class Route(db.Model):
  
     def __repr__(self):
         return f"""<Route id is {self.route_id} 
-                by user {self.user_id} and the trip is completed {self.is_completed}>"""
+                by user {self.user_id} and the trip description is {self.trip_description}>"""
 
 
 class Stop(db.Model):
@@ -59,7 +59,7 @@ class Stop(db.Model):
     route = db.relationship('Route')
 
     def __repr__(self):
-        return f"""<Stop #{self.stop_id} in {self.city_name} on route #{self.route_id} and is_start {self.is_start}.>"""
+        return f"""<Stop #{self.stop_id} in {self.city_name} on route #{self.route_id} and is_start {self.is_start} and is_end {self.is_end}.>"""
 
 
 class User(db.Model):
