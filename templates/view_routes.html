@@ -11,6 +11,7 @@
             
             <a href="/api/view_stops/{{route.route_id}}">
                 {{route.trip_description}}
+            </a>
             <p>
                 {%for route_id, (is_start, is_end) in stop_dict.items()%}
                 {%if route.route_id == route_id %}
@@ -23,17 +24,31 @@
                 {%endif%}
                 {%endfor%}
             </p>    
-            </a>
-            <button type="sumbit" id = "view_trip" class="btn btn-light" name="view_trip" value = "route-id">View entire trip</button>
+            
+            <button type="submit" id ="view-trip" class="btn btn-light" name="view_trip" value="{{route.route_id}}">View entire trip</button>
         </li>
         {%endfor%}
-
     </ul>
 
 <div id="map-container">
 <div id="map"></div>
 </div>
 </div>
+
+ <script>
+    $('#view-trip').on('click', (evt) => {
+        evt.preventDefault();
+
+    route_id = ($('#view-trip')[0].value)
+    // const button=$(evt.target)
+    // const buttonId = button.attr('id')
+
+    // (`/view_stops/{route_id}`).html('route-id', buttonId)
+    
+});
+    
+
+</script>
 
 <script src="http://0.0.0.0:5000/static/js/Map.js"></script>
 
