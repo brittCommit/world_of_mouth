@@ -39,11 +39,19 @@
     $('#view-trip').on('click', (evt) => {
         evt.preventDefault();
 
-    route_id = ($('#view-trip')[0].value)
+    const route_id = ($('#view-trip')[0].value);
+    console.log(route_id)
     // const button=$(evt.target)
     // const buttonId = button.attr('id')
 
     // (`/view_stops/{route_id}`).html('route-id', buttonId)
+    console.log(`/api/map/${route_id}`)
+    $.post(`/api/map/${route_id}`, route_id, (res) => {
+        console.log(res)
+
+
+
+    })
     
 });
     

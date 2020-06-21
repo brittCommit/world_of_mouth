@@ -189,7 +189,7 @@ def view_map():
     
     return render_template("homepage.html")
 
-@app.route('/api/map/<int:route_id>')
+@app.route('/api/map/<int:route_id>', methods = ['POST','GET'])
 def map_by_route_id(route_id):
     """View map by route id"""
 
