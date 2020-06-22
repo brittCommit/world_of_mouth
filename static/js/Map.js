@@ -3,6 +3,7 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -33.8688, lng: 151.2195},
     zoom: 2,
+    streetViewControl: false,
     mapTypeControl: false,
     scaleControl: true
   });
@@ -12,6 +13,7 @@ function initMap() {
   var strictBounds = document.getElementById('strict-bounds-selector');
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
 //Add markers for all stops in route
 const route_id= $('#route-id').html()
 console.log(`/api/map/${route_id}`)
@@ -19,9 +21,6 @@ $('#view-trip').on('click', (evt) => {
         evt.preventDefault();
 
     const route_id = ($('#view-trip')[0].value);
-    console.log(route_id)
-    console.log(map)
-    console.log(`/api/map/${route_id}`)
     $.post(`/api/map/${route_id}`, route_id, (res) => {
         console.log(res)
 

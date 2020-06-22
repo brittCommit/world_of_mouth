@@ -90,7 +90,8 @@ function initMap() {
 
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 39.327962, lng: -120.1832533},
-    zoom:17,
+    zoom:3,
+    streetViewControl: false,
     mapTypeControl: false,
     scaleControl: true
   });
@@ -116,8 +117,11 @@ $.get(`/api/map/${route_id}`, (stops) => {
     },
     map: map,
   });
+    stopMarker.setMap(map)
+
 }
   map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
   map.setZoom(3)
+
 });
 };
