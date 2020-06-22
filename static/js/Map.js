@@ -12,8 +12,40 @@ function initMap() {
   var strictBounds = document.getElementById('strict-bounds-selector');
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+//Add markers for all stops in route
+const route_id= $('#route-id').html()
+console.log(`/api/map/${route_id}`)
+$('#view-trip').on('click', (evt) => {
+        evt.preventDefault();
 
+    const route_id = ($('#view-trip')[0].value);
+    console.log(route_id)
+    console.log(map)
+    console.log(`/api/map/${route_id}`)
+    $.post(`/api/map/${route_id}`, route_id, (res) => {
+        console.log(res)
+
+$.get(`/api/map/${route_id}`, (stops) => {
+  console.log(stops)
+  for (const stop of stops) {
+    let stopMarker = new google.maps.Marker({
+      position:{
+      lat:stop.lat,
+      lng:stop.lng,
+    },
+
+    map: map,
+  });
+    stopMarker.setMap(map)
 }
+  map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
+  map.setZoom(3)
+
+});
+});
+});
+}
+
   // var input = document.getElementById('cityLookupTextField');
   //Mess with this to limit city and country look up
   // var options = {

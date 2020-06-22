@@ -35,32 +35,9 @@
 </div>
 </div>
 
- <script>
-    $('#view-trip').on('click', (evt) => {
-        evt.preventDefault();
-
-    const route_id = ($('#view-trip')[0].value);
-    console.log(route_id)
-    // const button=$(evt.target)
-    // const buttonId = button.attr('id')
-
-    // (`/view_stops/{route_id}`).html('route-id', buttonId)
-    console.log(`/api/map/${route_id}`)
-    $.post(`/api/map/${route_id}`, route_id, (res) => {
-        console.log(res)
-
-
-
-    })
-    
-});
-    
-
-</script>
-
 <script src="http://0.0.0.0:5000/static/js/Map.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB11EET8koZ6suc0RrFvHxpJj4lEmkt8do&libraries=places&callback=initMap" async defer></form>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB11EET8koZ6suc0RrFvHxpJj4lEmkt8do&libraries=places&callback=initMap" async defer>
 </script>
 
 {%endblock%}
