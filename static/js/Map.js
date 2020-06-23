@@ -1,49 +1,53 @@
 function initMap() {
 
-  var map = new google.maps.Map(document.getElementById('map'), {
+  let map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -33.8688, lng: 151.2195},
     zoom: 2,
     streetViewControl: false,
     mapTypeControl: false,
     scaleControl: true
   });
-  var card = document.getElementById('pac-card');
-  var input = document.getElementById('pac-input');
-  var types = document.getElementById('type-selector');
-  var strictBounds = document.getElementById('strict-bounds-selector');
+  let card = document.getElementById('pac-card');
+  let input = document.getElementById('pac-input');
+  let types = document.getElementById('type-selector');
+  let strictBounds = document.getElementById('strict-bounds-selector');
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
 //Add markers for all stops in route
 
-var labelIndex = 1;
+let markers = [];
 
 $('.view-trip').on('click', (evt) => {
-        evt.target.value;
+  for (const marker of markers) {
+    marker.setMap(null)
+  } 
+  markers = [];
+  let labelIndex = 1;
 
-const route_id = evt.target.value;
-$.post(`/api/map/${route_id}`, route_id, (res) => {
+  const route_id = evt.target.value;
+  $.post(`/api/map/${route_id}`, route_id, (res) => {
 
+    $.get(`/api/map/${route_id}`, (stops) => {
+      for (const stop of stops) {
 
-  $.get(`/api/map/${route_id}`, (stops) => {
-    for (const stop of stops) {
+        let marker = new google.maps.Marker({
+          position:{
+            lat:stop.lat,
+            lng:stop.lng,
+          },
+          label: labelIndex.toString(),
+          map: map,
+        });
+        markers.push(marker);
+        labelIndex++
+        marker.setMap(map)
+      }
+      map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
+      map.setZoom(3)
 
-      let stopMarker = new google.maps.Marker({
-        position:{
-          lat:stop.lat,
-          lng:stop.lng,
-        },
-        label: labelIndex.toString(),
-        map: map,
-      });
-      labelIndex++
-      stopMarker.setMap(map)
-    }
-    map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
-    map.setZoom(3)
-
-});
-});
+    });
+  });
 });
 }
 
