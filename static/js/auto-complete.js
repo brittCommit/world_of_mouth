@@ -1,11 +1,11 @@
-var placeSearch, autocomplete;
-  var componentForm = {
-    locality: 'short_name',
-    country: 'short_name',
-    lat: 'lat',
-    lng: 'lng',
-    stay_length: 'stay_length'
-  };
+let placeSearch, autocomplete;
+let componentForm = {
+  locality: 'short_name',
+  country: 'short_name',
+  lat: 'lat',
+  lng: 'lng',
+  stay_length: 'stay_length'
+};
 
 function initAutocomplete() {
 
@@ -23,46 +23,32 @@ function initAutocomplete() {
 
 function fillInAddress() {
   // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
+  let place = autocomplete.getPlace();
 
-  var address_components = place.address_components
+  let address_components = place.address_components
   console.log(address_components)
-  var locality = place.address_components[0].short_name
-  var country = place.address_components[address_components.length -1].short_name
-  var lat = place.geometry.location.lat()
-  var lng = place.geometry.location.lng()
-  var trip = {
+  let locality = place.address_components[0].short_name
+  let country = place.address_components[address_components.length -1].short_name
+  let lat = place.geometry.location.lat()
+  let lng = place.geometry.location.lng()
+  let trip = {
     locality, country, lat, lng
   };
   console.log(trip)
 
-
-  for (var component in componentForm) {
+  for (let component in componentForm) {
     console.log(component)
     document.getElementById(component).value = '';
     document.getElementById(component).disabled = false;
   }
 
-//   // Get each component of the address from the place details
-//   // and fill the corresponding field on the form.
-//   for (var i = 0; i < place.address_components.length; i++) {
-//     var addressType = place.address_components[i].types[0];
-
-//     if (componentForm[addressType]) {
-//       var val = place.address_components[i][componentForm[addressType]];
-//       document.getElementById(addressType).value = val;
-//       console.log(val)
-//     }
-//   }
-// }
-  
-  tripKeys=Object.keys(trip);
-  for (var key of tripKeys) {
-    var addressType = key;
-    if (componentForm[addressType]) {
-      var val = trip[key];
-      document.getElementById(addressType).value = val;
-};
+tripKeys=Object.keys(trip);
+for (let key of tripKeys) {
+  let addressType = key;
+  if (componentForm[addressType]) {
+    let val = trip[key];
+    document.getElementById(addressType).value = val;
+  };
 }
 
 // Bias the autocomplete object to the user's geographical location,
@@ -70,58 +56,57 @@ function fillInAddress() {
 function geolocate() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      var geolocation = {
+      let geolocation = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      var circle = new google.maps.Circle({
+      let circle = new google.maps.Circle({
         center: geolocation,
         radius: position.coords.accuracy
       });
       autocomplete.setBounds(circle.getBounds());
     });
-
   }
-
 };
 }
 
 function initMap() {
 
-  var map = new google.maps.Map(document.getElementById('map'), {
+  let map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 39.327962, lng: -120.1832533},
-    zoom:3,
+    zoom: 5,
     streetViewControl: false,
     mapTypeControl: false,
     scaleControl: true
   });
-  var card = document.getElementById('pac-card');
-  var input = document.getElementById('pac-input');
-  var types = document.getElementById('type-selector');
-  var strictBounds = document.getElementById('strict-bounds-selector');
+  let card = document.getElementById('pac-card');
+  let input = document.getElementById('pac-input');
+  let types = document.getElementById('type-selector');
+  let strictBounds = document.getElementById('strict-bounds-selector');
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-
 
 //Add markers for all stops in route
 const route_id= $('#route-id').html()
 console.log(`/api/map/${route_id}`)
 
 $.get(`/api/map/${route_id}`, (stops) => {
-  console.log(stops)
-  for (const stop of stops) {
-    let stopMarker = new google.maps.Marker({
-      position:{
-      lat:stop.lat,
-      lng:stop.lng,
-    },
-    map: map,
-  });
-    stopMarker.setMap(map)
+  let labelIndex = 1;
 
-}
+  for (const stop of stops) {
+    let marker = new google.maps.Marker({
+      position:{
+        lat:stop.lat,
+        lng:stop.lng,
+      },
+      map: map,
+      label: labelIndex.toString()
+    });
+    labelIndex++
+    marker.setMap(map)
+  }
   map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
-  map.setZoom(3)
+  map.setZoom(4)
 
 });
 };
