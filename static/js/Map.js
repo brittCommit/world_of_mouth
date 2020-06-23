@@ -15,26 +15,29 @@ function initMap() {
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
 //Add markers for all stops in route
-const route_id= $('#route-id').html()
-console.log(`/api/map/${route_id}`)
-$('#view-trip').on('click', (evt) => {
-        evt.preventDefault();
+var labels = '123456789 10 11 12 13';
+      var labelIndex = 0;
 
-    const route_id = ($('#view-trip')[0].value);
-    $.post(`/api/map/${route_id}`, route_id, (res) => {
-        console.log(res)
+
+$('.view-trip').on('click', (evt) => {
+        evt.target.value;
+console.log(evt.target.value)
+const route_id = evt.target.value;
+$.post(`/api/map/${route_id}`, route_id, (res) => {
+    console.log(res)
 
 $.get(`/api/map/${route_id}`, (stops) => {
-  console.log(stops)
   for (const stop of stops) {
+
     let stopMarker = new google.maps.Marker({
       position:{
       lat:stop.lat,
       lng:stop.lng,
     },
-
+    label: labels[labelIndex++ % labels.length],
     map: map,
   });
+
     stopMarker.setMap(map)
 }
   map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
