@@ -38,41 +38,41 @@
       <h4 class="panel-title">Enter your stop details in order</h4>
     </div>
   <div class="panel-body">
-    <input id="autocomplete" placeholder="Search city here"type="text" class="form-control">
+    <input id="autocomplete" placeholder="Search city here"type="text" class="form-control"/>
       
   <div class="row">
     <div class="col-md-6">
       <label class="control-label"></label>
-      <input class="form-control field" id="locality" name="city-name" placeholder = "City" disabled="true">
+      <input class="form-control field" id="locality" name="city-name" placeholder = "City" disabled="true"/>
     </div>
     
     <div class="col-md-6">
       <label class="control-label"></label>
-      <input class="form-control" id="country" name="country-code" placeholder = "Country" disabled="true">
+      <input class="form-control" id="country" name="country-code" placeholder = "Country" disabled="true"/>
     </div>
 
     <div class="col-md-6">
       <label class="control-label"></label>
-      <input class="form-control" id="lat" name='lat' placeholder = "lat" disabled="true" >
+      <input class="form-control" id="lat" name='lat' placeholder = "lat" disabled="true"/>
     </div>
 
     <div class="col-md-6">
       <label class="control-label"></label>
-      <input class="form-control" id="lng" name='lng' placeholder = "lng" disabled="true" >
+      <input class="form-control" id="lng" name='lng' placeholder = "lng" disabled="true"/>
     </div>
 
     <div class="col-md-6">
       <label class="control-label"></label>
-      <input type="number" class="form-control" id="stay_length" name="stay-length" placeholder="Enter number of nights stayed"required>
+      <input type="number" class="form-control" id="stay_length" name="stay-length" placeholder="Enter number of nights stayed"required/>
     </div>
 
     <div class="col-md-6">
-      <label class="control-label">Check if this was the last stop of your trip:</label>
-      <input type="checkbox" class="form-control" value=True id="is_end" name="is-end">
+      <label class="control-label">Check this box if this was the last stop of your trip:</label>
+      <input type="checkbox" id="is_end" class="form-control" value=True name="is-end" onchange="doalert(this)"/>
     </div>
 
     <div>
-      <input id="route-id" name="route-id" value={{route_id}} hidden>
+      <input id="route-id" name="route-id" value={{route_id}} hidden/>
 
       <div>
         <button type="submit" class="btn btn-info">Add stop to trip</button>
@@ -88,18 +88,30 @@
 <div id="map"></div>
 </div>
 
+<script>
+function doalert(checkboxElem) {
+  if (checkboxElem.checked) {
+    alert ("Checking this box will complete your trip and it will no longer be editable.");
+  }
+}
+</script>
     <!-- Ajax request to hide form until add stop is clicked, user can add a stop to a route using google places autocomplete -->
 
  <script>
     $('#new-stop').on('click', (evt) => {
     evt.preventDefault();
-    console.log($('#create-stop'))
+
     const selectedValue =$('#create-stop');
+    console.log(selectedValue)
     selectedValue.attr('hidden', false);
     });
     $('#create-stop').on('submit', (evt) => {
     evt.preventDefault();
     const formValues = $('#create-stop').serialize();
+
+    $('#is_end').on('check', (evt)=> {
+      $('#new-stop').attr('hidden', true);
+    });
 
 
     $.post('/create_stop', formValues,(res) => {
@@ -117,7 +129,6 @@
     });
     });
 </script>
-
 
 <script src="http://0.0.0.0:5000/static/js/auto-complete.js"></script>
 
