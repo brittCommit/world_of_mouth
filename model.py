@@ -83,6 +83,7 @@ class User(db.Model):
     password = db.Column(db.String,
                         nullable = False)
     home_country = db.Column(db.String)
+    image = db.Column(db.String)
 
 
     #Relationships with other tables

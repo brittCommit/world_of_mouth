@@ -71,7 +71,7 @@ function geolocate() {
 }
 
 function initMap() {
-
+  let myLatLng = (lat, lng)
   let map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 39.327962, lng: -120.1832533},
     zoom: 5,
@@ -104,9 +104,9 @@ $.get(`/api/map/${route_id}`, (stops) => {
     });
     labelIndex++
     marker.setMap(map)
-  }
+  
   map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
   map.setZoom(4)
-
+}
 });
 };

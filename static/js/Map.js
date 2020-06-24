@@ -1,5 +1,5 @@
 function initMap() {
-
+  
   let map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -33.8688, lng: 151.2195},
     zoom: 2,
@@ -118,11 +118,6 @@ $('.view-trip').on('click', (evt) => {
 //       ].join(' ');
 //     }
 
-//     // infowindowContent.children['place-icon'].src = place.icon;
-//     // infowindowContent.children['place-name'].textContent = place.name;
-//     // infowindowContent.children['place-address'].textContent = address;
-//     // infowindow.open(map, marker);
-//   });
 
 //   // Sets a listener on a radio button to change the filter type on Places
 //   // Autocomplete.

@@ -4,10 +4,28 @@ from model import connect_to_db
 import crud
 from jinja2 import StrictUndefined
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+from werkzeug.utils import secure_filename
+
+import os
+import requests
+
+
 app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
+cloud_name = os.environ["cloud_name"]
+cloudinary_api_key = os.environ["cloudinary_api_key"]
+cloudinary_api_secret = os.environ["cloudinary_api_secret"]
+
+cloudinary.config(
+    cloud_name = cloud_name,
+    api_key = cloudinary_api_key,
+    api_secret = cloudinary_api_secret)
 
 @app.route('/')
 def homepage():
@@ -29,8 +47,6 @@ def login():
 
     email = request.form['email']
     password = request.form['password']
-
-    user = crud.get_user_by_email(email)
     
     if user == None:
         flash(f'Account does not exist for that email, please try again or create a new account.')
@@ -61,8 +77,16 @@ def new_user():
     user_name = request.form.get('user_name')
     password = request.form.get('password')
     home_country = request.form.get('home_country')
+    filename = request.files.get("image-upload")
+    print(f'filename is {filename}')
+    if filename:
+        response = cloudinary.uploader.upload(filename)
+        print(f'filename is {filename}')
+    image = secure_filename(filename.filename)
+    print(f'image is {image}')
+    user = crud.get_user_by_email(email)
 
-    crud.create_user(email, first_name, user_name, password, home_country)
+    crud.create_user(email, first_name, user_name, password, home_country, image)
 
     email = request.form['email']
     user = crud.get_user_by_email(email)

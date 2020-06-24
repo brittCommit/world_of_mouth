@@ -9,7 +9,7 @@
 
     <div>
 
-    <form action="/new_user" method="POST">
+    <form action="/new_user" method="POST" enctype="multipart/form-data">
         <p>
           <label>first name:</label>
           <input type="text" name="first_name" required>
@@ -29,6 +29,9 @@
           <label>home country:</label>
           <input type="text" name="home_country" required>
         </p>
+         <label for="image-upload"> image</label>
+    <input id="image-upload" type=file name="image-upload"/>
+    <br>
           <input type="submit">
     </form>
 

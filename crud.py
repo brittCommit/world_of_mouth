@@ -8,14 +8,15 @@ if __name__=='__main__':
     db.create_all()
 
 
-def create_user(email, first_name, user_name, password, home_country):
+def create_user(email, first_name, user_name, password, home_country, image):
     """Create and return a new user."""
 
     user = User(email = email, 
                 first_name = first_name,
                 user_name = user_name, 
                 password = password, 
-                home_country = home_country)
+                home_country = home_country,
+                image = image)
 
     db.session.add(user)
     db.session.commit()

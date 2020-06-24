@@ -1,4 +1,4 @@
-#!/home/vagrant/src/wom/env/bin/python3.6
+#!/home/vagrant/src/WOM/env/bin/python3.6
 
 # -*- coding: utf-8 -*-
 import re

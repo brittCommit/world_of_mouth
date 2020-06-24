@@ -1,4 +1,4 @@
-#!/home/vagrant/src/wom/env/bin/python
+#!/home/vagrant/src/WOM/env/bin/python
 
 import sys
 import getopt

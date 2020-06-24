@@ -29,13 +29,15 @@ def seed_users():
       first_name = user['first_name']
       user_name = user['user_name']
       password = user['password']
-      home_country = user['home_country']                                         
+      home_country = user['home_country']
+      image = user['image']                                         
                                                                                     
       db_user = crud.create_user(email, 
                                  first_name,
                                  user_name,
                                  password,
-                                 home_country)
+                                 home_country,
+                                 image)
 
 
 def seed_routes():

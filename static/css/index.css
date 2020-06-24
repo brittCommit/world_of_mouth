@@ -1,9 +1,11 @@
 
 #map-container {
 height: 1000px;
+margin: 10px;
 }
 #map {
 height: 50%;
+
 }
 
 /* CUSTOMIZE THE COVER
