@@ -33,7 +33,7 @@ function initAutocomplete() {
 
 function fillInAddress() {
   // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
+  var place = autocompleteMain.getPlace();
   var address_components = place.address_components
   console.log(address_components)
   var locality = place.address_components[0].short_name
@@ -46,7 +46,6 @@ function fillInAddress() {
   };
   console.log(trip)
 
-
   tripKeys=Object.keys(trip);
   for (var key of tripKeys) {
     var addressType = key;
@@ -56,19 +55,14 @@ function fillInAddress() {
       var val = trip[key];
       console.log(val)
 
-
   $('#get-trips').on('submit', (evt) => {
     evt.preventDefault();
   
   const formInputs = {
     country: val
   };
-  // console.log(`/view_routes/${country}`)
   window.location.href = `/view_routes/${country}`
-
-  
 });
-
 };
 }
 }
