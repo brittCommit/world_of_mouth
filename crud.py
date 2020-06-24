@@ -48,7 +48,7 @@ def create_stop(city_name, route, stay_length, lat, lng, country_code, is_start,
     if stop.is_end == True:
         route.is_completed = True
 
-    route.trip_length += stop.stay_length
+    route.trip_length += int(stop.stay_length)
 
     db.session.add(stop)
     db.session.commit()

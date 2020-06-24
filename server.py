@@ -154,11 +154,10 @@ def create_stop():
     country_code = request.form.get('country-code')
     is_end = request.form.get('is-end')
     is_end = bool(is_end)
-    route_len = crud.get_stops_by_route_id(route_id)
 
+    route_len = crud.get_stops_by_route_id(route_id)
     if len(route_len) == 0:
         is_start = True
-
     else:
         is_start = False
 
