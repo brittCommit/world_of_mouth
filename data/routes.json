@@ -19,5 +19,10 @@
 "user_id": 4,
 "is_completed": true,
 "trip_description": "Girl's trip to London and Paris!"
+},
+{
+"user_id": 1,
+"is_completed": true,
+"trip_description": "Eurotrip"
 }
 ]

@@ -126,7 +126,7 @@
     "stay_length": 4,
     "lat":51.5074,
     "lng":0.1278,
-    "country_code": "UK"
+    "country_code": "GB"
 },
 
 {
@@ -139,6 +139,53 @@
     "lat":48.8566,
     "lng":2.3522,
     "country_code": "FR"
+},
+
+{
+    "city_name": "Paris",
+    "route_id": 5,
+    "created_at": "2020-03-14",
+    "is_start": true,
+    "is_end": false,
+    "stay_length": 5,
+    "lat":48.8566,
+    "lng":2.3522,
+    "country_code": "FR"
+},
+
+{
+    "city_name": "Madrid",
+    "route_id": 5,
+    "created_at": "2020-03-15",
+    "is_start": false,
+    "is_end": false,
+    "stay_length": 3,
+    "lat":40.4168,
+    "lng":3.7038,
+    "country_code": "SP"
+},
+
+{
+    "city_name": "Venice",
+    "route_id": 5,
+    "created_at": "2020-03-16",
+    "is_start": false,
+    "is_end": false,
+    "stay_length": 2,
+    "lat":45.440845,
+    "lng":12.315515,
+    "country_code": "IT"
+},
+{
+    "city_name": "Milan",
+    "route_id": 5,
+    "created_at": "2020-03-17",
+    "is_start": false,
+    "is_end": true,
+    "stay_length": 1, 
+    "lat":45.463619,
+    "lng":9.188120,
+    "country_code": "IT"
 }
 
 ]
