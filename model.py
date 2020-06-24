@@ -19,6 +19,7 @@ class Route(db.Model):
                         default = False)
     trip_description = db.Column(db.String(50), 
                                 nullable = False)
+    trip_length = db.Column(db.Integer, default = 0)
     
 
     #Relationships with other tables
