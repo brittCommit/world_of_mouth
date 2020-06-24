@@ -90,7 +90,21 @@ def seed_trip_types():
 
       crud.create_trip_type(trip_type)
 
-seed_trip_types()
+def seed_route_types():
+  """Create trip types to seed db"""
+  
+  seed_trip_types()
+
+  with open('data/routeTypes.json') as f:
+      route_data=json.loads(f.read()) 
+
+  for route in route_data:
+      route_id = route['route_id']
+      trip_type_id  = route['trip_type_id']
+
+      crud.create_route_type(route_id, trip_type_id)
+
+seed_route_types()
 
 print("Database successfully seeded!")
 
