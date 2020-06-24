@@ -25,7 +25,7 @@
             <a class="nav-link active" href="/">Home</a>
             <a class="nav-link" href="/user_login">Login</a>
             <a class="nav-link" href="/register">Create Account</a>
-            <a class="nav-link">My Account</a>
+            <a class="nav-link" href = "/my_travels.html">My Account</a>
             <a class="nav-link" href="/logout">Logout</a>
 
           </nav>
@@ -38,17 +38,47 @@
         <p class="lead">Sometimes the path most taken is what we should choose, search your next destination to see other travelers routes.</p>
               
 
-                        <!--Form to search places-->
+              <!--Form to search places-->
       <form id = "get-trips">
+        <div class="container">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+            </div>
         <div class="panel-body">
-          <input type="text" id="autocomplete" placeholder="Where to next?"  type="text" class="form-control" required>
+          <input type="text" id="autocompleteMain" placeholder="Where to next?" class="main-search form-control" required>
         </div>
-
+        <div class="row">
+          <div class="col-md-6">
+            <label class="control-label"></label>
+            <input type="dropdown" class="form-control field" id="trip_type"
+            name="trip-type" placeholder="trip type"/>
+        </div>
+        <div class="col-md-6">
+          <div class="panel-body">
+          <label class="control-label"></label>
+          <input type="text" class="is_start form-control" id="autocompleteIsStart" name="is-start" placeholder="first city"/>
+        </div>
+        </div>
+        <div class="col-md-6">
+          <div class="panel-body">
+          <label type="text" class="control-label"></label>
+          <input type="text" class="is_end form-control" id="autocompleteIsEnd" name="is-end" placeholder="last city"/>
+        </div>
+        </div>
+        <div class="col-md-6">
+          <label class="control-label"></label>
+          <input type= "number" class="form-control" id="trip_length"
+          name="trip-length" placeholder="length of trip" />
+        </div>
         <p class="lead">
           <input type="submit" class="btn btn-md btn-secondary"></input>
         </p>
+      </div>
+    </div>
       </form>
       </main>
+
+      <!--Footer-->
       <footer class="mastfoot mt-auto">
         <div class="inner">
           <p>Something good that came out of 2020. Made with love by Brittney Huttner</p>

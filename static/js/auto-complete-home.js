@@ -6,13 +6,29 @@ var placeSearch, autocomplete;
 function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
   // location types.
-  autocomplete = new google.maps.places.Autocomplete(
-    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+  autocompleteMain = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('autocompleteMain')),
     {types: ['geocode']});
 
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
-  autocomplete.addListener('place_changed', fillInAddress);
+  autocompleteMain.addListener('place_changed', fillInAddress);
+
+  autocompleteIsStart = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('autocompleteIsStart')),
+    {types: ['geocode']});
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocompleteIsStart.addListener('place_changed', fillInAddress);
+
+  autocompleteIsEnd = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('autocompleteIsEnd')),
+    {types: ['geocode']});
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocompleteIsEnd.addListener('place_changed', fillInAddress);
 }
 
 function fillInAddress() {
