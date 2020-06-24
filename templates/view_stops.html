@@ -26,7 +26,8 @@
 </section>
 
     <!--Form to search places and add new stop-->
-
+    
+<!--if jinja statement for if_end show-->
 <button id="new-stop" type="button" class="btn btn-info">Add a new stop</button>
 <div id="form-container"></div>
 
@@ -43,12 +44,12 @@
   <div class="row">
     <div class="col-md-6">
       <label class="control-label"></label>
-      <input class="form-control field" id="locality" name="city-name" placeholder = "City" disabled="true"/>
+      <input class="form-control field" id="locality" name="city-name" placeholder="City" disabled="true"/>
     </div>
     
     <div class="col-md-6">
       <label class="control-label"></label>
-      <input class="form-control" id="country" name="country-code" placeholder = "Country" disabled="true"/>
+      <input class="form-control" id="country" name="country-code" placeholder="Country" disabled="true"/>
     </div>
 
     <div class="col-md-6">
@@ -109,11 +110,6 @@ function doalert(checkboxElem) {
     evt.preventDefault();
     const formValues = $('#create-stop').serialize();
 
-    $('#is_end').on('check', (evt)=> {
-      $('#new-stop').attr('hidden', true);
-    });
-
-
     $.post('/create_stop', formValues,(res) => {
        console.log(res) 
        $('#itinerary').append(`
@@ -124,10 +120,21 @@ function doalert(checkboxElem) {
         </li>
         </ul>
         </li>`);
+
+    if (res.is_end == true) {
+      $('#new-stop').attr('hidden', true);
+    
+      $('#create-stop').attr('hidden', true);
+      $('#create-stop')[0].reset();
+    }
+
+    else {
     $('#create-stop').attr('hidden', true);
     $('#create-stop')[0].reset();
+    }
     });
     });
+  
 </script>
 
 <script src="http://0.0.0.0:5000/static/js/auto-complete.js"></script>
