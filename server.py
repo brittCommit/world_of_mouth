@@ -11,8 +11,6 @@ import cloudinary.api
 from werkzeug.utils import secure_filename
 
 import os
-import requests
-
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -47,6 +45,8 @@ def login():
 
     email = request.form['email']
     password = request.form['password']
+
+    user = crud.get_user_by_email(email)
     
     if user == None:
         flash(f'Account does not exist for that email, please try again or create a new account.')
