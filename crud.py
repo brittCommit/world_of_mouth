@@ -45,6 +45,9 @@ def create_stop(city_name, route, stay_length, lat, lng, country_code, is_start,
                 is_start = is_start,
                 is_end = is_end)
 
+    if stop.is_end == True:
+        route.is_completed = True
+
     db.session.add(stop)
     db.session.commit()
 
