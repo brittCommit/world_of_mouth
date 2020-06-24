@@ -28,7 +28,8 @@ class Route(db.Model):
  
     def __repr__(self):
         return f"""<Route id is {self.route_id} 
-                by user {self.user_id} and the trip description is {self.trip_description}>"""
+                by user {self.user_id} and the trip description is {self.trip_description} 
+                and the route is completed{self.is_completed}>"""
 
 
 class Stop(db.Model):
