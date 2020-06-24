@@ -1,6 +1,6 @@
 """CRUD operations"""
 
-from model import db, User, Route, Stop, connect_to_db
+from model import db, User, Route, Stop, TripType, RouteType, connect_to_db
 
 if __name__=='__main__':
     from server import app
@@ -55,6 +55,24 @@ def create_stop(city_name, route, stay_length, lat, lng, country_code, is_start,
 
     return stop
 
+def create_trip_type(trip_type):
+
+    trip_type = TripType(trip_type = trip_type)
+
+    db.session.add(trip_type)
+    db.session.commit()
+
+    return trip_type
+
+def create_route_type(route_id, trip_type_id):
+
+    route_type = RouteType(route_id = route_id, 
+                        trip_type_id = trip_type_id)
+    
+    db.session.add(route_type)
+    db.session.commit()
+
+    return route_type
 
 def get_user_by_id(user_id):
     """Return a user associated with a user_id"""
@@ -135,10 +153,6 @@ def get_all_routes_with_stop_with_country_code(country_code):
 
     return db.session.query(Route).join(Stop).filter(Stop.country_code == country_code).all()
 
-
-# def create_dict_of_all_stops(route_id, stop_dict):
-
-#     all_stops_dict = {route_id: stop_dict}
 
 # def get_routes_with_stop():
 #     """Return routes with requested cities"""

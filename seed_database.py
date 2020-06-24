@@ -77,8 +77,24 @@ def seed_stops():
       route = crud.get_route_by_id(route_id)
       crud.create_stop(city_name, route, stay_length, lat, lng, country_code, is_start, is_end)
 
-seed_stops()
+def seed_trip_types():
+  """Create trip types to seed db"""
+  
+  seed_stops()
+
+  with open('data/tripTypes.json') as f:
+      trip_data=json.loads(f.read()) 
+
+  for trip in trip_data:
+      trip_type = trip['trip_type']
+
+      crud.create_trip_type(trip_type)
+
+seed_trip_types()
+
 print("Database successfully seeded!")
+
+
 
 
 

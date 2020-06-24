@@ -24,8 +24,8 @@ class Route(db.Model):
 
     #Relationships with other tables
     stop = db.relationship('Stop')
-    # country = db.relationship('Country')
     user = db.relationship('User')
+    route_type = db.relationship('RouteType')
  
     def __repr__(self):
         return f"""<Route id is {self.route_id} 
@@ -91,30 +91,44 @@ class User(db.Model):
     def __repr__(self):
         return f"<User id #{self.user_id} belongs to {self.user_name} @ {self.email}.>"
 
-# class TripType(db.Model):
-#     """Trip Types"""
+class TripType(db.Model):
+    """Trip Types"""
 
-#     __tablename__ = 'trip_types'
+    __tablename__ = 'trip_types'
 
-#     solo = db.Column(db.Boolean,
-#               default=False)
-#     group = db.Column(db.Boolean,
-#               default=False)
-#     couples = db.Column(db.Boolean,
-#               default=False)
-#     food = db.Column(db.Boolean,
-#               default=False)
-#     adventure = db.Column(db.Boolean,
-#               default=False)
-#     health = db.Column(db.Boolean,
-#               default=False)
-#     culture = db.Column(db.Boolean,
-#               default=False)
-#     backpacking = db.Column(db.Boolean,
-#               default=False)
-#     digital_nomad = db.Column(db.Boolean,
-#               default=False)
-   
+    trip_type_id = db.Column(db.Integer, 
+                            autoincrement=True,
+                            primary_key=True)
+    trip_type = db.Column(db.String(15), nullable=False)
+
+
+    #Relationships with other tables
+    route_type = db.relationship('RouteType')
+
+    def __repr__(self):
+        return f"<TripType TTid is {self.trip_type_id} and trip type is {self.trip_type}>" 
+
+
+class RouteType(db.Model):
+    """Route Type-many to many"""
+
+    __tablename__ = "route_types"
+
+    route_type_id = db.Column(db.Integer,
+                            autoincrement=True,
+                            primary_key=True)
+    route_id = db.Column(db.Integer, 
+                        db.ForeignKey('routes.route_id'), 
+                        nullable=False)
+    trip_type_id = db.Column(db.Integer,
+                            db.ForeignKey('trip_types.trip_type_id'),
+                            nullable=False)
+
+
+   #Relationships with other tables
+    route = db.relationship('Route')
+    trip_type = db.relationship('TripType')
+
 
 def connect_to_db(flask_app, db_uri='postgresql:///routes', echo=False):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri

@@ -1,0 +1,31 @@
+ [
+  {
+  "trip_type": "solo"
+  },
+  {
+  "trip_type": "group"
+  },
+  { 
+  "trip_type": "couples"
+ },
+ {
+  "trip_type": "food"
+ },
+ {
+  "trip_type": "adventure"
+ },
+ { 
+  "trip_type": "health"
+ },
+ {
+  "trip_type": "culture"
+ },
+ { 
+  "trip_type": "backpacking"
+ },
+ {
+  "trip_type": "digital nomad"
+ }
+ ]
+
+ 
