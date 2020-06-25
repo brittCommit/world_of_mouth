@@ -56,6 +56,7 @@ function fillInAddress() {
       if (componentFormMain[addressType])
       COUNTRY = trip[key];
       console.log(COUNTRY)
+      $('#autocompleteMain').val(COUNTRY)
 };
 }
 }
@@ -85,6 +86,7 @@ function fillInAddressIsStart() {
         console.log(componentFormStart[addressType])
       STARTCITY = trip[key];
       console.log(STARTCITY)
+  $('#autocompleteIsStart').val(STARTCITY)
 };
 }
 }
@@ -114,25 +116,27 @@ function fillInAddressIsEnd() {
         console.log(componentFormEnd[addressType])
       ENDCITY = trip[key];
       console.log(ENDCITY)
+    $('#autocompleteIsEnd').val(ENDCITY)
 };
 }
 }
 
-  $('#get-trips').on('submit', (evt) => {
-    evt.preventDefault();
+  // $('#get-trips').on('submit', (evt) => {
+  //   evt.preventDefault();
   
-   const formValues = {
-      country: COUNTRY,
-      start_city_name: STARTCITY,
-      end_city_name: ENDCITY
-  };
+  //  const formValues = {
+  //     country: COUNTRY,
+  //     start_city_name: STARTCITY,
+  //     end_city_name: ENDCITY
+  // };
 
-  $.post(`/view_routes/${COUNTRY}`, formValues,(res)=> {
-    console.log(formValues)
-    });
+  // $.post(`/view_routes/${COUNTRY}`, formValues,(res)=> {
+  //   console.log(formValues)
+  //   console.log(res)
+  //   });
+  
 
-  window.location.href = `/view_routes/${COUNTRY}`
-  });
+  // });
   };
 
 // Bias the autocomplete object to the user's geographical location,
