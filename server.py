@@ -1,9 +1,9 @@
-from flask import (Flask, render_template, request, flash, session, alert,
+from flask import (Flask, render_template, request, flash, session,
                    redirect, jsonify)
 from model import connect_to_db
 import crud
 from jinja2 import StrictUndefined
-
+import sys
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -129,9 +129,16 @@ def create_route():
     return redirect (f'/api/view_stops/{route.route_id}')
 
 
-@app.route('/view_routes/<country>')
-def view_routes(country, start_city_name=None, end_city_name=None):
-    """View all routes"""
+@app.route('/view_routes/', methods=['POST','GET'])
+def view_routes():
+    """View routes based on filter selections"""
+
+    country = request.form.get('country-code')
+    start_city_name = request.form.get('is-start')
+    end_city_name = request.form.get('is-end')
+
+    print(start_city_name)
+    print(end_city_name)
 
     stop_dict = {}
     all_routes = []
@@ -142,10 +149,13 @@ def view_routes(country, start_city_name=None, end_city_name=None):
 
     is_end_routes = crud.get_route_id_by_is_end_city_name(end_city_name)
     print(f'is end routes is {is_end_routes}')
-
+    print(len(is_start_routes))
     if len(is_start_routes)>0 and len(is_end_routes)>0:
         for route in is_start_routes:
+            print(route)
             if route in is_end_routes:
+                print(route)
+                print("true")
                 all_routes.append(route)
 
     elif len(is_start_routes)>0 and len(is_end_routes) == 0:
@@ -159,7 +169,7 @@ def view_routes(country, start_city_name=None, end_city_name=None):
     elif len(is_start_routes) == 0 and len(is_end_routes) == 0:
         for route in country_routes:
             all_routes.append(route)     
-  
+    print(f'all routes is {all_routes}')
     for route in all_routes:
         is_start = crud.get_is_start_by_route_id(route.route_id)
         is_end = crud.get_is_end_by_route_id(route.route_id)
