@@ -1,4 +1,4 @@
-from flask import (Flask, render_template, request, flash, session,
+from flask import (Flask, render_template, request, flash, session, alert,
                    redirect, jsonify)
 from model import connect_to_db
 import crud
@@ -130,25 +130,45 @@ def create_route():
 
 
 @app.route('/view_routes/<country>')
-def view_routes(country):
+def view_routes(country, start_city_name=None, end_city_name=None):
     """View all routes"""
 
-
-    all_routes = crud.get_all_routes_with_stop_with_country_code(country)
     stop_dict = {}
+    all_routes = []
+    country_routes = crud.get_all_routes_with_stop_with_country_code(country)
+    print(f'is country routes is {country_routes}')
+    is_start_routes = crud.get_route_id_by_is_start_city_name(start_city_name)
+    print(f'is start routes is {is_start_routes}')
 
+    is_end_routes = crud.get_route_id_by_is_end_city_name(end_city_name)
+    print(f'is end routes is {is_end_routes}')
+
+    if len(is_start_routes)>0 and len(is_end_routes)>0:
+        for route in is_start_routes:
+            if route in is_end_routes:
+                all_routes.append(route)
+
+    elif len(is_start_routes)>0 and len(is_end_routes) == 0:
+        for route in is_start_routes:
+            all_routes.append(route)
+
+    elif len(is_start_routes) == 0 and len(is_end_routes) > 0:
+        for route in is_end_routes:
+            all_routes.append(route)  
+
+    elif len(is_start_routes) == 0 and len(is_end_routes) == 0:
+        for route in country_routes:
+            all_routes.append(route)     
+  
     for route in all_routes:
         is_start = crud.get_is_start_by_route_id(route.route_id)
-        print(f'a route is {route}')
         is_end = crud.get_is_end_by_route_id(route.route_id)
         
-        # if len(is_end) == 0:
-        #     stop_dict[route.route_id] = is_start
-
-        
         stop_dict[route.route_id] = is_start, is_end
+        print(f'stop dict is {stop_dict}')
+        if len(stop_dict) == 0:
+            return alert("No routes found with your search criteria, please modify your filters and try again.")
 
-    
     return render_template('view_routes.html', all_routes = all_routes, stop_dict=stop_dict)
 
 
@@ -231,24 +251,6 @@ def map_by_route_id(route_id):
 
     return jsonify(stops)
 
-# @app.route('/api/map/<str:country_code>')
-# def map_by_country_code(country_code):
-#     """View map by country_code"""
-
-#     routes = [
-#             {"stop_id": stop.stop_id,
-#             "city_name": stop.city_name,
-#             "route_id": stop.route_id,
-#             "stay_length": stop.stay_length,
-#             "lat": stop.lat,
-#             "lng":stop.lng
-#             }
-#             for route in crud.get_stops_by_route_id(route_id)
-#     ]
-
-#     print(routes)
-
-#     return jsonify(routes)
 
 if __name__ == '__main__':
     connect_to_db(app)
