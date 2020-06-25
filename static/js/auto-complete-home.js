@@ -1,7 +1,10 @@
 var placeSearch, autocomplete;
-  var componentForm = {
+  var componentFormMain = {
     country: 'short_name',
   };
+  var componentForm = {
+    locality: 'long_name',
+  }
 
 function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
@@ -20,7 +23,7 @@ function initAutocomplete() {
 
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
-  autocompleteIsStart.addListener('place_changed', fillInAddress);
+  autocompleteIsStart.addListener('place_changed', fillInAddressIsStart);
 
   autocompleteIsEnd = new google.maps.places.Autocomplete(
     /** @type {!HTMLInputElement} */(document.getElementById('autocompleteIsEnd')),
@@ -28,30 +31,22 @@ function initAutocomplete() {
 
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
-  autocompleteIsEnd.addListener('place_changed', fillInAddress);
+  autocompleteIsEnd.addListener('place_changed', fillInAddressIsEnd);
 }
 
 function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocompleteMain.getPlace();
   var address_components = place.address_components
-  console.log(address_components)
-  var locality = place.address_components[0].short_name
   var country = place.address_components[address_components.length -1].short_name
-  var lat = place.geometry.location.lat()
-  var lng = place.geometry.location.lng()
-  console.log(country)
-  var trip = {
-    locality, country, lat, lng
-  };
+  var trip = {country};
   console.log(trip)
 
   tripKeys=Object.keys(trip);
   for (var key of tripKeys) {
     var addressType = key;
-    console.log(addressType)
-    if (componentForm[addressType]) {
-      if (componentForm[addressType])
+    if (componentFormMain[addressType]) {
+      if (componentFormMain[addressType])
       var val = trip[key];
       console.log(val)
 
@@ -66,6 +61,52 @@ function fillInAddress() {
 };
 }
 }
+
+function fillInAddressIsStart() {
+  // Get the place details from the autocomplete object.
+  var place = autocompleteIsStart.getPlace();
+  var address_components = place.address_components
+  var locality = place.address_components[0].long_name
+  var trip = {locality};
+  console.log(trip)
+
+  tripKeys=Object.keys(trip);
+  for (var key of tripKeys) {
+    var addressType = key;
+    if (componentForm[addressType]) {
+      if (componentForm[addressType])
+      var val = tripKeys[key];
+      console.log(val)
+};
+}
+}
+
+function fillInAddressIsEnd() {
+  // Get the place details from the autocomplete object.
+  var place = autocompleteIsEnd.getPlace();
+  var address_components = place.address_components
+  console.log(address_components)
+  var locality = place.address_components[0].long_name
+  var country = place.address_components[address_components.length -1].short_name
+  var lat = place.geometry.location.lat()
+  var lng = place.geometry.location.lng()
+  console.log(country)
+  var trip = {
+    locality
+  };
+  console.log(trip)
+
+  tripKeys=Object.keys(trip);
+  for (var key of tripKeys) {
+    var addressType = key;
+    if (componentForm[addressType]) {
+      if (componentForm[addressType])
+      var val = trip[key];
+      console.log(val)
+};
+}
+}
+
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
