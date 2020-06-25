@@ -4,34 +4,51 @@
 
 {% block body%}
 
-    
-    <button id="new-trip" type="button" class="btn btn-info" style= "height: 50px;">Start a new trip</button>
-    <div id="form-container">
-    </div>
-    <script>
-    $('#new-trip').on('click', (evt) => {
-    evt.preventDefault();
 
-    const selectedValue =$('#form-container');
-    selectedValue.html(`<form action = "/create_route" method='POST'>
-                        <input type= "text" name= "trip_description">
-                        <input type= "submit">
-                        </form>`)
+<button id="new-trip" type="button" class="btn btn-info" style= "height: 50px;">Start a new trip</button>
+<div id="form-container">
+</div>
+<script>
+    $('#new-trip').on('click', (evt) => {
+        evt.preventDefault();
+
+        const selectedValue =$('#form-container');
+        selectedValue.html(`<form action = "/create_route" method='POST'>
+            <input type= "text" name= "trip_description">
+            <input type= "submit">
+            </form>`)
     });
 
-    </script>
+</script>
 
 
-    <h3>{{user.first_name}}'s Travels</h3>
-    <ul>
-        {%for route in view_routes%}
-        <li for = "user-id">
-            <a href="/api/view_stops/{{route.route_id}}">
-                {{route.trip_description}}
-            </a>
-        </li>
-        {%endfor%}
-    </ul>
-    </div>
+<h3>{{user.first_name}}'s Travels</h3>
+<img 
+data-src="https://res.cloudinary.com/demo/image/upload/w_auto,c_scale/{{user.image}}" 
+class="cld-responsive">
+<ul>
+    <h4>Completed Trips</h4>
+    {%for route in view_routes%}
+    {%if route.is_completed is true%}
+    <li for = "user-id">
+        <a href="/api/view_stops/{{route.route_id}}">
+            {{route.trip_description}}
+        </a>
+    </li>
+    {%endif%}
+    {%endfor%}
+    <h4>Trips in progress</h4>
+    {%for route in view_routes%}
+    {%if route.is_completed is false%}
+
+    <li for = "user-id">
+        <a href="/api/view_stops/{{route.route_id}}">
+            {{route.trip_description}}
+        </a>
+    </li>
+    {%endif%}
+    {%endfor%}
+</ul>
+</div>
 {%endblock%} 
 
