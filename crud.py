@@ -35,7 +35,7 @@ def create_route(user, trip_description):
 
     return route
 
-def create_stop(city_name, route, stay_length, lat, lng, country_code, is_start, is_end):
+def create_stop(city_name, route, stay_length, lat, lng, country_code, is_start, is_end, highlights):
     
     stop = Stop(city_name = city_name,
                 route = route, 
@@ -44,7 +44,8 @@ def create_stop(city_name, route, stay_length, lat, lng, country_code, is_start,
                 lng = lng,
                 country_code = country_code,
                 is_start = is_start,
-                is_end = is_end)
+                is_end = is_end,
+                highlights = highlights)
 
     if stop.is_end == True:
         route.is_completed = True

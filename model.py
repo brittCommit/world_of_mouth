@@ -56,6 +56,7 @@ class Stop(db.Model):
     lng = db.Column(db.Float, 
                         nullable = False)
     country_code = db.Column(db.String(2))
+    highlights = db.Column(db.Text)
 
     #Relationships with other tables
     route = db.relationship('Route')

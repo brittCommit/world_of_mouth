@@ -89,7 +89,6 @@ def new_user():
     user = crud.get_user_by_email(email)
 
     crud.create_user(email, first_name, user_name, password, home_country, image)
-
     
     user = crud.get_user_by_email(email)
     session['user'] = user.user_id
@@ -112,7 +111,6 @@ def logout():
     return redirect('/')
 
 
-
 @app.route('/create_user')
 def create_user():
     """Create a new user"""
@@ -128,7 +126,7 @@ def create_route():
     """Create new route"""
 
     trip_description = request.form.get('trip_description')
-    user = crud.get_user_by_email(session['user'])
+    user = crud.get_user_by_id(session['user'])
     route = crud.create_route(user, trip_description)
 
     return redirect (f'/api/view_stops/{route.route_id}')
@@ -229,6 +227,7 @@ def create_stop():
     country_code = request.form.get('country-code')
     is_end = request.form.get('is-end')
     is_end = bool(is_end)
+    highlights = request.form.get('highlights')
 
     route_len = crud.get_stops_by_route_id(route_id)
     if len(route_len) == 0:
@@ -237,7 +236,7 @@ def create_stop():
         is_start = False
 
     route = crud.get_route_by_id(route_id)
-    stop = crud.create_stop(city_name, route, stay_length, lat, lng, country_code, is_start, is_end)
+    stop = crud.create_stop(city_name, route, stay_length, lat, lng, country_code, is_start, is_end, highlights)
     stop_dict = crud.create_stop_dict(stop)
 
     return jsonify(stop_dict)

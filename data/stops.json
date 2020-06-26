@@ -8,7 +8,8 @@
     "stay_length": 3,
     "lat": 41.902782,
     "lng": 12.496365,
-    "country_code": "IT"
+    "country_code": "IT",
+    "highlights": "The colloseum and all the flower shops."
 },
 {
     "city_name": "Florence",
@@ -19,7 +20,8 @@
     "stay_length": 2,
     "lat":43.769562,
     "lng":11.255814,
-    "country_code": "IT"
+    "country_code": "IT",
+    "highlights": "The museums and taking a vespa tour through wine country."
 },
 {
     "city_name": "Venice",
@@ -30,7 +32,8 @@
     "stay_length": 3,
     "lat":45.440845,
     "lng":12.315515,
-    "country_code": "IT"
+    "country_code": "IT",
+    "highlights":"The canals"
 },
 {
     "city_name": "Milan",
@@ -41,7 +44,8 @@
     "stay_length": 2, 
     "lat":45.463619,
     "lng":9.188120,
-    "country_code": "IT"
+    "country_code": "IT",
+    "highlights": ""
 },
 
 {
@@ -53,7 +57,8 @@
     "stay_length": 2,
     "lat":43.843010,
     "lng":10.507990,
-    "country_code": "IT"
+    "country_code": "IT",
+    "highlights": "Bike riding on top of the city and having the best meal in all of Italy."
 },
 
 {
@@ -65,7 +70,8 @@
     "stay_length": 4,
      "lat": 41.902782,
     "lng": 12.496365,
-    "country_code": "IT"
+    "country_code": "IT",
+    "highlights": "Pro tip: if you see a church go in it, they all have the most amazing art and the most stunning mosaics I've ever seen."
 },
 
 {
@@ -77,7 +83,8 @@
     "stay_length": 2, 
     "lat":12.0464,
     "lng":77.0428,
-    "country_code": "PE"
+    "country_code": "PE",
+    "highlights": ""
 },
 
 {
@@ -89,7 +96,8 @@
     "stay_length": 3,
     "lat":13.5320,
     "lng":71.9675,
-    "country_code": "PE"
+    "country_code": "PE",
+    "highlights": "I have a whole new appreciation for coco tea."
 },
 
 {
@@ -101,7 +109,8 @@
     "stay_length": 2,
     "lat":13.1547,
     "lng":72.5254,
-    "country_code": "PE"
+    "country_code": "PE",
+    "highlights": "Hiking to the top of montana macchu pichu."
 },
 
 {
@@ -113,7 +122,8 @@
     "stay_length": 1,
     "lat":13.5320,
     "lng":71.9675,
-    "country_code": "PE"
+    "country_code": "PE",
+    "highlights": "The old cobblestone streets and the kind people."
 },
 
 
@@ -126,7 +136,8 @@
     "stay_length": 4,
     "lat":51.5074,
     "lng":0.1278,
-    "country_code": "GB"
+    "country_code": "GB",
+    "highlights": "Big Ben"
 },
 
 {
@@ -138,7 +149,8 @@
     "stay_length": 5,
     "lat":48.8566,
     "lng":2.3522,
-    "country_code": "FR"
+    "country_code": "FR",
+    "highlights": "The eiffel tower lighting up at night and seeing my very first Banksy in person."
 },
 
 {
@@ -150,7 +162,8 @@
     "stay_length": 5,
     "lat":48.8566,
     "lng":2.3522,
-    "country_code": "FR"
+    "country_code": "FR",
+    "highlights": "The people were so friendly, I loved just walking around being suprised by so many hidden treasures in the city."
 },
 
 {
@@ -162,7 +175,8 @@
     "stay_length": 3,
     "lat":40.4168,
     "lng":3.7038,
-    "country_code": "SP"
+    "country_code": "SP",
+    "highlights": "The best tomato toast in the world."
 },
 
 {
@@ -174,7 +188,8 @@
     "stay_length": 2,
     "lat":45.440845,
     "lng":12.315515,
-    "country_code": "IT"
+    "country_code": "IT",
+    "highlights": ""
 },
 {
     "city_name": "Milan",
@@ -185,7 +200,8 @@
     "stay_length": 1, 
     "lat":45.463619,
     "lng":9.188120,
-    "country_code": "IT"
+    "country_code": "IT",
+    "highlights":""
 }
 
 ]

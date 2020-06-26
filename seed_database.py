@@ -74,10 +74,11 @@ def seed_stops():
       lat = stop['lat']
       lng = stop['lng']
       country_code = stop['country_code']
+      highlights = stop['highlights']
 
       created_at = datetime.strptime(stop['created_at'], '%Y-%m-%d')
       route = crud.get_route_by_id(route_id)
-      crud.create_stop(city_name, route, stay_length, lat, lng, country_code, is_start, is_end)
+      crud.create_stop(city_name, route, stay_length, lat, lng, country_code, is_start, is_end, highlights)
 
 def seed_trip_types():
   """Create trip types to seed db"""
