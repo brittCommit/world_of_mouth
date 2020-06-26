@@ -14,7 +14,23 @@
 
         const selectedValue =$('#form-container');
         selectedValue.html(`<form action = "/create_route" method='POST'>
-            <input type= "text" name= "trip_description">
+            <label>Trip description</label>
+            <input type= "text" name= "trip_description" placeholder="Brief trip description">
+            <br>
+            <label>Trip type</label>
+            <select name="trip-type" multiple>
+            <option value="" disabled selected>What type of trip: Select one or many</option>
+            <option value="1">solo</option>
+            <option value="2">group</option>
+            <option value="3">couples</option>
+            <option value="4">food</option>
+            <option value="5">adventure</option>
+            <option value="6">health</option>
+            <option value="7">culture</option>
+            <option value="8">backpacking</option>
+            <option value="9">digital nomad</option>
+            </select>
+            <br>
             <input type= "submit">
             </form>`)
     });
@@ -24,7 +40,7 @@
 
 <h3>{{user.first_name}}'s Travels</h3>
 <img 
-data-src="https://res.cloudinary.com/demo/image/upload/w_auto,c_scale/{{user.image}}" 
+data-src="world-of-mouth/image/upload/{{user.image}}" 
 class="cld-responsive">
 <ul>
     <h4>Completed Trips</h4>
