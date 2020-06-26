@@ -54,9 +54,10 @@ def login():
         return redirect('/login')
 
     elif password == user.password:
-        session['user'] = email
+        
         flash(f'Logged in as {email}')
         user_id = user.user_id
+        session['user'] = user_id
         return redirect(f'/api/view_routes/{user_id}')
 
     else:
@@ -89,9 +90,9 @@ def new_user():
 
     crud.create_user(email, first_name, user_name, password, home_country, image)
 
-    email = request.form['email']
+    
     user = crud.get_user_by_email(email)
-    session['user'] = email
+    session['user'] = user.user_id
     print(email)
     return redirect(f'/api/view_routes/{user.user_id}') 
 
@@ -116,8 +117,7 @@ def logout():
 def create_user():
     """Create a new user"""
 
-    user = crud.create_user(city_name, route, created_at, 
-                    is_start, is_end, stay_length, lat, lng)
+    user = crud.create_user(email, first_name, user_name, password, home_country, image)
 
 
 # ROUTES TO CREATE AND VIEW ROUTES(TRIPS) #
