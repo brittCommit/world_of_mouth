@@ -167,6 +167,12 @@ def get_all_routes_with_stop_with_country_code(country_code):
     return db.session.query(Route).join(Stop).filter(Stop.country_code == country_code).all()
 
 
-# def get_routes_with_stop():
-#     """Return routes with requested cities"""
+def get_routes_by_trip_length(trip_length):
+    """Return all routes within the desired trip length"""
 
+    return Route.query.filter(Route.trip_length < trip_length).all()
+
+def get_routes_by_trip_type(trip_type):
+    """Return all routes within the desired trip type"""
+
+    return db.session.query(Route).join(RouteType).filter(RouteType.trip_type_id == trip_type).all()

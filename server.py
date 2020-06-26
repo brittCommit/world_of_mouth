@@ -132,30 +132,29 @@ def create_route():
 @app.route('/view_routes/', methods=['POST','GET'])
 def view_routes():
     """View routes based on filter selections"""
-
-    country = request.form.get('country-code')
-    start_city_name = request.form.get('is-start')
-    end_city_name = request.form.get('is-end')
-
-    print(start_city_name)
-    print(end_city_name)
+    
 
     stop_dict = {}
     all_routes = []
-    country_routes = crud.get_all_routes_with_stop_with_country_code(country)
-    print(f'is country routes is {country_routes}')
-    is_start_routes = crud.get_route_id_by_is_start_city_name(start_city_name)
-    print(f'is start routes is {is_start_routes}')
 
+    #Get form data#
+    country = request.form.get('country-code')
+    start_city_name = request.form.get('is-start')
+    end_city_name = request.form.get('is-end')
+    trip_type = request.form.get('trip-type')
+    trip_length = request.form.get('trip-length')
+
+    #Queries to handle form data#
+    country_routes = crud.get_all_routes_with_stop_with_country_code(country)
+    is_start_routes = crud.get_route_id_by_is_start_city_name(start_city_name)
     is_end_routes = crud.get_route_id_by_is_end_city_name(end_city_name)
-    print(f'is end routes is {is_end_routes}')
-    print(len(is_start_routes))
+    trip_type_routes = crud.get_routes_by_trip_length(trip_length)
+    trip_length_routes = crud.get_routes_by_trip_type(trip_type)
+
+    #Filtering user preferences#
     if len(is_start_routes)>0 and len(is_end_routes)>0:
         for route in is_start_routes:
-            print(route)
             if route in is_end_routes:
-                print(route)
-                print("true")
                 all_routes.append(route)
 
     elif len(is_start_routes)>0 and len(is_end_routes) == 0:
@@ -169,7 +168,7 @@ def view_routes():
     elif len(is_start_routes) == 0 and len(is_end_routes) == 0:
         for route in country_routes:
             all_routes.append(route)     
-    print(f'all routes is {all_routes}')
+   
     for route in all_routes:
         is_start = crud.get_is_start_by_route_id(route.route_id)
         is_end = crud.get_is_end_by_route_id(route.route_id)
