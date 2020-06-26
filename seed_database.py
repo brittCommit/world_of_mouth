@@ -8,14 +8,13 @@ from datetime import datetime
 import crud 
 import server 
 import model
-from model import User, Route, Stop
+from model import User, Route, Stop, TripType, RouteType, Favorite
 
 os.system('dropdb routes')
 os.system('createdb routes')
 
 model.connect_to_db(server.app)
 model.db.create_all()
-
 
 
 def seed_users():
@@ -107,7 +106,22 @@ def seed_route_types():
 
       crud.create_route_type(route_id, trip_type_id)
 
-seed_route_types()
+def seed_favorites():
+  """Create favorites to seed db"""
+
+  seed_route_types()
+
+  with open('data/favorites.json') as f:
+    favorites=json.loads(f.read())
+
+    for favorite in favorites:
+      user_id = favorite['user_id']
+      route_id = favorite['route_id']
+
+      crud.create_favorite(user_id,route_id)
+
+seed_favorites()
+
 
 print("Database successfully seeded!")
 

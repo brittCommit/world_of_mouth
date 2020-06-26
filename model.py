@@ -26,6 +26,7 @@ class Route(db.Model):
     stop = db.relationship('Stop')
     user = db.relationship('User')
     route_type = db.relationship('RouteType')
+    favorite = db.relationship('Favorite')
  
     def __repr__(self):
         return f"""<Route id is {self.route_id} 
@@ -89,6 +90,7 @@ class User(db.Model):
 
     #Relationships with other tables
     route = db.relationship('Route')
+    favorite = db.relationship('Favorite')
 
     def __repr__(self):
         return f"<User id #{self.user_id} belongs to {self.user_name} @ {self.email}.>"
@@ -126,10 +128,29 @@ class RouteType(db.Model):
                             db.ForeignKey('trip_types.trip_type_id'),
                             nullable=False)
 
-
    #Relationships with other tables
     route = db.relationship('Route')
     trip_type = db.relationship('TripType')
+
+
+class Favorite(db.Model):
+    """Favorite routes"""
+
+    __tablename__ = "favorites"
+
+    favorite_id = db.Column(db.Integer,
+                            autoincrement=True,
+                            primary_key=True)
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey('users.user_id'),
+                        nullable=False)
+    route_id = db.Column(db.Integer,
+                        db.ForeignKey('routes.route_id'),
+                        nullable=False)
+
+    #Relationships with other tables
+    route = db.relationship('Route')
+    user = db.relationship('User')
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///routes', echo=False):

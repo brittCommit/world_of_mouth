@@ -1,6 +1,6 @@
 """CRUD operations"""
 
-from model import db, User, Route, Stop, TripType, RouteType, connect_to_db
+from model import db, User, Route, Stop, TripType, RouteType, Favorite, connect_to_db
 
 if __name__=='__main__':
     from server import app
@@ -56,6 +56,17 @@ def create_stop(city_name, route, stay_length, lat, lng, country_code, is_start,
     db.session.commit()
 
     return stop
+
+def create_favorite(user_id, route_id):
+    """User favorites a route"""
+
+    favorite = Favorite(user_id = user_id,
+                        route_id = route_id)
+
+    db.session.add(favorite)
+    db.session.commit()
+
+    return favorite
 
 def create_trip_type(trip_type):
 
@@ -176,4 +187,19 @@ def get_routes_by_trip_length(trip_length):
 def get_routes_by_trip_type(trip_type):
     """Return all routes within the desired trip type"""
 
-    return db.session.query(Route).join(RouteType).filter(RouteType.trip_type_id == trip_type).all()
+    return Route.query.filter(Route.trip_type == trip_type).all()
+
+
+
+def get_favorite_id_by_route_and_user_ids(route_id, user_id):
+    """Return favorite"""
+
+    return db.session.query(Favorite).join(Route).join(User).filter(Favorite.route_id == route_id) & (Favorite.user_id == user_id).all()
+
+def get_users_favorites(user_id):
+    """Return routes a user has favorited"""
+
+    return Favorite.query.filter(Favorite.user_id == user_id).all()
+
+
+

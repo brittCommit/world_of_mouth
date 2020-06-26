@@ -283,6 +283,36 @@ def map_by_route_id(route_id):
 
     return jsonify(stops)
 
+# FAVORITING ROUTES #
+
+@app.route('/favorite', methods=['POST'])
+def favorite_route(user_id, route_id):
+    """User favorites route"""
+
+    favorite = crud.create_favorite(user_id, route_id)
+    return "This trip has been added to your bucket list."
+
+
+@app.route('/unfavorite', methods=['POST'])
+def unfavorite_route():
+    """User unfavorites route"""
+
+    route = request.form.get('route_id')
+    user = request.form.get('user_id')
+    favorited_item = crud.get_favorite_id_by_route_and_user_ids(route, user)
+
+    # del favorited_item = 
+    return redirect('/')
+
+
+@app.route('/bucketlist')
+def bucketlist():
+    """Collection of user's favorited trips"""
+
+    user_id = session['user']
+    return get_users_favorites(user_id)
+
+
 
 if __name__ == '__main__':
     connect_to_db(app)
