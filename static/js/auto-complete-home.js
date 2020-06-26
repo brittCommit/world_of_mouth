@@ -134,10 +134,10 @@ function fillInAddressIsEnd() {
   //   console.log(formValues)
   //   console.log(res)
   //   });
-  
 
+  // window.location.href = `/view_routes/${COUNTRY}`
   // });
-  };
+  // };
 
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
@@ -156,4 +156,5 @@ function geolocate() {
     });
   };
 };
+}
 

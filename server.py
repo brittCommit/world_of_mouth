@@ -142,16 +142,14 @@ def view_routes():
     start_city_name = request.form.get('is-start')
     end_city_name = request.form.get('is-end')
     trip_type = request.form.get('trip-type')
+    print(trip_type)
     trip_length = request.form.get('trip-length')
-
+    print(f'trip length is {trip_length}')
     #Queries to handle form data#
     country_routes = crud.get_all_routes_with_stop_with_country_code(country)
     is_start_routes = crud.get_route_id_by_is_start_city_name(start_city_name)
     is_end_routes = crud.get_route_id_by_is_end_city_name(end_city_name)
-    trip_type_routes = crud.get_routes_by_trip_length(trip_length)
-    print(f'trip type is {trip_type_routes}')
-    trip_length_routes = crud.get_routes_by_trip_type(trip_type)
-    print(f'trip length is {trip_length_routes}')
+    
     #Filtering user preferences#
     if len(is_start_routes)>0 and len(is_end_routes)>0:
         for route in is_start_routes:
@@ -171,14 +169,17 @@ def view_routes():
             all_routes.append(route)    
 
     print(f'all routes is {all_routes}')
-    if len(trip_type_routes)>0:
+
+    if trip_type != None:
+        trip_type_routes = crud.get_routes_by_trip_type(trip_type)
         for route in all_routes:
             if route not in trip_type_routes:
                 all_routes.remove(route)
                 print(f'all routes is {all_routes}')
 
-
-    if len(trip_length_routes)>0:
+    if trip_length != None:
+        trip_length_routes = crud.get_routes_by_trip_length(trip_length)
+        print(f'trip length is {trip_length_routes}')
         for route in all_routes:
             if route not in trip_length_routes:
                 all_routes.remove(route)
