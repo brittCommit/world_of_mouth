@@ -25,6 +25,7 @@ cloudinary.config(
     api_key = cloudinary_api_key,
     api_secret = cloudinary_api_secret)
 
+
 @app.route('/')
 def homepage():
     """View homepage"""
@@ -80,7 +81,7 @@ def new_user():
     filename = request.files.get("image-upload")
     print(f'filename is {filename}')
     if filename:
-        response = cloudinary.uploader.upload(filename)
+        response = cloudinary.uploader.upload(filename, use_filename = True, unique_filename = False)
         print(f'filename is {filename}')
     image = secure_filename(filename.filename)
     print(f'image is {image}')
@@ -90,10 +91,9 @@ def new_user():
 
     email = request.form['email']
     user = crud.get_user_by_email(email)
-
+    session['user'] = email
     print(email)
     return redirect(f'/api/view_routes/{user.user_id}') 
-
 
 @app.route('/logout')
 def logout():
