@@ -53,7 +53,7 @@ def login():
         return redirect('/login')
 
     elif password == user.password:
-        session['current_user'] = email
+        session['user'] = email
         flash(f'Logged in as {email}')
         user_id = user.user_id
         return redirect(f'/api/view_routes/{user_id}')
@@ -99,12 +99,17 @@ def new_user():
 def logout():
     """Log out a user"""
 
-    error = None
-    if "user" in session:
-        user = session ['user']
-    session.pop('user', None)
-    flash('You have been logged out!', 'info')
-    return render_template ('homepage.html', error = error)
+    # error = None
+    # if "user" in session:
+    #     user = session['user']
+    # session.pop(user, None)
+    # flash('You have been logged out!','info')
+    # return redirect ('/', error = error)
+
+
+    del session["user"]
+    return redirect('/')
+
 
 
 @app.route('/create_user')
@@ -123,7 +128,7 @@ def create_route():
     """Create new route"""
 
     trip_description = request.form.get('trip_description')
-    user = crud.get_user_by_email(session['current_user'])
+    user = crud.get_user_by_email(session['user'])
     route = crud.create_route(user, trip_description)
 
     return redirect (f'/api/view_stops/{route.route_id}')
@@ -243,6 +248,8 @@ def route_details(route_id):
 
     route = crud.get_route_by_id(route_id)
     stops = crud.get_stops_by_route_id(route_id)
+
+    print(f' route is {route}')
 
     return render_template('view_stops.html', stops = stops,
                                               route_id = route_id,
