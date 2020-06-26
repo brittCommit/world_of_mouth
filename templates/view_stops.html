@@ -26,13 +26,12 @@
 </section>
 
     <!--Form to search places and add new stop-->
-
+{% if route.is_completed is false%}
 <!--if jinja statement for if_end show-->
 <button id="new-stop" type="button" class="btn btn-info">Add a new stop</button>
-
-<div id="form-container"></div>
-
-
+{%else%}
+{%endif%}
+<div id="form-container">
 <form action= "/create_stop" id= "create-stop" method='POST' hidden= true>
 <div class="container">
   <div class="panel panel-primary">
@@ -73,14 +72,16 @@
       <input type="checkbox" id="is_end" class="form-control" value=True name="is-end" onchange="doalert(this)"/>
     </div>
 
+  
     <div>
       <input id="route-id" name="route-id" value={{route_id}} hidden/>
 
       <div>
         <button type="submit" class="btn btn-info">Add stop to trip</button>
+      
       </div> 
     </div>
-
+  
   </div>   
   </div>
   </div>
