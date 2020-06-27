@@ -145,9 +145,8 @@ def view_routes():
     start_city_name = request.form.get('is-start')
     end_city_name = request.form.get('is-end')
     trip_type = request.form.get('trip-type')
-    print(trip_type)
     trip_length = request.form.get('trip-length')
-    print(f'trip length is {trip_length}')
+
     #Queries to handle form data#
     country_routes = crud.get_all_routes_with_stop_with_country_code(country)
     is_start_routes = crud.get_route_id_by_is_start_city_name(start_city_name)
@@ -171,14 +170,11 @@ def view_routes():
         for route in country_routes:
             all_routes.append(route)    
 
-    print(f'all routes is {all_routes}')
-
     if trip_type != None:
         trip_type_routes = crud.get_routes_by_trip_type(trip_type)
         for route in all_routes:
             if route not in trip_type_routes:
                 all_routes.remove(route)
-                print(f'all routes is {all_routes}')
 
     if trip_length != None:
         trip_length_routes = crud.get_routes_by_trip_length(trip_length)
@@ -186,7 +182,6 @@ def view_routes():
         for route in all_routes:
             if route not in trip_length_routes:
                 all_routes.remove(route)
-                print(f'all routes is {all_routes}')
 
     #package matching routes for html#
     for route in all_routes:
@@ -194,7 +189,7 @@ def view_routes():
         is_end = crud.get_is_end_by_route_id(route.route_id)
         
         stop_dict[route.route_id] = is_start, is_end
-        print(f'stop dict is {stop_dict}')
+
         if len(stop_dict) == 0:
             return alert("No routes found with your search criteria, please modify your filters and try again.")
 
@@ -207,9 +202,10 @@ def view_routes_by_user(user_id):
 
     user = crud.get_user_by_id(user_id)
     view_routes = crud.get_routes_by_user(user_id)
-    print(view_routes)
+    favorites = crud.get_favorite_routes_by_user_id(user_id)
+    print(f"favorites are {favorites}")
 
-    return render_template('my_travels.html', view_routes = view_routes, user= user)
+    return render_template('my_travels.html', view_routes = view_routes, user= user,favorites=favorites)
     
 
 # ROUTES TO CREATE AND VIEW STOPS #
@@ -285,24 +281,28 @@ def map_by_route_id(route_id):
 
 # FAVORITING ROUTES #
 
-@app.route('/favorite', methods=['POST'])
-def favorite_route(user_id, route_id):
+@app.route('/api/favorite/<int:route_id>', methods=['POST','GET'])
+def favorite_route(route_id):
     """User favorites route"""
+ 
+    user_id = session['user']
+    print(f'user id is {user_id}')
 
     favorite = crud.create_favorite(user_id, route_id)
+    print(f'favorite is {favorite}')
+    
     return "This trip has been added to your bucket list."
 
 
-@app.route('/unfavorite', methods=['POST'])
-def unfavorite_route():
+@app.route('/api/unfavorite/<int:route_id>', methods=['POST'])
+def unfavorite_route(route_id):
     """User unfavorites route"""
 
-    route = request.form.get('route_id')
-    user = request.form.get('user_id')
-    favorited_item = crud.get_favorite_id_by_route_and_user_ids(route, user)
+    user_id = session['user']
+    favorited_item = crud.get_favorite_id_by_route_and_user_ids(route_id, user_id)
 
     # del favorited_item = 
-    return redirect('/')
+    return redirect(request.url)
 
 
 @app.route('/bucketlist')

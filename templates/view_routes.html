@@ -26,12 +26,32 @@
             </p>    
             
             <button type="submit" id ="{{route.route_id}}" class= "view-trip btn btn-light" name="view_trip" value="{{route.route_id}}">View entire trip</button>
-            <button type="submit" id ="{{route.route_id}}" class= "favorite btn btn-light" name="favorite" value="{{route.route_id}}">Add trip to bucket list</button>
+            <form >
+            <button type="button" id ="{{route.route_id}}" class= "favorite btn btn-light" name="favorite" value="{{route.route_id}}">Add trip to bucket list</button>
+            </form>
             {%endfor%}
         </li>
         
     </ul>
 
+    <script>
+        $(".favorite").on('click', (evt) => {
+        let btn = evt.target
+        let route_id = evt.target.id;
+            console.log(route_id)
+
+        if (btn.innerHTML === 'Add trip to bucket list') {
+            $.post(`/api/favorite/${route_id}`, (res) => {
+            btn.innerHTML = "Remove trip from bucket list"
+            });
+            }
+        else if (btn.innerHTML === 'Remove trip to bucket list') 
+        {
+            $.post(`/api/unfavorite/${route_id}`, (res) =>
+            btn.innerHTML = "Add trip to bucket list"
+            )};
+            });
+</script>
 <div id="map-container">
 <div id="map"></div>
 </div>

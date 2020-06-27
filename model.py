@@ -132,6 +132,8 @@ class RouteType(db.Model):
     route = db.relationship('Route')
     trip_type = db.relationship('TripType')
 
+    def __repr__(self):
+        return f"<RouteType RTid is {self.trip_type_id} and route id is {self.route_id}>" 
 
 class Favorite(db.Model):
     """Favorite routes"""
@@ -151,6 +153,9 @@ class Favorite(db.Model):
     #Relationships with other tables
     route = db.relationship('Route')
     user = db.relationship('User')
+
+    def __repr__(self):
+        return f"<Favorite is {self.favorite_id}, user is {self.user_id}, route is {self.route_id}."
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///routes', echo=False):

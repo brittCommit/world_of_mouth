@@ -105,7 +105,7 @@ def get_routes():
 
 
 def get_route_by_id(route_id):
-    """Return a route associated with a user_id"""
+    """Return a route associated with a route_id"""
 
     return Route.query.get(route_id)
 
@@ -190,16 +190,22 @@ def get_routes_by_trip_type(trip_type):
     return Route.query.filter(Route.trip_type == trip_type).all()
 
 
-
 def get_favorite_id_by_route_and_user_ids(route_id, user_id):
     """Return favorite"""
 
     return db.session.query(Favorite).join(Route).join(User).filter(Favorite.route_id == route_id) & (Favorite.user_id == user_id).all()
 
 def get_users_favorites(user_id):
-    """Return routes a user has favorited"""
+    """Return favorites of user."""
 
-    return Favorite.query.filter(Favorite.user_id == user_id).all()
+    return db.session.query(Favorite).join(Route).filter(Favorite.user_id == user_id).all()
 
+def get_favorite_routes_by_user_id(user_id):
 
+    favorites=get_users_favorites(user_id)
+    favorite_routes = []
+    for route in favorites:
+        route_info = get_route_by_id(route.route_id)
+        favorite_routes.append(route_info)
 
+    return favorite_routes

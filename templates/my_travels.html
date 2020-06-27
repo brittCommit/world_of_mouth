@@ -66,5 +66,16 @@ class="cld-responsive">
     {%endfor%}
 </ul>
 </div>
+<div>
+<h4>Bucket List</h4>
+    {%for route in favorites%}
+    <li for = "user-id">
+        <a href="/api/view_stops/{{route.route_id}}">
+    
+        {{route.trip_description}}    
+    </li>
+    {%endfor%}
+</div>
+
 {%endblock%} 
 
