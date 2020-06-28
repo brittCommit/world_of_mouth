@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/static/css/index.css"/>
     <title>
       {% block title %}{% endblock %}
@@ -20,16 +20,42 @@
   <body>
      <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
-        <div class="inner">
-          <h3 class="masthead-brand">World of Mouth</h3>
-          <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="/">Home</a>
-            {% if session %}
-            <a class="nav-link" href = "/api/view_routes/{{session['user']}}">My Account</a>
-            <a class="nav-link" href="/logout">Logout</a>
-            {% else %}
-            <a class="nav-link" href="/user_login">Login</a>
-            <a class="nav-link" href="/register">Create Account</a>
+            <a class="navbar-brand">World of Mouth</a>
+            <span class="navbar-toggler-icon"></span>
+
+          <div class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/">Home<span class = "sr-only">current</span></a>
+              </li>
+              {% if session %}
+            <li class="nav-item">
+              <a class="nav-link" href = "/api/view_routes/{{session['user']}}">My Account</a>
+            </li>
+            <li class = "nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+              {% else %}
+            <li class = "nav-item dropdown"> 
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
+            <div class="dropdown-menu" aria-labeledby="navbarDropdown">
+                <form action="/login" class="px-4 py-3" method="POST">
+                  <div class="form-group">
+                   <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type ="password" class="form-control" id="password" name="password" placeholder="password">
+                  </div>   
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            <div class="dropdown-divider"></div>
+              <label for="register">Are you a new traveler around here? </label>
+                <a class="streched-link dropdown-item" href='/register'>Create an account here.</a>
+          </div>
+          </form>
+          </li>
+          </ul>
             {% endif %}
             
           </nav>
@@ -49,8 +75,8 @@
     {% block after_body %}{% endblock %}
   </body>
 
- <script  src="https://code.jquery.com/jquery-3.4.1.js"     
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="      
+ <script  src="https://code.jquery.com/jquery-3.4.1.js"   
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="  
   crossorigin="anonymous">   
 </script>
 </html>
