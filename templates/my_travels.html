@@ -39,8 +39,7 @@
 
 
 <h3>{{user.first_name}}'s Travels</h3>
-<img 
-data-src="world-of-mouth/image/upload/{{user.image}}" 
+<img src= "{{image}}"
 class="cld-responsive">
 <ul>
     <h4>Completed Trips</h4>
@@ -67,15 +66,15 @@ class="cld-responsive">
 </ul>
 </div>
 <div>
-<h4>Bucket List</h4>
+    <h4>Bucket List</h4>
     {%for route in favorites%}
     <li for = "user-id">
         <a href="/api/view_stops/{{route.route_id}}">
-    
-        {{route.trip_description}}    
-    </li>
-    {%endfor%}
-</div>
+            
+            {{route.trip_description}}    
+        </li>
+        {%endfor%}
+    </div>
 
-{%endblock%} 
+    {%endblock%} 
 

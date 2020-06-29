@@ -8,8 +8,6 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-from werkzeug.utils import secure_filename
-
 import os
 
 app = Flask(__name__)
@@ -24,7 +22,6 @@ cloudinary.config(
     cloud_name = cloud_name,
     api_key = cloudinary_api_key,
     api_secret = cloudinary_api_secret)
-
 
 @app.route('/')
 def homepage():
@@ -58,7 +55,7 @@ def login():
         flash(f'Logged in as {email}')
         user_id = user.user_id
         session['user'] = user_id
-        return redirect(f'/api/view_routes/{user_id}')
+        return redirect(f'/api/my_travels/{user_id}')
 
     else:
         flash('Wrong password, try again!')
@@ -73,27 +70,29 @@ def register_new_user():
 
 @app.route('/new_user', methods=['POST'])
 def new_user():
-    
+    if request.method == 'POST':
+        print('hi')
     email = request.form.get('email')
     first_name = request.form.get('first_name')
     user_name = request.form.get('user_name')
     password = request.form.get('password')
     home_country = request.form.get('home_country')
-    filename = request.files.get("image-upload")
-    print(f'filename is {filename}')
+    filename = request.files.get('image-upload')
     if filename:
-        response = cloudinary.uploader.upload(filename, use_filename = True, unique_filename = False)
-        print(f'filename is {filename}')
-    image = secure_filename(filename.filename)
-    print(f'image is {image}')
-    user = crud.get_user_by_email(email)
-
-    crud.create_user(email, first_name, user_name, password, home_country, image)
+        response = cloudinary.uploader.upload(filename)
+        image = response['secure_url']
     
     user = crud.get_user_by_email(email)
-    session['user'] = user.user_id
-    print(email)
-    return redirect(f'/api/view_routes/{user.user_id}') 
+    crud.create_user(email, first_name, user_name, password, home_country, image)
+
+    if user:
+        return redirect('/')
+
+    else:   
+        user = crud.get_user_by_email(email)
+        session['user'] = user.user_id
+    print(f'user is {user}')
+    return redirect(f'/api/my_travels/{user.user_id}') 
 
 @app.route('/logout')
 def logout():
@@ -193,19 +192,19 @@ def view_routes():
         if len(stop_dict) == 0:
             return alert("No routes found with your search criteria, please modify your filters and try again.")
 
-    return render_template('view_routes.html', all_routes = all_routes, stop_dict=stop_dict)
+    return render_template('view_routes.html', stop_dict=stop_dict, all_routes=all_routes)
 
 
-@app.route('/api/view_routes/<int:user_id>')
+@app.route('/api/my_travels/<int:user_id>')
 def view_routes_by_user(user_id):
     """View routes belonging to a user"""
 
     user = crud.get_user_by_id(user_id)
     view_routes = crud.get_routes_by_user(user_id)
     favorites = crud.get_favorite_routes_by_user_id(user_id)
-    print(f"favorites are {favorites}")
+    image= user.image
 
-    return render_template('my_travels.html', view_routes = view_routes, user= user,favorites=favorites)
+    return render_template('my_travels.html', view_routes = view_routes, user= user,favorites=favorites, image=image)
     
 
 # ROUTES TO CREATE AND VIEW STOPS #

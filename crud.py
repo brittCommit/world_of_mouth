@@ -94,6 +94,7 @@ def get_user_by_id(user_id):
 
 
 def get_user_by_email(email): 
+    """Return a user associated with an email"""
 
     return User.query.filter(User.email == email).first()
 
@@ -209,3 +210,5 @@ def get_favorite_routes_by_user_id(user_id):
         favorite_routes.append(route_info)
 
     return favorite_routes
+
+
