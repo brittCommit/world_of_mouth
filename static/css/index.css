@@ -1,76 +1,89 @@
-
-#map-container {
-height: 1000px;
-margin: 10px;
-}
-#map {
-height: 50%;
-
+.thumbnail {
+  border: 2px solid #AE7557;
+  padding: 5px;
+  width: 100px;
+  height: 100px;
 }
 
-/* CUSTOMIZE THE COVER
--------------------------------------------------- */
-
-/*
- * Globals
- */
-
-/* Links */
-a,
-a:focus,
-a:hover {
-  color: #fff;
+a {
+    color: #AE7557;
+    text-decoration: none;
+    background-color: transparent;
 }
 
-/* Custom default button */
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-  color: #333;
-  margin: 10px;
-  text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
-  border: .05rem solid #fff;
-
-}
-
-
-/*
- * Base structure
- */
-
-html,
 body {
+ font-family: 'Judson', serif;
+ color: #343D3C;
+}
+
+h1, h2, h3, h4, h5, h6 {
+ font-family: 'Archivo Black', sans-serif;
+ color: #343D3C;
+}
+
+.cover h1, h2, h3, h4, h5, h6 {
+ font-family: 'Archivo Black', sans-serif;
+ color: #343D3C;
+}
+small {
+  padding:3px;
+}
+
+
+.cover {
   height: 100%;
+  font-family: 'Judson', sans-serif;
   background-image:url('/static/img/camel.jpg');
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover; 
   background-repeat: no-repeat; 
-  background-position: center center; 
+  background-position: center center;
+  padding: 0 1.5rem;
 }
-
-body {
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: flex;
-  -ms-flex-pack: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  color: #fff;
-  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
-}
-
 .cover-container {
-  max-width: 42em;
+  padding: 200px;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
 }
 
+.list-group-item.active {
+    z-index: 2;
+    display: block;
+    padding: .75rem 1.25rem;
+    color: #232426;
+    border-color:#fff;
+    border-bottom: 2px solid #23594A;
+    background-color: #fff;
+}
+
+.btn-secondary {
+  width:80%;
+  height: 40px;
+  margin:5px;
+  align: center;
+  color: #212626;
+  background-color: #6B837D;
+}
+
+.btn-primary {
+    width:35%;
+    margin:10px;
+    color: #212626;
+    background-color: #77C0D0;
+    border-color: #77C0D0;
+}
+
+.form-control {
+  margin:10px;
+}
 
 /*
  * Header
- */
+ 
 .masthead {
   margin-bottom: 2rem;
 }
@@ -84,65 +97,37 @@ body {
   font-weight: 700;
   color: rgba(255, 255, 255, .5);
   background-color: transparent;
-  border-bottom: .25rem solid transparent;
+
 }
-
-.nav-masthead .nav-link:hover,
-.nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255, 255, 255, .25);
-}
-
-.nav-masthead .nav-link + .nav-link {
-  margin-left: 3rem;
-}
-
-.nav-masthead .active {
-  color: #fff;
-  border-bottom-color: #fff;
-}
-
-@media (min-width: 48em) {
-  .masthead-brand {
-    float: left;
-  }
-  .nav-masthead {
-    float: right;
-  }
-}
-
-
-/*
- * Cover
- */
-.cover {
-  padding: 0 1.5rem;
-}
-.cover .btn-lg {
-  padding: .75rem 1.25rem;
-  font-weight: 700;
-}
-
-
 /*
  * Footer
  */
 .mastfoot {
   color: rgba(255, 255, 255, .5);
+}*/
+/**/
+
+
+/*Map CSS*/
+
+#map-container {
+height: 1000px;
+margin: 10px;
 }
 
-
-/*Map CSS/
-
-/* html, body {
+#map {
+height:100%;
+width: 85%;
+html, body {
         height: 100%;
-        margin: 20;
+        margin: 0;
         padding: 0;
       }
       #description {
-        font-family: Roboto;
+        font-family: Judson;
         font-size: 15px;
         font-weight: 300;
-      }*/
+      }
 
       #infowindow-content .title {
         font-weight: bold;
@@ -164,7 +149,7 @@ body {
         outline: none;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         background-color: #fff;
-        font-family: Roboto;
+        font-family: Judson;
       }
 
       #pac-container {
@@ -179,14 +164,14 @@ body {
       }
 
       .pac-controls label {
-        font-family: Roboto;
+        font-family: Judson;
         font-size: 13px;
         font-weight: 300;
       }
 
       #pac-input {
         background-color: #fff;
-        font-family: Calibri;
+        font-family: Judson;
         font-size: 15px;
         font-weight: 300;
         margin-left: 12px;

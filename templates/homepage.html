@@ -11,9 +11,9 @@
 
 {% block body%}
 <body class="cover">
+<div class="cover-container">
 <div class="text-center">
-  <main role="main" class="inner cover">
-    <div class="oh-places">
+
       <h1 class="cover-heading" style="font-size: 56px">Oh, the places you can go.</h1>
       <p class="lead" style="font-size: 24px">Sometimes the path most taken is what we should choose, search your next destination to see other traveler's routes.</p>
 
@@ -33,22 +33,22 @@
 
         <div class="col-md-6">
           <div class="panel-body">
-            <label class="control-label">First stop of trip</label>
-            <input type="text" class="is_start form-control" id="autocompleteIsStart" name="is-start" placeholder="first city"/>
+            <!--<label class="control-label">First stop of trip</label>-->
+            <input type="text" class="is_start form-control" id="autocompleteIsStart" name="is-start" placeholder="Search by first city"/>
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="panel-body">
-            <label type="text" class="control-label">Last stop of trip</label>
-            <input type="text" class="is_end form-control" id="autocompleteIsEnd" name="is-end" placeholder="last city"/>
+            <!--<label type="text" class="control-label">Last stop of trip</label>-->
+            <input type="text" class="is_end form-control" id="autocompleteIsEnd" name="is-end" placeholder="Search by last city"/>
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6">
-          <label class="control-label">Trip type</label>
+          <!--<label class="control-label">Trip type</label>-->
           <select type="dropdown" name="trip-type" class="form-control field">
             <option value="" disabled selected>Select a trip type</option>
             <option value="1">solo</option>
@@ -63,7 +63,7 @@
           </select>
         </div>
         <div class="col-md-6">
-          <label class="control-label">Length of trip</label>
+          <!--<label class="control-label">Length of trip</label>-->
           <select type= "dropdown" class="form-control field" id="trip_length"
           name="trip-length" placeholder="length of trip">
           <option value="" disabled selected>Select desired trip length</option>
@@ -78,10 +78,9 @@
         <input type="submit" class="btn btn-md btn-primary"></input>
       </p>
     </div>
-  </div>
 </form>
 </div>
-</main>
+</div>
 </div>
 
 <!--Footer-->
@@ -90,6 +89,7 @@
     <p>Something good that came out of 2020. Made with love by Brittney Huttner</p>
   </div>
 </footer>
+</div>
 </body>
 
 
