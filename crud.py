@@ -162,7 +162,8 @@ def create_stop_dict(stop):
                 "stay_length": stop.stay_length,
                 "lat": stop.lat,
                 "lng":stop.lng,
-                "country_code": stop.country_code
+                "country_code": stop.country_code,
+                "highlights": stop.highlights
                 }
 
     return stop_dict
