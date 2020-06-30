@@ -56,7 +56,6 @@ function fillInAddress() {
       if (componentFormMain[addressType])
       COUNTRY = trip[key];
       console.log(COUNTRY)
-      $('#autocompleteMain').val(COUNTRY)
 };
 }
 }
@@ -121,8 +120,8 @@ function fillInAddressIsEnd() {
 }
 }
 
-  // $('#get-trips').on('submit', (evt) => {
-  //   evt.preventDefault();
+  $('#search').on('click', (evt) => {
+    evt.preventDefault();
   
   //  const formValues = {
   //     country: COUNTRY,
@@ -134,10 +133,10 @@ function fillInAddressIsEnd() {
   //   console.log(formValues)
   //   console.log(res)
   //   });
+  $('#autocompleteMain').val(COUNTRY);
+  $('#get-trips').submit();
+  });
 
-  // window.location.href = `/view_routes/${COUNTRY}`
-  // });
-  // };
 
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
