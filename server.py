@@ -37,6 +37,7 @@ def route_to_login():
 
     return render_template('login.html')
 
+
 @app.route('/login', methods=['POST'])
 def login():
     """User login page"""
@@ -51,8 +52,6 @@ def login():
         return redirect('/login')
 
     elif password == user.password:
-        
-        flash(f'Logged in as {email}')
         user_id = user.user_id
         session['user'] = user_id
         return redirect(f'/api/my_travels/{user_id}')
@@ -94,19 +93,12 @@ def new_user():
     print(f'user is {user}')
     return redirect(f'/api/my_travels/{user.user_id}') 
 
+
 @app.route('/logout')
 def logout():
     """Log out a user"""
 
-    # error = None
-    # if "user" in session:
-    #     user = session['user']
-    # session.pop(user, None)
-    # flash('You have been logged out!','info')
-    # return redirect ('/', error = error)
-
-
-    del session["user"]
+    del session['user']
     return redirect('/')
 
 
@@ -203,6 +195,7 @@ def view_routes_by_user(user_id):
     view_routes = crud.get_routes_by_user(user_id)
     favorites = crud.get_favorite_routes_by_user_id(user_id)
     image= user.image
+    print(image)
 
     return render_template('my_travels.html', view_routes = view_routes, user= user,favorites=favorites, image=image)
     

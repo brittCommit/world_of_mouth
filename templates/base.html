@@ -1,82 +1,82 @@
 <!doctype html>
 <html lang = "en">
-  <head>
-    <link rel="shortcut icon" href="/static/img/travel_drop.ico"/>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/static/css/index.css"/>
-    <title>
-      {% block title %}{% endblock %}
-    </title>
-      {% block head %}{% endblock %}
-  </head>
+<head>
+  <link rel="shortcut icon" href="/static/img/travel_drop.ico"/>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <link href="https://fonts.googleapis.com/css?family=Cardo:400,700|Oswald" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/3d7d5b917a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/static/css/index.css"/>
+  <title>
+  {% block title %}{% endblock %}
+  </title>
+  {% block head %}
+  {% endblock %}
+</head>
 
-  <body>
-     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+<body>
+     <!--<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
-            <a class="navbar-brand">World of Mouth</a>
-            <span class="navbar-toggler-icon"></span>
+      </header>-->
 
-          <div class="navbar-nav">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="/">Home<span class = "sr-only">current</span></a>
-              </li>
-              {% if session %}
+      <nav class="navbar navbar-expand">
+        <a class="navbar-brand">World of Mouth</a>
+        <span class="navbar-toggler-icon"></span>
+
+        <div class="navbar-nav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            {% if session %}
             <li class="nav-item">
-              <a class="nav-link" href = "/api/view_routes/{{session['user']}}">My Account</a>
+              <a class="nav-link" href = "/api/my_travels/{{session['user']}}">My Travels</a>
             </li>
             <li class = "nav-item">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
-              {% else %}
-            <li class = "nav-item dropdown"> 
+            <!--<img src= "{{'image'}}" class="thumbnail rounded-circle" width="100" height="100">-->
+            {% else %}
+            <li class = "nav-item dropright"> 
               <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
-            <div class="dropdown-menu" aria-labeledby="navbarDropdown">
+              <div class="dropdown-menu" aria-labeledby="navbarDropdown">
                 <form action="/login" class="px-4 py-3" method="POST">
                   <div class="form-group">
                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com">
-                  </div>
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type ="password" class="form-control" id="password" name="password" placeholder="password">
-                  </div>   
+                   <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com">
+                 </div>
+                 <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type ="password" class="form-control" id="password" name="password" placeholder="password">
+                </div>   
                 <button type="submit" class="btn btn-primary">Sign in</button>
-            <div class="dropdown-divider"></div>
-              <label for="register">Are you a new traveler around here? </label>
+                <div class="dropdown-divider"></div>
+                <label for="register">Are you a new traveler around here? </label>
                 <a class="streched-link dropdown-item" href='/register'>Create an account here.</a>
-          </div>
-          </form>
+            </form>
+            </div>
           </li>
-          </ul>
-            {% endif %}
-            
-          </nav>
-        </div>
-      </header>
-    </div>
-    {% for msg in get_flashed_messages() %}
-      <p class="flash-msg">
-        {{ msg }}
-      </p>
-    {% endfor %}
-    
-    {% block body %}
+        {% endif %} 
+        </ul>
+      </div>
+      </nav>
+{% for msg in get_flashed_messages() %}
+<p class="flash-msg">
+  {{ msg }}
+</p>
+{% endfor %}
 
-    {% endblock %}
-
-    {% block after_body %}{% endblock %}
-  </body>
-
- <script  src="https://code.jquery.com/jquery-3.4.1.js"   
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="  
-  crossorigin="anonymous">   
+{% block body %}{% endblock %}
+</body>
+{% block after_body %}{% endblock %}
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </script>
 </html>
