@@ -3,7 +3,33 @@
 {%block title%}World of Mouth{%endblock%}
 
 {% block body%}
+<img src= "{{image}}" class="thumbnail rounded-circle">
 
+<h3>{{user.first_name}}'s Travels</h3>
+<ul>
+    <h4>Completed Trips</h4>
+    {%for route in view_routes%}
+    {%if route.is_completed is true%}
+    <li for = "user-id">
+        <a href="/api/view_stops/{{route.route_id}}">
+            {{route.trip_description}}
+        </a>
+    </li>
+    {%endif%}
+    {%endfor%}
+    <h4>Trips in progress</h4>
+    {%for route in view_routes%}
+    {%if route.is_completed is false%}
+
+    <li for = "user-id">
+        <a href="/api/view_stops/{{route.route_id}}">
+            {{route.trip_description}}
+        </a>
+    </li>
+    {%endif%}
+    {%endfor%}
+</ul>
+</div>
 
 <button id="new-trip" type="button" class="btn btn-info" style= "height: 50px;">Start a new trip</button>
 <div id="form-container">
@@ -38,33 +64,6 @@
 </script>
 
 
-<h3>{{user.first_name}}'s Travels</h3>
-<img src= "{{image}}"
-class="cld-responsive">
-<ul>
-    <h4>Completed Trips</h4>
-    {%for route in view_routes%}
-    {%if route.is_completed is true%}
-    <li for = "user-id">
-        <a href="/api/view_stops/{{route.route_id}}">
-            {{route.trip_description}}
-        </a>
-    </li>
-    {%endif%}
-    {%endfor%}
-    <h4>Trips in progress</h4>
-    {%for route in view_routes%}
-    {%if route.is_completed is false%}
-
-    <li for = "user-id">
-        <a href="/api/view_stops/{{route.route_id}}">
-            {{route.trip_description}}
-        </a>
-    </li>
-    {%endif%}
-    {%endfor%}
-</ul>
-</div>
 <div>
     <h4>Bucket List</h4>
     {%for route in favorites%}
