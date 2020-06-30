@@ -4,148 +4,149 @@
 
 {% block body %}
 
-  <!--View all stops on a trip/route-->
+<!--View all stops on a trip/route-->
 
-<div>
-<h2> Itinerary for {{route.trip_description}} </h2>
-<p id="route-id" hidden = true>{{route.route_id}}</p>
-<section id="display-route">
-<ol id= "itinerary">
+<div class="row">
+  <div class="col-6 col-md-4">
+    <h2> Itinerary for {{route.trip_description}} </h2>
+    <p id="route-id" hidden = true>{{route.route_id}}</p>
+    <section id="display-route">
+      <ol id= "itinerary">
 
-    {% for stop in stops %}
-    <li id="city_name"/>
+        {% for stop in stops %}
+        <li id="city_name"/>
         {{stop.city_name}}
         <ul>
-        <li id="stay_length"/>
-         Nights stayed: {{stop.stay_length}}
+          <li id="stay_length"/>
+          Nights stayed: {{stop.stay_length}}
         </li> 
         <li id="highlights"/>
         Highlights: {{stop.highlights}}
       </li>
-        </ul>
-    </li>    
-    {% endfor %}
+    </ul>
+  </li>    
+  {% endfor %}
 </ol>
 </section>
 
-    <!--Form to search places and add new stop-->
+<!--Form to search places and add new stop-->
 {% if route.is_completed is false%}
 <!--if jinja statement for if_end show-->
 <button id="new-stop" type="button" class="btn btn-info">Add a new stop</button>
 {%else%}
 {%endif%}
 <div id="form-container">
-<form action= "/create_stop" id= "create-stop" method='POST' hidden= true>
-<div class="container">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h4 class="panel-title">Enter your stop details in order</h4>
-    </div>
-  <div class="panel-body">
-    <input id="autocomplete" placeholder="Search city here"type="text" class="form-control"/>
-      
-  <div class="row">
-    <div class="col-md-6">
-      <label class="control-label"></label>
-      <input class="form-control field" id="locality" name="city-name" placeholder="City" disabled="true"/>
-    </div>
-    
-    <div class="col-md-6">
-      <label class="control-label"></label>
-      <input class="form-control" id="country" name="country-code" placeholder="Country" disabled="true"/>
-    </div>
+  <form action= "/create_stop" id= "create-stop" method='POST' hidden= true>
+    <div class="container">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4 class="panel-title">Enter your stop details in order</h4>
+        </div>
+        <div class="panel-body">
+          <input id="autocomplete" placeholder="Search city here"type="text" class="form-control"/>
 
-    <div class="col-md-6">
-      <label class="control-label"></label>
-      <input class="form-control" id="lat" name='lat' placeholder = "lat" disabled="true"/>
-    </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label class="control-label"></label>
+              <input class="form-control field" id="locality" name="city-name" placeholder="City" disabled="true"/>
+            </div>
 
-    <div class="col-md-6">
-      <label class="control-label"></label>
-      <input class="form-control" id="lng" name='lng' placeholder = "lng" disabled="true"/>
-    </div>
+            <div class="col-md-6">
+              <label class="control-label"></label>
+              <input class="form-control" id="country" name="country-code" placeholder="Country" disabled="true"/>
+            </div>
 
-    <div class="col-md-6">
-      <label class="control-label"></label>
-      <input type="number" class="form-control" id="stay_length" name="stay-length" placeholder="Enter number of nights stayed"required/>
-    </div>
+            <div class="col-md-6">
+              <label class="control-label"></label>
+              <input class="form-control" id="lat" name='lat' placeholder = "lat" disabled="true"/>
+            </div>
 
-    <div class="col-md-6">
-      <label class="control-label"></label>
-      <input type="text" class="form-control" id="highlights" name="highlights" placeholder="Share your highlights of this city"required/>
-    </div>
+            <div class="col-md-6">
+              <label class="control-label"></label>
+              <input class="form-control" id="lng" name='lng' placeholder = "lng" disabled="true"/>
+            </div>
 
-    <div class="col-md-6">
-      <label class="control-label">Check this box if this was the last stop of your trip:</label>
-      <input type="checkbox" id="is_end" class="form-control" value=True name="is-end" onchange="doalert(this)"/>
-    </div>
+            <div class="col-md-6">
+              <label class="control-label"></label>
+              <input type="number" class="form-control" id="stay_length" name="stay-length" placeholder="Enter number of nights stayed"required/>
+            </div>
 
-  
-    <div>
-      <input id="route-id" name="route-id" value={{route_id}} hidden/>
+            <div class="col-md-6">
+              <label class="control-label"></label>
+              <input type="text" class="form-control" id="highlights" name="highlights" placeholder="Share your highlights of this city"/>
+            </div>
 
-      <div>
-        <button type="submit" class="btn btn-info">Add stop to trip</button>
-      
-      </div> 
+            <div class="col-md-6">
+              <label class="control-label">Check this box if this was the last stop of your trip:</label>
+              <input type="checkbox" id="is_end" class="form-control" value=True name="is-end" onchange="doalert(this)"/>
+            </div>
+            <div>
+              <input id="route-id" name="route-id" value={{route_id}} hidden/>
+
+              <div>
+                <button type="submit" class="btn btn-info">Add stop to trip</button>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  
-  </div>   
-  </div>
+  </form>
+</div>
+</div>
+<div class="col-md-8">
+  <div id="map-container" style="height:100%; width:100%">
+    <div id="map" style="height: 100%"></div>
   </div>
 </div>
-</form>
-<div id="map-container">
-<div id="map"></div>
 </div>
+<script>
+  function doalert(checkboxElem) {
+    if (checkboxElem.checked) {
+      alert ("Checking this box will complete your trip and it will no longer be editable.");
+    }
+  }
+</script>
+<!-- Ajax request to hide form until add stop is clicked, user can add a stop to a route using google places autocomplete -->
 
 <script>
-function doalert(checkboxElem) {
-  if (checkboxElem.checked) {
-    alert ("Checking this box will complete your trip and it will no longer be editable.");
-  }
-}
-</script>
-    <!-- Ajax request to hide form until add stop is clicked, user can add a stop to a route using google places autocomplete -->
-
- <script>
-    $('#new-stop').on('click', (evt) => {
+  $('#new-stop').on('click', (evt) => {
     evt.preventDefault();
 
     const selectedValue =$('#create-stop');
     console.log(selectedValue)
     selectedValue.attr('hidden', false);
-    });
-    $('#create-stop').on('submit', (evt) => {
+  });
+  $('#create-stop').on('submit', (evt) => {
     evt.preventDefault();
     const formValues = $('#create-stop').serialize();
 
     $.post('/create_stop', formValues,(res) => {
-       console.log(res) 
-       $('#itinerary').append(`
-        <li id="city_name" /> ${res.city_name}
-        <ul>
-        <li id="stay_length" />
-         Nights stayed: ${res.stay_length}
-        </li>
-        <li id="highlights"/>
-        City highlights: ${res.highlights}
-        </ul>
-        </li>`);
+     console.log(res) 
+     $('#itinerary').append(`
+      <li id="city_name"> ${res.city_name}
+      <ul>
+      <li id="stay_length">
+      Nights stayed: ${res.stay_length}
+      </li>
+      <li id="highlights">
+      City highlights: ${res.highlights}
+      </ul>
+      </li>`);
 
-    if (res.is_end == true) {
+     if (res.is_end == true) {
       $('#new-stop').attr('hidden', true);
-    
+
       $('#create-stop').attr('hidden', true);
       $('#create-stop')[0].reset();
     }
 
     else {
-    $('#create-stop').attr('hidden', true);
-    $('#create-stop')[0].reset();
+      $('#create-stop').attr('hidden', true);
+      $('#create-stop')[0].reset();
     }
-    });
-    });
+  });
+  });
   
 </script>
 
