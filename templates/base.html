@@ -28,14 +28,11 @@
       </header>-->
 
       <nav class="navbar navbar-expand">
-        <a class="navbar-brand">World of Mouth</a>
+        <a class="navbar-brand" href="/" style="font-size:32">World of Mouth</a>
         <span class="navbar-toggler-icon"></span>
 
         <div class="navbar-nav">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home</a>
-            </li>
+          <ul class="navbar-nav">
             {% if session %}
             <li class="nav-item">
               <a class="nav-link" href = "/api/my_travels/{{session['user']}}">My Travels</a>

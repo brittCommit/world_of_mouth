@@ -65,9 +65,9 @@ small {
     padding: .75rem 1.25rem;
     color: #232426;
     border-color:#fff;
-    border-bottom: 1px solid rgba(0,0,0,.125);;
+    border-bottom: 1px solid rgba(0,0,0,.125);
     background-color: #fff;
-    
+
 }
 
 .btn-secondary {
@@ -77,7 +77,7 @@ small {
   align: center;
   color: #212626;
   background-color: #77C0D0;
-  border-color: #77C0D0;;
+  border-color: #77C0D0;
 }
 
 .btn-primary {
@@ -99,11 +99,16 @@ small {
   box-shadow: 0px 0px 5px #343D3C;
 }
 
+.navbar-nav{
+  margin-left: auto;
+}
+
 #traveler-header {
   text-align: center;
   display: block;
   padding:30px;
   border-bottom: 2px solid #343D3C;
+  background-img: url('/static/img/Palms.jpeg'); 
 }
 
 #trip-buckets {
@@ -134,11 +139,6 @@ small {
   background: none;
 }
 
-#new-trip {
-  z-index: -100;
-  border: 1px solid red;
-  position: relative;
-}
 /* Header
  
 .masthead {
