@@ -4,67 +4,49 @@
 
 {% block body%}
 <div class="row">
-<div class="col-6 col-md-4">
-<div id="get-trips" class="list-group">
-    <label>Select a trip to see the full itinerary:</label>
-    {%for route in all_routes%}
-    <a href="/api/view_stops/{{route.route_id}}" class="list-group-item list-group-item-action flex-column align-items-start active">{{route.trip_description}}</a>
-    <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"></h5>
-        <small></small>
-    </div>
-    <p class="mb-1">
-        {%for route_id, (is_start, is_end) in stop_dict.items()%}
-        {%if route.route_id == route_id %}
-        Starts in {{is_start[0].city_name}}.
-    </p>
-    <p class="mb-1">
-        {%if is_end|length>0%}
-        Ends in {{is_end[0].city_name}}.
-        {%endif%}
-        {%endif%}
-        {%endfor%}
-    </p>
+    <div class="col-6 col-md-4">
+        <div id="get-trips" class="list-group">
+            {%for route in all_routes%}
 
-    <button type="submit" id ="{{route.route_id}}" class= "view-trip btn btn-secondary" name="view_trip" value="{{route.route_id}}">View entire trip</button>
-    <form >
-        {%if session%}
-        <button type="button" id ="{{route.route_id}}" class= "favorite btn btn-secondary" name="favorite" value="{{route.route_id}}">Add trip to bucket list</button>
-        {%endif%}
-    </form>
+            <div class="list-group" value="{{route.route_id}}">
+              <div id ="{{route.route_id}}" class="view-trip list-group-item list-group-item-action flex-column align-items-start active"name="view_trip" value="{{route.route_id}}">
+                <div class="d-flex w-100 justify-content-between">
+                  <h4 class="mb-1" value="{{route.route_id}}">{{route.trip_description}}</h4>
+                  <small>{{route.trip_length}} days</small>
+              </div>
+              <p class="mb-1">
+                {%for route_id, (is_start, is_end) in stop_dict.items()%}
+                {%if route.route_id == route_id %}
+                Starts in {{is_start[0].city_name}}.
+            </p>
+            <p class="mb-1">
+                {%if is_end|length>0%}
+                Ends in {{is_end[0].city_name}}.
+                {%endif%}
+                {%endif%}
+                {%endfor%}
+            </p>
+            <div class="row">
+                <a class= "btn btn-secondary" href="/api/view_stops/{{route.route_id}}" role="button"value="{{route.route_id}}"id="itineary">View itinerary</a>
+            </div>
+        </div>
+    </div>
     {%endfor%}
-</li>
 </div>
 </div>
 
 <div class="col-md-8">
-    <div id="map-container" style="height:100%; width:100%">
+    <div id="map-container" style="height:100%; width:100% mapTypeId: 2db4a813922d0ba3">
         <div id="map" style="height: 100%"></div>
     </div>
 </div>
 </div>
-<script>
-    $(".favorite").on('click', (evt) => {
-        let btn = evt.target
-        let route_id = evt.target.id;
 
-        if (btn.innerHTML === 'Add trip to bucket list') {
-            $.post(`/api/favorite/${route_id}`, (res) => {
-                btn.innerHTML = "Remove trip from bucket list"
-            });
-        }
-        else if (btn.innerHTML === 'Remove trip to bucket list') 
-        {
-            $.post(`/api/unfavorite/${route_id}`, (res) =>
-                btn.innerHTML = "Add trip to bucket list"
-                )};
-        });
+
+<script src="/static/js/Map.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB11EET8koZ6suc0RrFvHxpJj4lEmkt8do&libraries=places&callback=initMap" async defer>
 </script>
 
-    <script src="/static/js/Map.js"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB11EET8koZ6suc0RrFvHxpJj4lEmkt8do&libraries=places&callback=initMap" async defer>
-    </script>
-
-    {%endblock%}
+{%endblock%}
 
