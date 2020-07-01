@@ -11,22 +11,11 @@
     
     <div class="row">
         <div class="col-6 col-md-4">
-    <ul>
+    <ul class="list-group list-group-flush">
         <h4>Completed Trips</h4>
         {%for route in view_routes%}
         {%if route.is_completed is true%}
-        <li for = "user-id">
-            <a href="/api/view_stops/{{route.route_id}}">
-                {{route.trip_description}}
-            </a>
-        </li>
-        {%endif%}
-        {%endfor%}
-        <h4>Trips in progress</h4>
-        {%for route in view_routes%}
-        {%if route.is_completed is false%}
-
-        <li for = "user-id">
+        <li for = "user-id" class="list-group-item">
             <a href="/api/view_stops/{{route.route_id}}">
                 {{route.trip_description}}
             </a>
@@ -34,7 +23,18 @@
         {%endif%}
         {%endfor%}
     </ul>
-
+    <ul class="list-group list-group-flush">
+        <h4>Trips in progress</h4>
+        {%for route in view_routes%}
+        {%if route.is_completed is false%}
+        <li for = "user-id" class="list-group-item">
+            <a href="/api/view_stops/{{route.route_id}}">
+                {{route.trip_description}}
+            </a>
+        </li>
+        {%endif%}
+        {%endfor%}
+    </ul>
 
     <button id="new-trip" type="button" class="btn btn-secondary">Start a new trip</button>
     <div id="form-container">
@@ -68,11 +68,14 @@
 
     </script>
 
+
+
 </div>
     <div class="col-6 col-md-4">
         <h4>Bucket List</h4>
         {%for route in favorites%}
-        <li for = "user-id">
+        <ul class="list-group list-group-flush">
+        <li for = "user-id" class="list-group-item">
             <a href="/api/view_stops/{{route.route_id}}">
                 {{route.trip_description}} 
             </a>   
