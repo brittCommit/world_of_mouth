@@ -12,27 +12,35 @@ a {
 }
 
 body {
- font-family: 'Judson', serif;
+/* font-family: 'Judson', serif;*/
+ font-family: 'Overpass', Sans-Serif;
+ font-weight: 300;
  color: #343D3C;
 }
 
 h1, h2, h3, h4, h5, h6 {
- font-family: 'Archivo Black', sans-serif;
+ /*font-family: 'Archivo Black', sans-serif;*/
+ font-family: 'Permanent Marker', Cursive;
  color: #343D3C;
 }
 
 .cover h1, h2, h3, h4, h5, h6 {
- font-family: 'Archivo Black', sans-serif;
+ /*font-family: 'Archivo Black', sans-serif;*/
+ font-family: 'Permanent Marker', Cursive;
  color: #343D3C;
 }
 small {
   padding:3px;
+  margin-left: 15px;
 }
-
-
+/*Font-Family: 'Permanent Marker', Cursive;
+Font-Size: 55px;
+Font-Family: 'Overpass', Sans-Serif;
+Font-Size: 17px;
+*/
 .cover {
   height: 100%;
-  font-family: 'Judson', sans-serif;
+  font-family: 'Overpass', sans-serif;
   background-image:url('/static/img/camel.jpg');
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -44,19 +52,34 @@ small {
 }
 .cover-container {
   padding-left: 200px;
-  padding-top: 100px;
+  padding-top: 150px;
   padding-bottom:275px;
   padding-right: 275px;
 }
 
-.my-travel-container {
-  
-
-}
 .cover .btn-lg {
   padding: .75rem 1.25rem;
   font-weight: 700;
 }
+
+.reg-cover{
+  height: 100%;
+  background-image:url('/static/img/china-ag.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center center;
+}
+
+.reg-container {
+  padding-left: 400px;
+  padding-top: 150px;
+  padding-bottom:275px;
+  padding-right: 400px;
+}
+
 
 .list-group-item.active {
     z-index: 2;
@@ -71,10 +94,9 @@ small {
 }
 
 .btn-secondary {
-  width:50%;
+  width:150px;
   height:40px;
   margin:5px;
-  align: center;
   color: #212626;
   background-color: #77C0D0;
   border-color: #77C0D0;
@@ -101,6 +123,7 @@ small {
 
 .navbar-nav{
   margin-left: auto;
+  font-size: 12;
 }
 
 #traveler-header {
@@ -116,19 +139,19 @@ small {
 }
 
 .buckets1{
-  box-shadow: 0px 90px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: 0px 90px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.22);
   min-height: 390px;
   padding-top:15px;
   margin: 1rem;
 }
 .buckets2{
-  box-shadow: 0px 90px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: 0px 90px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.22);
   min-height: 390px;
   padding-top:15px;
   margin: 1rem;
 }
 .buckets3{
-  box-shadow: 0px 90px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: 0px 90px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.22);
   min-height: 350px;
   padding-top: 15px;
   margin: 1rem;
@@ -172,6 +195,9 @@ small {
 #map-container {
 height: 90vh;
 margin: 15px;
+margin-left: 75px;
+margin-bottom: 100px;
+box-shadow: 0px 90px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 #map {
@@ -184,7 +210,7 @@ html, body {
         padding: 0;
       }
       #description {
-        font-family: Judson;
+        font-family: Overpass;
         font-size: 15px;
         font-weight: 300;
       }
@@ -197,7 +223,7 @@ html, body {
         outline: none;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         background-color: #fff;
-        font-family: Judson;
+        font-family: Overpass;
       }
 
       #pac-container {
@@ -212,14 +238,14 @@ html, body {
       }
 
       .pac-controls label {
-        font-family: Judson;
+        font-family: Overpass;
         font-size: 13px;
         font-weight: 300;
       }
 
       #pac-input {
         background-color: #fff;
-        font-family: Judson;
+        font-family: Overpass;
         font-size: 15px;
         font-weight: 300;
         margin-left: 12px;
