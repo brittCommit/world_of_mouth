@@ -23,12 +23,13 @@
         <div class="search">
           <div class="panel panel-primary">
             <div class="panel-heading">
-            <div class="panel-body">
+            <div class="panel-body" id="mainSearch">
               <input type="text" id="autocompleteMain" name= "country-code" placeholder="Search your next destination by country" class="main-search form-control" required>
             </div>
           </div>
         </div>
       </div>
+      <div id="advancedSearch" hidden=true>
       <div class="row">
 
         <div class="col-md-6">
@@ -82,6 +83,7 @@
 </div>
 </div>
 </div>
+</div>
 
 <!--Footer-->
 <footer class="mastfoot mt-auto">
@@ -91,6 +93,14 @@
 </footer>
 </div>
 </body>
+
+<script>
+  $('#mainSearch').on('click', (evt)=>{
+    evt.preventDefault();
+    const selectedValue=$('#advancedSearch')
+    selectedValue.attr('hidden',false);
+  });
+</script>
 
 
 <script src="./static/js/auto-complete-home.js" defer></script>
