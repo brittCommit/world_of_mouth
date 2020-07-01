@@ -3,15 +3,15 @@
 {%block title%}World of Mouth{%endblock%}
 
 {% block body%}
-<div class="my-travel-container">
-    <div class="row">
-        <h3>{{user.first_name}}'s Travels</h3>
+<div class="my-travel-container" >
+    <div class="row" id="traveler-header">
+        <h1>{{user.first_name}}'s Travels</h1>
         <img src= "{{image}}" class="thumbnail rounded-circle">
     </div>
     
-    <div class="row">
-        <div class="col-6 col-md-4">
-    <ul class="list-group list-group-flush">
+    <div class="row" id="trip-buckets">
+        <div class="buckets1 col-sm">
+    <ul class="innerbucket list-group list-group-flush" >
         <h4>Completed Trips</h4>
         {%for route in view_routes%}
         {%if route.is_completed is true%}
@@ -23,18 +23,36 @@
         {%endif%}
         {%endfor%}
     </ul>
-    <ul class="list-group list-group-flush">
-        <h4>Trips in progress</h4>
-        {%for route in view_routes%}
-        {%if route.is_completed is false%}
+    </div>
+
+    <div class="buckets2 col-sm">
+        <ul class="innerbucket  list-group list-group-flush">
+            <h4>Trips in progress</h4>
+            {%for route in view_routes%}
+            {%if route.is_completed is false%}
+            <li for = "user-id" class="list-group-item">
+                <a href="/api/view_stops/{{route.route_id}}">
+                    {{route.trip_description}}
+                </a>
+            </li>
+            {%endif%}
+            {%endfor%}
+        </ul>
+    </div>
+
+    <div class="buckets3 col-sm">
+        <h4>Bucket List</h4>
+        {%for route in favorites%}
+        <ul class="innerbucket  list-group list-group-flush">
         <li for = "user-id" class="list-group-item">
             <a href="/api/view_stops/{{route.route_id}}">
-                {{route.trip_description}}
-            </a>
+                {{route.trip_description}} 
+            </a>   
         </li>
-        {%endif%}
         {%endfor%}
-    </ul>
+        </ul>
+    </div>
+</div>
 
     <button id="new-trip" type="button" class="btn btn-secondary">Start a new trip</button>
     <div id="form-container">
@@ -65,23 +83,6 @@
                 <input type= "submit">
                 </form>`)
         });
-
     </script>
-
-
-
 </div>
-    <div class="col-6 col-md-4">
-        <h4>Bucket List</h4>
-        {%for route in favorites%}
-        <ul class="list-group list-group-flush">
-        <li for = "user-id" class="list-group-item">
-            <a href="/api/view_stops/{{route.route_id}}">
-                {{route.trip_description}} 
-            </a>   
-        </li>
-        {%endfor%}
-    </div>
-
     {%endblock%} 
-</div>

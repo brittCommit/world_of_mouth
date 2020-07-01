@@ -40,10 +40,18 @@ small {
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center center;
-  padding: 0 1.5rem;
+ 
 }
 .cover-container {
-  padding: 200px;
+  padding-left: 200px;
+  padding-top: 100px;
+  padding-bottom:275px;
+  padding-right: 275px;
+}
+
+.my-travel-container {
+  
+
 }
 .cover .btn-lg {
   padding: .75rem 1.25rem;
@@ -52,21 +60,24 @@ small {
 
 .list-group-item.active {
     z-index: 2;
+    margin:15px;
     display: block;
     padding: .75rem 1.25rem;
     color: #232426;
     border-color:#fff;
-    border-bottom: 2px solid #23594A;
+    border-bottom: 1px solid rgba(0,0,0,.125);;
     background-color: #fff;
+    
 }
 
 .btn-secondary {
-  width:80%;
-  height: 40px;
+  width:50%;
+  height:40px;
   margin:5px;
   align: center;
   color: #212626;
-  background-color: #6B837D;
+  background-color: #77C0D0;
+  border-color: #77C0D0;;
 }
 
 .btn-primary {
@@ -75,14 +86,60 @@ small {
     color: #212626;
     background-color: #77C0D0;
     border-color: #77C0D0;
+    opacity: 1;
 }
 
 .form-control {
   margin:10px;
 }
 
-/*
- * Header
+.navbar {
+  font-weight:700;
+  color: #343D3C;
+  box-shadow: 0px 0px 5px #343D3C;
+}
+
+#traveler-header {
+  text-align: center;
+  display: block;
+  padding:30px;
+  border-bottom: 2px solid #343D3C;
+}
+
+#trip-buckets {
+  text-align: center;
+}
+
+.buckets1{
+  box-shadow: 0px 90px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  min-height: 390px;
+  padding-top:15px;
+  margin: 1rem;
+}
+.buckets2{
+  box-shadow: 0px 90px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  min-height: 390px;
+  padding-top:15px;
+  margin: 1rem;
+}
+.buckets3{
+  box-shadow: 0px 90px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  min-height: 350px;
+  padding-top: 15px;
+  margin: 1rem;
+
+}
+
+.innerbucket li{
+  background: none;
+}
+
+#new-trip {
+  z-index: -100;
+  border: 1px solid red;
+  position: relative;
+}
+/* Header
  
 .masthead {
   margin-bottom: 2rem;
@@ -101,23 +158,26 @@ small {
 }
 /*
  * Footer
- */
+ 
 .mastfoot {
   color: rgba(255, 255, 255, .5);
-}*/
+}
 /**/
 
 
 /*Map CSS*/
 
+
+
 #map-container {
-height: 1000px;
-margin: 10px;
+height: 90vh;
+margin: 15px;
 }
 
 #map {
-height:100%;
-width: 85%;
+height:100vh;
+width: 95;
+
 html, body {
         height: 100%;
         margin: 0;
@@ -127,18 +187,6 @@ html, body {
         font-family: Judson;
         font-size: 15px;
         font-weight: 300;
-      }
-
-      #infowindow-content .title {
-        font-weight: bold;
-      }
-
-      #infowindow-content {
-        display: none;
-      }
-
-      #map #infowindow-content {
-        display: inline;
       }
 
       .pac-card {

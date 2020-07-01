@@ -3,7 +3,7 @@
 {%block title%}Routes: World of Mouth{%endblock%}
 
 {% block body%}
-<div class="row">
+<div class="row" id="map-size">
     <div class="col-6 col-md-4">
         <div id="get-trips" class="list-group">
             {%for route in all_routes%}
@@ -36,8 +36,8 @@
 </div>
 
 <div class="col-md-8">
-    <div id="map-container" style="height:100%; width:100% mapTypeId: 2db4a813922d0ba3">
-        <div id="map" style="height: 100%"></div>
+    <div id="map-container">
+        <div id="map"></div>
     </div>
 </div>
 </div>
