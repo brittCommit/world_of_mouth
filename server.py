@@ -54,7 +54,7 @@ def login():
     elif password == user.password:
         user_id = user.user_id
         session['user'] = user_id
-        return redirect(f'/api/my_travels/{user_id}')
+        return redirect('/')
 
     else:
         flash('Wrong password, try again!')
@@ -300,8 +300,6 @@ def bucketlist():
 
     user_id = session['user']
     return get_users_favorites(user_id)
-
-
 
 if __name__ == '__main__':
     connect_to_db(app)
