@@ -1,8 +1,8 @@
 .thumbnail {
-  border: 2px solid #AE7557;
+  border: 2px solid #77C0D0;
   padding: 5px;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
 }
 
 a {
@@ -130,8 +130,7 @@ Font-Size: 17px;
   text-align: center;
   display: block;
   padding:30px;
-  border-bottom: 2px solid #343D3C;
-  background-img: url('/static/img/Palms.jpeg'); 
+  box-shadow: 0px 0px 5px #343D3C;
 }
 
 #trip-buckets {
@@ -162,35 +161,16 @@ Font-Size: 17px;
   background: none;
 }
 
-/* Header
- 
-.masthead {
-  margin-bottom: 2rem;
-}
 
-.masthead-brand {
-  margin-bottom: 0;
-}
-
-.nav-masthead .nav-link {
-  padding: .25rem 0;
-  font-weight: 700;
-  color: rgba(255, 255, 255, .5);
-  background-color: transparent;
-
-}
 /*
- * Footer
+ * Footer/**/
  
 .mastfoot {
-  color: rgba(255, 255, 255, .5);
+  text-align: center;
+  color: #343D3C;
 }
-/**/
-
 
 /*Map CSS*/
-
-
 
 #map-container {
 height: 90vh;
