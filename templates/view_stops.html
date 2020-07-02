@@ -7,81 +7,128 @@
 <!--View all stops on a trip/route-->
 
 <div class="row">
-  <div class="col-6 col-md-4">
+  <div class="col-md-4">
 
     <h4 style="font-family: Overpass; margin: 30px; margin-bottom: 0px;">{{route.trip_description}}</h4>
     <p id="route-id" hidden = true>{{route.route_id}}</p>
-    <section id="display-route">
-      <div class="list-group-flush">
-        {% for stop in stops %}
-        <a id= "itinerary" href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1" id="city_name">{{stop.city_name}}</h5>
-            <small id="stay_length">{{stop.stay_length}} nights</small>
-          </div>
-          <p class="mb-1" id="highlights">Highlights: {{stop.highlights}}</p>
-        </a>
-        {%endfor%}
-      </div>
-    </section>
-    
-
-    <!--Form to search places and add new stop-->
+    <div class="btn-group dropdown px4 py3" >
     {% if route.is_completed is false%}
     <!--if jinja statement for if_end show-->
-    <button id="new-stop" type="button" class="btn btn-info" style="margin-left: 30px">Add a new stop</button>
-    {%else%}
-    {%endif%}
-    <div id="form-container">
+    
+      <button id="new-stop" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: 30px; margin-top: 10px; width:150px">Add a new stop</button>
+    
+      {%else%}
+      {%endif%}
+
+      <div class="col">
+        <div id="form-container" >
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 400px;">
+
+            <div id="form-group">
+              <form action = "/create_stop" id="create-stop" method='POST'>
+                <div class="form-group">
+                  <h5 style="margin-left: 10px; margin-bottom: 15px">Enter your trip details in order</h5>
+                  <div class="panel-body">
+                    <input id="autocomplete" placeholder="Search city here"type="text" class="form-control" style="max-width: 380px; margin-bottom:0px; margin-top:0px;"/>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label"></label>
+                    <input type="number" class="form-control" id="stay_length" name="stay-length" placeholder="Enter number of nights stayed" style="max-width: 380px; margin-bottom:0px; margin-top:0px;" required/>
+                    <label class="control-label"></label>
+                    <div class="form-group">
+                      <input type="textarea" class="form-control" id="highlights" name="highlights" placeholder="Share your highlights of this city"style="max-width: 380px; margin-bottom:0px; margin-top:0px;"/>
+                    </div>
+                    <div class="form-group">
+                      <input type="checkbox" id="is_end" class="form-check-input" value=True name="is-end" onchange="doalert(this)" style="max-width: 380px; margin-bottom:0px; margin-top:0px;margin-left: 10px;"/>
+                      <label class="control-label" style="margin-left: 30px";>Check this box if this was the last stop of your trip.</label>
+                    </div>
+                  </div>
+                  <div>
+                    <input id="route-id" name="route-id" value={{route_id}} hidden/>
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="margin-top: 0px;">Add city</button>
+                  <div class="col-md-6">
+                    <label class="control-label"></label>
+                    <input class="form-control" id="lat" name='lat' placeholder = "lat" disabled="true" hidden/>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="control-label"></label>
+                    <input class="form-control" id="lng" name='lng' placeholder = "lng" disabled="true" hidden/>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="control-label"></label>
+                      <input class="form-control field" id="locality" name="city-name" placeholder="City" disabled="true" hidden/>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="control-label"></label>
+                      <input class="form-control" id="country" name="country-code" placeholder="Country" disabled="true" hidden/>
+                    </div>
+                  </div>
+                </div>
+            </form>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <section id="display-route">
+        <div class="list-group-flush">
+          {% for stop in stops %}
+          <a id= "itinerary" href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1" id="city_name">{{stop.city_name}}</h5>
+              <small id="stay_length">{{stop.stay_length}} nights</small>
+            </div>
+            <p class="mb-1" id="highlights">Highlights: {{stop.highlights}}</p>
+          </a>
+          {%endfor%}
+        </div>
+      </section>
+    </div>
+
+    <!--Form to search places and add new stop-->
+    
+    <!--<div id="form-container">
       <form action= "/create_stop" id= "create-stop" method='POST' hidden= true>
         <div class="container">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h4 class="panel-title">Enter your stop details in order</h4>
+              <h4 class="panel-title" id="add-city">Enter your stop details in order</h4>
             </div>
             <div class="panel-body">
               <input id="autocomplete" placeholder="Search city here"type="text" class="form-control"/>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <label class="control-label"></label>
-                  <input class="form-control field" id="locality" name="city-name" placeholder="City" disabled="true"/>
-                </div>
-
-                <div class="col-md-6">
-                  <label class="control-label"></label>
-                  <input class="form-control" id="country" name="country-code" placeholder="Country" disabled="true"/>
-                </div>
-
-                <div class="col-md-6">
-                  <label class="control-label"></label>
-                  <input class="form-control" id="lat" name='lat' placeholder = "lat" disabled="true"/>
-                </div>
-
-                <div class="col-md-6">
-                  <label class="control-label"></label>
-                  <input class="form-control" id="lng" name='lng' placeholder = "lng" disabled="true"/>
-                </div>
-
-                <div class="col-md-6">
+                <div class="col">
                   <label class="control-label"></label>
                   <input type="number" class="form-control" id="stay_length" name="stay-length" placeholder="Enter number of nights stayed"required/>
-                </div>
-
-                <div class="col-md-6">
                   <label class="control-label"></label>
                   <input type="text" class="form-control" id="highlights" name="highlights" placeholder="Share your highlights of this city"/>
-                </div>
-
-                <div class="col-md-6">
                   <label class="control-label">Check this box if this was the last stop of your trip:</label>
                   <input type="checkbox" id="is_end" class="form-control" value=True name="is-end" onchange="doalert(this)"/>
                 </div>
                 <div>
                   <input id="route-id" name="route-id" value={{route_id}} hidden/>
-
                   <div>
-                    <button type="submit" class="btn btn-info">Add stop to trip</button>
+                    <button type="submit" class="btn btn-primary">Add stop to trip</button>
+                    <div class="col-md-6">
+                      <label class="control-label"></label>
+                      <input class="form-control" id="lat" name='lat' placeholder = "lat" disabled="true" hidden/>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="control-label"></label>
+                      <input class="form-control" id="lng" name='lng' placeholder = "lng" disabled="true" hidden/>
+                    </div>
+                    <div class="row">
+                <div class="col-md-6">
+                  <label class="control-label"></label>
+                  <input class="form-control field" id="locality" name="city-name" placeholder="City" disabled="true" hidden/>
+                </div>
+                <div class="col-md-6">
+                  <label class="control-label"></label>
+                  <input class="form-control" id="country" name="country-code" placeholder="Country" disabled="true" hidden/>
+                </div>
                   </div> 
                 </div>
               </div>
@@ -89,8 +136,8 @@
           </div>
         </div>
       </form>
-    </div>
-  </div>
+    </div>-->
+
   <div class="col-md-8">
     <div id="map-container">
       <div id="map"></div>
@@ -106,6 +153,7 @@
 </script>
 <!-- Ajax request to hide form until add stop is clicked, user can add a stop to a route using google places autocomplete -->
 
+
 <script>
   $('#new-stop').on('click', (evt) => {
     evt.preventDefault();
@@ -114,10 +162,11 @@
     console.log(selectedValue)
     selectedValue.attr('hidden', false);
   });
+
   $('#create-stop').on('submit', (evt) => {
     evt.preventDefault();
     const formValues = $('#create-stop').serialize();
-
+    console.log('Marisa')
     $.post('/create_stop', formValues,(res) => {
      console.log(res) 
     //  $('#itinerary').append(`
@@ -142,6 +191,7 @@
     //   $('#create-stop').attr('hidden', true);
     //   $('#create-stop')[0].reset();
     // }
+    console.log('here')
     location.reload();
   });
   });
