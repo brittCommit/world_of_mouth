@@ -50,31 +50,13 @@ for (let key of tripKeys) {
     document.getElementById(addressType).value = val;
   };
 }
-
-// Bias the autocomplete object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
-function geolocate() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      let geolocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      let circle = new google.maps.Circle({
-        center: geolocation,
-        radius: position.coords.accuracy
-      });
-      autocomplete.setBounds(circle.getBounds());
-    });
-  }
-};
 }
 
 function initMap() {
   let myLatLng = (lat, lng)
   let map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 39.327962, lng: -120.1832533},
-    zoom: 5,
+    center: {lat: 0, lng: 0},
+    zoom: 2,
     streetViewControl: false,
     mapTypeControl: false,
     scaleControl: true
@@ -106,7 +88,7 @@ $.get(`/api/map/${route_id}`, (stops) => {
     marker.setMap(map)
   
   map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
-  map.setZoom(4)
+  map.setZoom(5)
 }
 });
 };
