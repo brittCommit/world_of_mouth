@@ -212,4 +212,10 @@ def get_favorite_routes_by_user_id(user_id):
 
     return favorite_routes
 
+def unfavorite_routes(route_id,user_id):
+    """Unfavorite a route"""
+
+    favorited_item = crud.get_favorite_id_by_route_and_user_ids(route_id, user_id)
+    db.session.delete(favorited_item)
+    db.session.commit()
 

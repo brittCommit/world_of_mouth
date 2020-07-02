@@ -291,11 +291,8 @@ def unfavorite_route(route_id):
     """User unfavorites route"""
 
     user_id = session['user']
-    favorited_item = crud.get_favorite_id_by_route_and_user_ids(route_id, user_id)
-
-    # del favorited_item = 
-    return redirect(request.url)
-
+    unfavorite_route = crud.get_favorite_id_by_route_and_user_ids(route_id, user_id)
+   
 
 @app.route('/bucketlist')
 def bucketlist():
