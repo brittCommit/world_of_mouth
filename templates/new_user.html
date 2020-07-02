@@ -9,9 +9,9 @@
 <div class="text-center">
     <h3>New Traveler Registration</h3>
 
-    <div class="col-md form-group">
+    <div class="col-sm form-group">
 
-    <form action="/new_user" method="POST" enctype="multipart/form-data">
+    <form action="/new_user" method="POST" enctype="multipart/form-data" style="padding-left: 5px">
         <p>
           {# <label>first name:</label> #}
           <input type="text" class="form-control" name="first_name" placeholder="first name" required>
@@ -27,10 +27,13 @@
         </p>
           <input type="text" class="form-control" name="home_country" placeholder="What is your home country? United States, Mexico, India, etc." required>
         </p>
-        <input id="image-upload" type="file" class="form-control" name="image-upload" placeholder="upload a profile picture"/>
-        <br>
-        <button type="submit" class="btn btn-secondary">Submit</button>
-   
+        <div class="custom-file">
+          <input id="image-upload" type="file" class="custom-file-input" name="image-upload">
+          <label class="custom-file-label">Upload a profile picture</label>
+        </div>
+      
+        <button type="submit" class="btn btn-secondary" style="margin-top: 15px">Submit</button>
+        
     </form>
     </div>
   </div>
