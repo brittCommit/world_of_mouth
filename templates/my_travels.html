@@ -9,14 +9,37 @@
         <img src= "{{image}}" class="thumbnail rounded-circle">
         <br>
         <br>
+        <div class="btn-group dropdown px-5 py-4">
         <button id="new-trip" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 150px;">Start a new trip</button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <div id="form-container">
-            
-        </div>
-    </div>
+        <form action = "/create_route" class="px-4 py-3"method='POST'>
+            <div class="form-group">
+                <label>Trip description</label>
+                <input type= "text" class="form-control" name= "trip_description" placeholder="Type a brief trip description">
+            </div>
+            <div class="form-group">
+                <label>Trip type</label>
+                    <select multiple class="form-control" name="trip-type">
+                    <option value="" disabled selected>What type of trip: Select one or many</option>
+                    <option value="1">solo</option>
+                    <option value="2">group</option>
+                    <option value="3">couples</option>
+                    <option value="4">food</option>
+                    <option value="5">adventure</option>
+                    <option value="6">health</option>
+                    <option value="7">culture</option>
+                    <option value="8">backpacking</option>
+                    <option value="9">digital nomad</option>
+                    </select> 
+            </div>
+        <button type= "submit" class="btn btn-md btn-secondary" style="width: 100px">Submit</button>
+    </form>
 </div>
-<script>
+</div>
+</div>
+        </div>
+<!--<script>
                 $('#new-trip').on('click', (evt) => {
                     evt.preventDefault();
 
@@ -44,7 +67,7 @@
                         </div>
                         </form>`)
                 });
-            </script>
+            </script>-->
 <!--<script> 
       
         // JavaScript code to avoid dropdown 
