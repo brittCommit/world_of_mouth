@@ -9,8 +9,8 @@
             {%for route in all_routes%}
 
             <div class="list-group" value="{{route.route_id}}">
-              <div id ="{{route.route_id}}" class="view-trip list-group-item list-group-item-action flex-column align-items-start active"name="view_trip" value="{{route.route_id}}">
-                <div class="d-flex w-100 justify-content-between">
+              <div class="list-group-item list-group-item-action flex-column align-items-start active"name="view_trip" value="{{route.route_id}}">
+                <div id ="{{route.route_id}}" class="view-trip d-flex w-100 justify-content-between">
                   <h4 class="mb-1" value="{{route.route_id}}">{{route.trip_description}}</h4>
                   <small>{{route.trip_length}} days</small>
               </div>
@@ -27,7 +27,16 @@
                 {%endfor%}
             </p>
             <div class="row">
+                <div class="col-sm">
                 <a class= "btn btn-secondary" href="/api/view_stops/{{route.route_id}}" role="button"value="{{route.route_id}}"id="itineary">View itinerary</a>
+            </div>
+            <div class="col-sm">
+            <form >
+            {%if session%}
+                <button type="button" id ="{{route.route_id}}" class= "favorite btn" name="add" value="{{route.route_id}}" data-toggle="tooltip" data-placement="top" title="click to add route to bucket list" style="color: #02706E; align: right; height: 30px"><i class="far fa-map"></i></button>
+            {%endif%}
+            </form>
+            </div>
             </div>
         </div>
     </div>
@@ -42,6 +51,45 @@
 </div>
 </div>
 
+<!--<script>
+    $(".favorite").on('click', (evt) => {
+        let btn = evt.target
+        let route_id = evt.target.id;
+
+        if (btn.innerHTML === 'Add trip to bucket list') {
+            $.post(`/api/favorite/${route_id}`, (res) => {
+                btn.innerHTML = "Remove trip from bucket list"
+            });
+        }
+        else if (btn.innerHTML === 'Remove trip to bucket list') 
+        {
+            $.post(`/api/unfavorite/${route_id}`, (res) =>
+                btn.innerHTML = "Add trip to bucket list"
+                )};
+        });
+</script>-->
+
+<script>
+    $(".favorite").on('click', (evt) => {
+        let btn = evt.target
+        let route_id = evt.target.id;
+
+        if (btn.name === 'add') {
+            $.post(`/api/favorite/${route_id}`, (res) => {
+                btn.name = "remove";
+                btn.iclass="fas fa-map";
+            });
+        }
+        else if (btn.name === 'remove') 
+        {
+            $.post(`/api/unfavorite/${route_id}`, (res) => {
+                btn.name = "add";
+                btn.iclass="far fa-map";
+                });
+        };
+        });
+    
+</script>
 
 <script src="/static/js/Map.js"></script>
 
