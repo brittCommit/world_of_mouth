@@ -83,7 +83,7 @@ Font-Size: 17px;
 
 .list-group-item.active {
     z-index: 2;
-    margin:15px;
+    margin: 5px;
     display: block;
     padding: .75rem 1.25rem;
     color: #232426;
@@ -173,7 +173,7 @@ Font-Size: 17px;
 /*Map CSS*/
 
 #map-container {
-height: 90vh;
+height: 87vh;
 margin: 15px;
 margin-left: 75px;
 margin-bottom: 100px;
@@ -181,7 +181,7 @@ box-shadow: 0px 90px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 #map {
-height:100vh;
+height:100%;
 width: 95;
 
 html, body {
