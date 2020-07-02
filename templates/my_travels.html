@@ -7,22 +7,90 @@
     <div class="row" id="traveler-header">
         <h1>{{user.first_name}}'s Travels</h1>
         <img src= "{{image}}" class="thumbnail rounded-circle">
+        <br>
+        <br>
+        <button id="new-trip" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 150px;">Start a new trip</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div id="form-container">
+            
+        </div>
     </div>
-    
-    <div class="row" id="trip-buckets">
-        <div class="buckets1 col-sm">
-    <ul class="innerbucket list-group list-group-flush" >
-        <h4>Completed Trips</h4>
-        {%for route in view_routes%}
-        {%if route.is_completed is true%}
-        <li for = "user-id" class="list-group-item">
-            <a href="/api/view_stops/{{route.route_id}}">
-                {{route.trip_description}}
-            </a>
-        </li>
-        {%endif%}
-        {%endfor%}
-    </ul>
+</div>
+<script>
+                $('#new-trip').on('click', (evt) => {
+                    evt.preventDefault();
+
+                    const selectedValue =$('#form-container');
+                    selectedValue.html(`<form action = "/create_route" class="px-4 py-3"method='POST'>
+                        <div class="form-group">
+                        <label>Trip description</label>
+                        <input type= "text" class="form-control" name= "trip_description" placeholder="Type a brief trip description">
+                        <br>
+                        <label>Trip type</label>
+                        <select multiple class="form-control" name="trip-type">
+                        <option value="" disabled selected>What type of trip: Select one or many</option>
+                        <option value="1">solo</option>
+                        <option value="2">group</option>
+                        <option value="3">couples</option>
+                        <option value="4">food</option>
+                        <option value="5">adventure</option>
+                        <option value="6">health</option>
+                        <option value="7">culture</option>
+                        <option value="8">backpacking</option>
+                        <option value="9">digital nomad</option>
+                        </select>
+                        <br>
+                        <button type= "submit" class="btn btn-md btn-secondary" style="width: 100px">Submit</button>
+                        </div>
+                        </form>`)
+                });
+            </script>
+<!--<script> 
+      
+        // JavaScript code to avoid dropdown 
+        // menu close 
+          
+        // Clicking dropdown button will toggle display 
+        function btnToggle() { 
+            document.getElementById("#form-container").classList.toggle("show"); 
+        } 
+          
+        // Prevents menu from closing when clicked inside 
+        document.getElementById("#form-container").addEventListener('click', function (event) { 
+            event.stopPropagation(); 
+        }); 
+          
+        // Closes the menu in the event of outside click 
+        window.onclick = function(event) { 
+            if (!event.target.matches('.dropbutton')) { 
+              
+                var dropdowns =  
+                document.getElementsByClassName("dropdownmenu-content"); 
+                  
+                var i; 
+                for (i = 0; i < dropdowns.length; i++) { 
+                    var openDropdown = dropdowns[i]; 
+                    if (openDropdown.classList.contains('show')) { 
+                        openDropdown.classList.remove('show'); 
+                    } 
+                } 
+            } 
+        } 
+    </script>-->    
+<div class="row" id="trip-buckets">
+    <div class="buckets1 col-sm">
+        <ul class="innerbucket list-group list-group-flush" >
+            <h4>Completed Trips</h4>
+            {%for route in view_routes%}
+            {%if route.is_completed is true%}
+            <li for = "user-id" class="list-group-item">
+                <a href="/api/view_stops/{{route.route_id}}">
+                    {{route.trip_description}}
+                </a>
+            </li>
+            {%endif%}
+            {%endfor%}
+        </ul>
     </div>
 
     <div class="buckets2 col-sm">
@@ -44,45 +112,13 @@
         <h4>Bucket List</h4>
         {%for route in favorites%}
         <ul class="innerbucket  list-group list-group-flush">
-        <li for = "user-id" class="list-group-item">
-            <a href="/api/view_stops/{{route.route_id}}">
-                {{route.trip_description}} 
-            </a>   
-        </li>
-        {%endfor%}
+            <li for = "user-id" class="list-group-item">
+                <a href="/api/view_stops/{{route.route_id}}">
+                    {{route.trip_description}} 
+                </a>   
+            </li>
+            {%endfor%}
         </ul>
     </div>
 </div>
-
-    <button id="new-trip" type="button" class="btn btn-secondary">Start a new trip</button>
-    <div id="form-container">
-    </div>
-    <script>
-        $('#new-trip').on('click', (evt) => {
-            evt.preventDefault();
-
-            const selectedValue =$('#form-container');
-            selectedValue.html(`<form action = "/create_route" method='POST'>
-                <label>Trip description</label>
-                <input type= "text" name= "trip_description" placeholder="Brief trip description">
-                <br>
-                <label>Trip type</label>
-                <select name="trip-type" multiple>
-                <option value="" disabled selected>What type of trip: Select one or many</option>
-                <option value="1">solo</option>
-                <option value="2">group</option>
-                <option value="3">couples</option>
-                <option value="4">food</option>
-                <option value="5">adventure</option>
-                <option value="6">health</option>
-                <option value="7">culture</option>
-                <option value="8">backpacking</option>
-                <option value="9">digital nomad</option>
-                </select>
-                <br>
-                <input type= "submit">
-                </form>`)
-        });
-    </script>
-</div>
-    {%endblock%} 
+{%endblock%} 
