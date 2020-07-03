@@ -25,10 +25,11 @@
 
 ### Installation
 #### Prerequisites
--API keys for Google Places,  Google Maps JavaScript and  Cloudinary
--Python3
+  - API keys for Google Places,  Google Maps JavaScript and  Cloudinary
+  - Python3
+  - PostgreSQL
 
-### Let's go!
+### Let's go! ✈
 #### Clone or fork repository
 ```sh
 $ git clone https://github.com/b-hutt/world_of_mouth.git
