@@ -13,32 +13,32 @@
   - Add trips to bucket list
   - Registration, Login, Logout
   
-##### Search and results
+#### Search and results
 ![countrySearch](https://github.com/b-hutt/world_of_mouth/blob/master/static/img/countrySearch.gif)
-##### View itinerary
+#### View itinerary
 ![itinerary](https://github.com/b-hutt/world_of_mouth/blob/master/static/img/itinerary.gif)
-##### Create a new trip
+#### Create a new trip
 ![newTrip](https://github.com/b-hutt/world_of_mouth/blob/master/static/img/newTrip.gif)
 
 
 
 
 ### Installation
-##### Prerequisites
+#### Prerequisites
 API keys for Google Places,  Google Maps JavaScript and  Cloudinary
 Python3
 
 ### Let's go!
-##### Clone or fork repository
+#### Clone or fork repository
 ```sh
 $ git clone https://github.com/b-hutt/world_of_mouth.git
 ```
-##### Create and activate a virtual environment inside your WOM directory
+#### Create and activate a virtual environment inside your WOM directory
 ```sh
 $ virtualenv
 $ source env/bin/activate
 ```
-##### Install requirements
+#### Install requirements
 ```sh
 $ pip3 install -r requirements.txt
 ```
@@ -46,15 +46,15 @@ $ pip3 install -r requirements.txt
 Add your google api key to the 3 html files(homepage, view_stops and view_routes).
 Add your cloudinary api key, secret and cloud information to the cloudinary.config section on server.py
 
-##### Create database
+#### Create database
 ```sh
 $ createdb routes
 ```
-##### Seed database
+#### Seed database
 ```sh
 $ python3 seeddatabase.py
 ```
-##### Start your server
+#### Start your server
 ```sh
 $ python3 server.py
 ```
