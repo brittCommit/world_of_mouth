@@ -25,8 +25,8 @@
 
 ### Installation
 #### Prerequisites
-API keys for Google Places,  Google Maps JavaScript and  Cloudinary
-Python3
+-API keys for Google Places,  Google Maps JavaScript and  Cloudinary
+-Python3
 
 ### Let's go!
 #### Clone or fork repository
