@@ -66,7 +66,9 @@ Prior to attending Hackbright Academy’s 12-week immersive full-stack software 
 
 She decided to pursue software engineering so she could put her strengths of ideation and problem solving to use and further pursue roles in which she can help create products that provide solutions and have positive impacts. In her free time, she enjoys traveling, hiking, yoga and volunteering for Urban Lotus Project.
 
+### Acknowledgments
 
+Thank you to my mentors, classmates and advisors who provided direction, support, ideas and endless hours of debugging to help make this project come alive. 🙏
 
 
 
