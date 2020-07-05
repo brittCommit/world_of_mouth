@@ -242,7 +242,6 @@ def route_details(route_id):
                                               route_id = route_id,
                                               route = route)
 
-
 # ROUTES FOR HANDLING MAP #
 
 
@@ -300,6 +299,14 @@ def bucketlist():
 
     user_id = session['user']
     return get_users_favorites(user_id)
+
+# ABOUT ME #
+
+@app.route('/about')
+def about():
+    """Render the about me page"""
+
+    return render_template('AboutMe.html')
 
 if __name__ == '__main__':
     connect_to_db(app)

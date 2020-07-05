@@ -161,6 +161,14 @@ Font-Size: 17px;
   background: none;
 }
 
+.about-container {
+  padding-left: 200px;
+  padding-top: 150px;
+  padding-bottom:275px;
+  padding-right: 275px;
+}
+
+
 
 /*
  * Footer/**/
