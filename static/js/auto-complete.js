@@ -56,7 +56,7 @@ function initMap() {
   let myLatLng = (lat, lng)
   let map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 0, lng: 0},
-    zoom: 2,
+    zoom: 3,
     streetViewControl: false,
     mapTypeControl: false,
     scaleControl: true
@@ -88,7 +88,7 @@ $.get(`/api/map/${route_id}`, (stops) => {
     marker.setMap(map)
   
   map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
-  map.setZoom(5)
+  map.setZoom(6)
 }
 });
 };
