@@ -159,16 +159,14 @@
     evt.preventDefault();
 
     const selectedValue =$('#create-stop');
-    console.log(selectedValue)
     selectedValue.attr('hidden', false);
   });
 
   $('#create-stop').on('submit', (evt) => {
     evt.preventDefault();
     const formValues = $('#create-stop').serialize();
-    console.log('Marisa')
     $.post('/create_stop', formValues,(res) => {
-     console.log(res) 
+
     //  $('#itinerary').append(`
     //   <li id="city_name"> ${res.city_name}
     //   <ul>
