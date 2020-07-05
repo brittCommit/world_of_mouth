@@ -5,38 +5,37 @@
 {% block body%}
 
 <body class="reg-cover">
-<div class="reg-container">
-<div class="text-center">
-    <h3>New Traveler Registration</h3>
+  <div class="reg-container">
+    <div class="text-center">
+      <h3>New Traveler Registration</h3>
 
-    <div class="col-sm form-group">
+      <div class="col-sm form-group">
 
-    <form action="/new_user" method="POST" enctype="multipart/form-data" style="padding-left: 5px">
-        <p>
-          {# <label>first name:</label> #}
-          <input type="text" class="form-control" name="first_name" placeholder="first name" required>
-        </p>
-        <p>
-          <input type="email" class="form-control" name="email" placeholder="email@example.com" required>
-        </p>
-        <p>
-          <input type="text" class="form-control" name="user_name" placeholder="user name" required>
-        </p>
-          <input type="password" class="form-control" name="password" placeholder ="password" required>
-        </p>
-        </p>
-          <input type="text" class="form-control" name="home_country" placeholder="What is your home country? United States, Mexico, India, etc." required>
-        </p>
-        <div class="custom-file">
-          <input id="image-upload" type="file" class="custom-file-input" name="image-upload">
-          <label class="custom-file-label">Upload a profile picture</label>
-        </div>
-      
-        <button type="submit" class="btn btn-secondary" style="margin-top: 15px">Submit</button>
-        
-    </form>
+        <form action="/new_user" method="POST" enctype="multipart/form-data" style="padding-left: 5px">
+          <p>
+            {# <label>first name:</label> #}
+            <input type="text" class="form-control" name="first_name" placeholder="first name" required>
+          </p>
+          <p>
+            <input type="email" class="form-control" name="email" placeholder="email@example.com" required>
+          </p>
+          <p>
+            <input type="text" class="form-control" name="user_name" placeholder="user name" required>
+          </p>
+          <p>
+            <input type="password" class="form-control" name="password" placeholder ="password" required>
+          </p>
+          <p>
+            <input type="text" class="form-control" name="home_country" placeholder="What is your home country? United States, Mexico, India, etc." required>
+          </p>
+          <div class="custom-file">
+            <input id="image-upload" type="file" class="custom-file-input" name="image-upload" style="margin-left: 20px">
+            <label class="custom-file-label">Upload a profile picture</label>
+          </div>
+          <button type="submit" class="btn btn-secondary" style="margin-top:15px">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
- </div>
 </body>
 {%endblock%}
