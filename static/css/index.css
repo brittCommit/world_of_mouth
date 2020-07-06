@@ -48,7 +48,17 @@ Font-Size: 17px;
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center center;
- 
+}
+
+.about-cover {
+  height: 100%;
+  font-family: 'Overpass', sans-serif;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center center;
 }
 .cover-container {
   padding-left: 200px;
