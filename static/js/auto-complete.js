@@ -88,7 +88,7 @@ $.get(`/api/map/${route_id}`, (stops) => {
     marker.setMap(map)
   
   map.setCenter({lat: stops[0].lat, lng: stops[0].lng});
-  map.setZoom(6)
+  map.setZoom(5)
 }
 });
 };
