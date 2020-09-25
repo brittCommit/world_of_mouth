@@ -53,7 +53,7 @@ $ createdb routes
 ```
 #### Seed database
 ```sh
-$ python3 seeddatabase.py
+$ python3 seed_database.py
 ```
 #### Start your server
 ```sh
